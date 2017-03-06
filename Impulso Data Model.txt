@@ -40,10 +40,11 @@ artwork											Artwork to be embedded
 	artwork_position	varchar(9)		NOT NULL			Canvas position (0,0 is top left)
 	artwork_aspect		varchar(9)		NOT NULL			(1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 16:9)  
 	artwork_image_id	int			NOT NULL		FK	References images(image_id)
+	artwork_user_id		int			NOT NULL		FK	References users(user_id)
 
 finals											Final image with artwork & frame
 	final_id		int			NOT NULL	AI	PK	
 	final_image_id		int			NOT NULL		FK	References images(image_id)
 	final_artwork		int			NOT NULL		FK	References artwork(artwork_id)
 	final_frame		int						FK	References frames(frame_id)
-	final_user		int						FK	References users(user_id)
+	final_user_id		int						FK	References users(user_id)
