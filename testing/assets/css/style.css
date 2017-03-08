@@ -1,0 +1,224 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'LCDBOLD';
+  src: url('../LCDBOLD/LCDBOLD.eot');
+  src: local('../LCDBOLD/LCDBOLD'), url('../LCDBOLD/LCDBOLD.woff') format('woff'), url('../LCDBOLD/LCDBOLD.ttf') format('truetype');
+}
+
+.table-lcd-font {
+  font-family: 'LCDBOLD' !important;
+  font-size: 14px;
+  color: #FFFF00;
+}
+
+th {
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+#logo {
+  margin: -64px 0 0px -160px;
+  /* play with these to position the image */
+  z-index: 100;
+  width: 156px;
+  padding: 5px;
+}
+
+.jumbotron {
+  background: #222;
+  font-family: 'LCDBOLD' !important;
+  color: #FFFF00;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+
+.ttLogo {
+  position: relative;
+  float: left;
+  width: 100px;
+  top: 5px;
+  left: 250px;
+}
+
+.navbar {
+  border: none;
+  border-top: 23px solid transparent;
+}
+
+.navbar-right {
+  position: relative;
+  top: -36px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+  font-family: 'Russo One', sans-serif;
+  font-size: 15px;
+}
+
+.navbar > .container .navbar-brand,
+.navbar > .container-fluid .navbar-brand {
+  margin-left: 150px;
+}
+
+.navbar-inverse {
+  background-image: none;
+  /*background-color: black;*/
+  border-color: #1d5510;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+#user-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: 31px;
+  width: 100%;
+  right: 0;
+  padding-left: 10px;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+#user-container #user-pic {
+  top: -3px;
+  position: relative;
+  display: inline-block;
+  background-image: url("/assets/images/profile_placeholder.png");
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  border-radius: 20px;
+}
+
+#user-container #user-name {
+  font-size: 16px;
+  line-height: 36px;
+  padding-right: 10px;
+  padding-left: 20px;
+  color: white;
+}
+
+body {
+  margin: 0;
+}
+
+#room-canvas {
+  border: solid 1px;
+}
+
+.img-thumbnail {
+  margin: 10px;
+}
+
+.panel-default>.panel-heading {
+    background-image: none;
+    background-color: #1d5510;
+    color: white;
+}
+
+.panel-body {
+  background: #222;
+  color: #eee;
+
+}
+
+.btn-default {
+    background-color: #1d5510;
+    color: white;
+     text-shadow: none; 
+    background-image: none;
+    border-color: #dbdbdb;
+    border-color: #ccc;
+}
+
+.btn-default:focus, .btn-default:hover {
+    background-color: white;
+    color: #1d5510;
+}
+
+#container {
+  text-align: center;
+}
+
+.clearfix {
+  clear: both;
+}
+
+*.hidden {
+  display: none;
+}
+
+
+#edit-train {
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 8px;
+  /*text-decoration: underline;*/
+
+}
+
+#delete-train {
+  cursor: pointer;
+  font-size: 18px;
+  /*text-decoration: underline;*/
+}
+
+/*.tip + .tooltip > .tooltip-inner {
+      background-color: #73AD21; 
+      color: #FFFFFF; 
+      border: 1px solid green; 
+      padding: 15px;
+      font-size: 20px;
+  }
+
+.tip + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid black;
+  }
+
+.tip + .tooltip.left > .tooltip-arrow {
+      border-right: 5px solid black;
+  }
+*/
+
+.ui-timepicker {
+  text-align: left;
+}
+
+.clock-wrapper {
+  text-align: center;
+}
+
+.flip-clock-wrapper {
+    width: auto;
+    display: inline-block;
+}
+
+/*.clock {
+  float: left;
+  position: relative;
+  top: 10px;
+  left: -45px;
+  height: 35px;
+  width: 25%;
+  line-height: 35px;
+  padding: 0 50px;
+  background: #222;
+  color: #eee;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 0 7px #222;
+  text-shadow: 0 0 3px #fff;
+  font-family: "liquid_crystalregular", sans-serif;
+  user-select: none;
+  user-drag: none;
+}*/
