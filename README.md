@@ -18,7 +18,13 @@ Later port it to Mobile/Tablet App <br>
 - http://www.ohmyprints.com/index/455/de/WallApp
 
 ##Purpose of the App:
-	Provide the user the ability to preview what a picture would look like on a wall or in a room by giving the user the ability to drag and drop objects on a wall or in an area of a room, to color the wall.
+Provide the user the ability to preview what a picture would look 
+
+like on awall or in a room by giving the user the ability to drag 
+
+and drop objects on a wall or in an area of a room, to 
+
+color the wall.
 
 
 ##App Features and Requirements
