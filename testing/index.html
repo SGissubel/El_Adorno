@@ -10,6 +10,7 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/spectrum.css">
 </head>
 
 <body>
@@ -54,11 +55,13 @@
     <div class="row">    <!--  start of canvas div -->
          <div class="col-md-8 col-md-offset-1">
             <div id="canvas">
-              <canvas id="room-canvas" width="1200" height="800"></canvas>
+              <canvas id="room-canvas" width="999" height="666"></canvas>
             </div>
           </div>
 
             <div class="col-md-3">
+
+              Wall Color: <input type='text' id="full"/>
 
               <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#bg">Backgrounds</a></li>
@@ -186,6 +189,7 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="assets/js/jcanvas.min.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/spectrum.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 

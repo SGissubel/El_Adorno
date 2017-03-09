@@ -120,6 +120,11 @@ body {
   margin: 10px;
 }
 
+.full-spectrum .sp-palette {
+max-width: 200px;
+}
+
+
 .panel-default>.panel-heading {
     background-image: none;
     background-color: #1d5510;
