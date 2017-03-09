@@ -1,24 +1,30 @@
 $(document).ready(function () {
 
-  //App Starts executing here
-
-  // var params = {
-  // // Callback fired on rotation start.
-  // start: function(event, ui) {
-  // },
-  // // Callback fired during rotation.
-  // rotate: function(event, ui) {
-  // },
-  // // Callback fired on rotation end.
-  // stop: function(event, ui) {
-  // },
-  // // Set the rotation center at (25%, 75%).
-  // rotationCenterX: 25.0, 
-  // rotationCenterY: 75.0
-  // };
-  // $('#canvas').rotatable(params);
-
   var canvas = $("#room-canvas");
+
+  function showHandles(layer) {
+    return canvas.setLayer(layer, { 
+      handle: {
+        type: 'rectangle',
+        visible: true,
+        strokeWidth: 1,
+        fillStyle: '#00ffff',
+        width: 10, height: 10,
+      }
+      });
+  };
+
+  function hideHandles(layer) {
+    return canvas.setLayer(layer, { 
+      handle: {
+        type: 'rectangle',
+        visible: false,
+        strokeWidth: 1,
+        fillStyle: '#00ffff',
+        width: 10, height: 10,
+      }
+      });
+  };
 
   var $imgThumbnail = $('<img>').addClass('img-responsive img-thumbnail img-room-01').attr('src', "room_01.png").attr('width', "200px").attr('alt', "room_01");
   $("#bg").append($imgThumbnail);
@@ -59,16 +65,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".img-room-01", function () {
 
-    // $("#room-canvas").addLayer({
-    //   type: "rectangle",
-    //   fillStyle: '#00f100',
-    //   draggable: false,
-    //   fromCenter: false,
-    //   x: 0, y: 0,
-    //   width: 999, height: 666
-    // }).drawLayers();  
-
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'room_01.png',
       draggable: false,
@@ -81,16 +78,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".img-room-02", function () {
 
-    // $("#room-canvas").addLayer({
-    //   type: "rectangle",
-    //   fillStyle: '#00f100',
-    //   draggable: false,
-    //   fromCenter: false,
-    //   x: 0, y: 0,
-    //   width: 999, height: 666
-    // }).drawLayers();  
-
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'room_02.png',
       draggable: false,
@@ -103,16 +91,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".img-room-03", function () {
 
-    // $("#room-canvas").addLayer({
-    //   type: "rectangle",
-    //   fillStyle: '#00f100',
-    //   draggable: false,
-    //   fromCenter: false,
-    //   x: 0, y: 0,
-    //   width: 999, height: 666
-    // }).drawLayers();  
-
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'room_03.png',
       draggable: false,
@@ -125,16 +104,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".img-room-04", function () {
 
-    // $("#room-canvas").addLayer({
-    //   type: "rectangle",
-    //   fillStyle: '#00f100',
-    //   draggable: false,
-    //   fromCenter: false,
-    //   x: 0, y: 0,
-    //   width: 999, height: 666
-    // }).drawLayers();  
-
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'room_04.png',
       draggable: false,
@@ -147,16 +117,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".img-room-05", function () {
 
-    // $("#room-canvas").addLayer({
-    //   type: "rectangle",
-    //   fillStyle: '#00eeff',
-    //   draggable: false,
-    //   fromCenter: false,
-    //   x: 0, y: 0,
-    //   width: 999, height: 666
-    // }).drawLayers();  
-
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'room_05.png',
       draggable: false,
@@ -167,35 +128,9 @@ $(document).ready(function () {
 
   });
 
-
-  function showHandles(layer) {
-    return $("#room-canvas").setLayer(layer, { 
-      handle: {
-        type: 'rectangle',
-        visible: true,
-        strokeWidth: 1,
-        fillStyle: '#00ffff',
-        width: 10, height: 10,
-      }
-      });
-  };
-
-  function hideHandles(layer) {
-    return $("#room-canvas").setLayer(layer, { 
-      handle: {
-        type: 'rectangle',
-        visible: false,
-        strokeWidth: 1,
-        fillStyle: '#00ffff',
-        width: 10, height: 10,
-      }
-      });
-  };
-
-
   $(document).on("click", ".img-art-01", function () {
 
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'art_01.png',
       name: "art-01",
@@ -217,39 +152,66 @@ $(document).ready(function () {
 
   $(document).on("click", ".img-art-02", function () {
 
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'art_02.png',
       draggable: true,
       fromCenter: false,
       x: 0, y: 0,
-      width: 500, height: 417
+      width: 500, height: 417,
+      resizeFromCenter: false,
+      constrainProportions: true,
+      handlePlacement: 'corners',
+      mouseover: function (layer) {
+        showHandles(layer).drawLayers();
+      },
+      mouseout: function (layer) {
+        hideHandles(layer).drawLayers();
+      }
     }).drawLayers();
 
   });
 
   $(document).on("click", ".img-furn-01", function () {
 
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'furn_01.png',
       draggable: true,
       fromCenter: false,
       x: 0, y: 0,
-      width: 600, height: 268
+      width: 600, height: 268,
+      resizeFromCenter: false,
+      constrainProportions: true,
+      handlePlacement: 'corners',
+      mouseover: function (layer) {
+        showHandles(layer).drawLayers();
+      },
+      mouseout: function (layer) {
+        hideHandles(layer).drawLayers();
+      }
     }).drawLayers();
 
   });
 
   $(document).on("click", ".img-furn-02", function () {
 
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'furn_02.png',
       draggable: true,
       fromCenter: false,
       x: 0, y: 0,
-      width: 600, height: 211
+      width: 600, height: 211,
+      resizeFromCenter: false,
+      constrainProportions: true,
+      handlePlacement: 'corners',
+      mouseover: function (layer) {
+        showHandles(layer).drawLayers();
+      },
+      mouseout: function (layer) {
+        hideHandles(layer).drawLayers();
+      }
     }).drawLayers();
 
   });
@@ -257,26 +219,44 @@ $(document).ready(function () {
 
   $(document).on("click", ".img-furn-03", function () {
 
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'furn_03.png',
       draggable: true,
       fromCenter: false,
       x: 0, y: 0,
-      width: 600, height: 245
+      width: 600, height: 245,
+      resizeFromCenter: false,
+      constrainProportions: true,
+      handlePlacement: 'corners',
+      mouseover: function (layer) {
+        showHandles(layer).drawLayers();
+      },
+      mouseout: function (layer) {
+        hideHandles(layer).drawLayers();
+      }
     }).drawLayers();
 
   });
 
   $(document).on("click", ".img-furn-04", function () {
 
-    $("#room-canvas").addLayer({
+    canvas.addLayer({
       type: 'image',
       source: 'furn_04.png',
       draggable: true,
       fromCenter: false,
       x: 0, y: 0,
-      width: 600, height: 265
+      width: 600, height: 265,
+      resizeFromCenter: false,
+      constrainProportions: true,
+      handlePlacement: 'corners',
+      mouseover: function (layer) {
+        showHandles(layer).drawLayers();
+      },
+      mouseout: function (layer) {
+        hideHandles(layer).drawLayers();
+      }
     }).drawLayers();
 
   });
@@ -307,7 +287,7 @@ $(document).ready(function () {
 
     },
     change: function (color) {
-      $("#room-canvas").addLayer({
+      canvas.addLayer({
         type: "rectangle",
         fillStyle: color.toHexString(),
         draggable: false,
