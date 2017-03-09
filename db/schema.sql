@@ -1,0 +1,77 @@
+CREATE DATABASE IF NOT EXISTS impulso_db;
+
+USE impulso_db;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  user_name VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS rooms (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  room_name VARCHAR(255) NOT NULL,
+  user_id INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT user_id
+    FOREIGN KEY (user_id)
+    REFERENCES users (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS layers (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  fixed_layer boolean NOT NULL,
+  layer_number INT(11) NOT NULL,
+  obj_type_id INT(11) NOT NULL,
+  obj_type VARCHAR(255) NOT NULL,
+  height INT(11) NOT NULL,
+  width INT(11) NOT NULL,
+  position_top INT(11) NOT NULL,
+  position_left INT(11) NOT NULL,
+  aspect VARCHAR(255),
+  color VARCHAR(255),
+  file_name VARCHAR(255) NOT NULL,
+  file_path VARCHAR(255) NOT NULL,
+  room_id INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT room_id
+    FOREIGN KEY (room_id)
+    REFERENCES rooms (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS object_type (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  obj_type VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS objects (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  obj_name VARCHAR(255) NOT NULL,
+  obj_type_id INT(11) NOT NULL,
+  height INT(11) NOT NULL,
+  width INT(11) NOT NULL,
+  aspect VARCHAR(255),
+  color VARCHAR(255),
+  file_name VARCHAR(255) NOT NULL,
+  file_path VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT obj_type_id
+    FOREIGN KEY (obj_type_id)
+    REFERENCES object_type (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
