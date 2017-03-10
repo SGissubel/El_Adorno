@@ -1,0 +1,29 @@
+{
+  "name": "impulso",
+  "version": "1.0.0",
+  "description": "Impulso project repo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urbanviewphoto/impulso.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/urbanviewphoto/impulso/issues"
+  },
+  "homepage": "https://github.com/urbanviewphoto/impulso#readme",
+  "dependencies": {
+    "ase-utils": "^0.1.1",
+    "body-parser": "^1.17.1",
+    "color-convert": "^1.9.0",
+    "express": "^4.15.2",
+    "image-size": "^0.5.1",
+    "jimp": "^0.2.27",
+    "to-num": "^1.0.1",
+    "wait-sync": "^1.0.1"
+  }
+}

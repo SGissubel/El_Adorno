@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS objects (
   width INT(11) NOT NULL,
   aspect VARCHAR(255),
   color VARCHAR(255),
+  opacity INT(11) NOT NULL,
   file_name VARCHAR(255) NOT NULL,
   file_path VARCHAR(255) NOT NULL,
   PRIMARY KEY (id),
