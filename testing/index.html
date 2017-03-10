@@ -33,7 +33,7 @@
       </ul>
     </div>
   </nav>
-  <div class="container-flex">
+  <div class="container-flex mod-flex">
     <div id="user-container">
       <div id="user-pic"></div>
       <div id="user-name"></div>
@@ -54,7 +54,7 @@
 
 
     <div class="row">    <!--  start of canvas div -->
-         <div class="col-md-8 col-md-offset-1">
+         <div class="col-md-9">
             <div id="canvas">
               <canvas id="room-canvas" width="999" height="666"></canvas>
             </div>
@@ -65,13 +65,19 @@
               Wall Color: <input type='text' id="full"/>
 
               <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#bg">Backgrounds</a></li>
+                <li class="active"><a data-toggle="tab" href="#rooms">Rooms</a></li>
+                <li><a data-toggle="tab" href="#floors">Floors</a></li>
+                <li><a data-toggle="tab" href="#bg">Backgrounds</a></li>
                 <li><a data-toggle="tab" href="#artwork">Artwork</a></li>
                 <li><a data-toggle="tab" href="#furniture">Furniture</a></li>
               </ul>
 
             <div class="tab-content">
-              <div id="bg" class="tab-pane fade in active">
+              <div id="rooms" class="tab-pane fade in active">
+              </div>
+              <div id="floors" class="tab-pane fade">
+              </div>
+              <div id="bg" class="tab-pane fade">
               </div>
               <div id="artwork" class="tab-pane fade">
               </div>        
