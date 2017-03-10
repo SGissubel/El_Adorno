@@ -2,22 +2,11 @@
   box-sizing: border-box;
 }
 
-@font-face {
+/*@font-face {
   font-family: 'LCDBOLD';
   src: url('../LCDBOLD/LCDBOLD.eot');
   src: local('../LCDBOLD/LCDBOLD'), url('../LCDBOLD/LCDBOLD.woff') format('woff'), url('../LCDBOLD/LCDBOLD.ttf') format('truetype');
-}
-
-.table-lcd-font {
-  font-family: 'LCDBOLD' !important;
-  font-size: 14px;
-  color: #FFFF00;
-}
-
-th {
-  font-size: 16px;
-  text-decoration: underline;
-}
+}*/
 
 #logo {
   margin: -64px 0 0px -160px;
@@ -25,24 +14,6 @@ th {
   z-index: 100;
   width: 156px;
   padding: 5px;
-}
-
-.jumbotron {
-  background: #222;
-  font-family: 'LCDBOLD' !important;
-  color: #FFFF00;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 25px;
-  padding-bottom: 20px;
-}
-
-.ttLogo {
-  position: relative;
-  float: left;
-  width: 100px;
-  top: 5px;
-  left: 250px;
 }
 
 .navbar {
@@ -113,8 +84,8 @@ body {
 }
 
 .mod-flex {
-	margin-left: 100px;
-    margin-right: 100px;
+	margin-left: 50px;
+    margin-right: 50px;
 }
 
 #room-canvas {
@@ -167,68 +138,3 @@ max-width: 200px;
 *.hidden {
   display: none;
 }
-
-
-#edit-train {
-  cursor: pointer;
-  font-size: 18px;
-  margin-right: 8px;
-  /*text-decoration: underline;*/
-
-}
-
-#delete-train {
-  cursor: pointer;
-  font-size: 18px;
-  /*text-decoration: underline;*/
-}
-
-/*.tip + .tooltip > .tooltip-inner {
-      background-color: #73AD21; 
-      color: #FFFFFF; 
-      border: 1px solid green; 
-      padding: 15px;
-      font-size: 20px;
-  }
-
-.tip + .tooltip.right > .tooltip-arrow {
-      border-right: 5px solid black;
-  }
-
-.tip + .tooltip.left > .tooltip-arrow {
-      border-right: 5px solid black;
-  }
-*/
-
-.ui-timepicker {
-  text-align: left;
-}
-
-.clock-wrapper {
-  text-align: center;
-}
-
-.flip-clock-wrapper {
-    width: auto;
-    display: inline-block;
-}
-
-/*.clock {
-  float: left;
-  position: relative;
-  top: 10px;
-  left: -45px;
-  height: 35px;
-  width: 25%;
-  line-height: 35px;
-  padding: 0 50px;
-  background: #222;
-  color: #eee;
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 0 0 7px #222;
-  text-shadow: 0 0 3px #fff;
-  font-family: "liquid_crystalregular", sans-serif;
-  user-select: none;
-  user-drag: none;
-}*/

@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
   var canvas = $("#room-canvas");
+  var delLayer;
 
   var textureExists = false;
   var colorExists = false;
@@ -32,7 +33,6 @@ $(document).ready(function () {
       }
       });
   };
-
 
 // START -----------------------    This code will be replaced by retrieving data from our database   --------------------------------------
 
@@ -168,7 +168,6 @@ $(document).ready(function () {
 
     canvas.addLayer({
       type: "image",
-      //name needs to be added to so that if the same image is added more than once, the name is unique
       name: layerName,
       source: $(this).data("src"),
       draggable: $(this).data("drag"),
@@ -179,6 +178,12 @@ $(document).ready(function () {
       resizeFromCenter: false,
       constrainProportions: true,
       handlePlacement: "corners",
+      dblclick: function (layer) {
+        delLayer = layer;        
+        $("#deleteModal").modal({
+        backdrop: "static",
+        keyboard: true});
+      },
       mouseover: function (layer) {
         showHandles(layer).drawLayers();
       },
@@ -203,6 +208,12 @@ $(document).ready(function () {
 
     $(this).data("copy", num);
 
+  });
+
+  $(document).on("click", "#delete-obj", function () {
+
+    canvas.removeLayer(delLayer).drawLayers();
+    
   });
 
   $("#full").spectrum({

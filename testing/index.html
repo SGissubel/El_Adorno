@@ -40,16 +40,6 @@
     </div>
     <br>
 
-
-
-
-
-
-
-
-
-
-
     <h1>La Mia Vetrina</h1>
 
 
@@ -89,54 +79,6 @@
 
 </div>    
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Edit Modal -->
-  <div id="editModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><span class="fa fa-edit" style="font-size:24px"></span> Edit Train Information</h4>
-        </div>
-        <div class="modal-body">
-          <form role="form">
-            <div class="form-group">
-              <label for="train-name-edit">Train Name:</label>
-              <input class="form-control" id="train-name-edit" type="text">
-            </div>
-            <div class="form-group">
-              <label for="destination-edit">Destination:</label>
-              <input class="form-control" id="destination-edit" type="text">
-            </div>
-            <div class="form-group">
-              <label for="first-train-time-edit">First Train Time: (Military)</label>
-              <input class="form-control timepicker" name="timepicker" id="first-train-time-edit">
-            </div>
-            <div class="form-group">
-              <label for="frequency-edit">Frequency: (Minutes)</label>
-              <input class="form-control" id="frequency-edit" type="text">
-            </div>
-          </form>
-          <div class="modal-footer">
-            <input class="btn btn-default" id="edit-train-info" type="submit">
-            <button type="button" class="btn btn-default close-edit" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- Delete Modal -->
   <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -144,35 +86,21 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><span class="fa fa-eraser" style="font-size:24px"></span> Delete Train Record</h4>
+          <h4 class="modal-title"><span class="fa fa-trash" style="font-size:24px"></span> Delete Object</h4>
         </div>
         <div class="modal-body">
-          <form role="form">
-            <div class="form-group">
-              <label for="train-name-delete">Train Name:</label>
-              <input class="form-control" id="train-name-delete" disabled type="text">
-            </div>
-            <div class="form-group">
-              <label for="destination-delete">Destination:</label>
-              <input class="form-control" id="destination-delete" disabled type="text">
-            </div>
-            <div class="form-group">
-              <label for="first-train-time-delete">First Train Time: (Military)</label>
-              <input class="form-control timepicker" name="timepicker" disabled id="first-train-time-delete">
-            </div>
-            <div class="form-group">
-              <label for="frequency-delete">Frequency: (Minutes)</label>
-              <input class="form-control" id="frequency-delete" disabled type="text">
-            </div>
-          </form>
+
+            <h2>Delete selected object from your canvas?</h2>
+
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="delete-train-info" data-dismiss="modal">Delete</button>
-            <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" id="delete-obj" data-dismiss="modal">Delete</button>
+            <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Cancel</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
     <!-- Message Modal -->
   <div id="msgModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -187,7 +115,7 @@
             
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Ok</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
           </div>
         </div>
       </div>
