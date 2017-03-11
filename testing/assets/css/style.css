@@ -29,7 +29,16 @@ h1 {
   font-weight: 900;
 }
 
+.tab-pane {
+  height: 660px;
+  overflow: auto;
 
+}
+
+#wall-color {
+  position: relative;
+  top: -50px;
+}
 .navbar {
   border: none;
   border-top: 23px solid transparent;
@@ -112,6 +121,11 @@ body {
   margin: 10px;
 }
 
+.sideways>li {
+    height: 0px;
+
+}
+
 .full-spectrum .sp-palette {
   max-width: 200px;
 }
@@ -157,3 +171,25 @@ body {
 *.hidden {
   display: none;
 }
+
+@media screen and (max-width: 2500px) {
+  #room-canvas {
+    width: 1200px; 
+    height: 800px;
+  }
+}
+
+@media screen and (max-width: 2000px) {
+  #room-canvas {
+    width: 999px; 
+    height: 666px;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  #room-canvas {
+    width: 900px; 
+    height: 600px;
+  }
+}
+
