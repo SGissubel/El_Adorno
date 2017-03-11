@@ -23,12 +23,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="hidden" id="sign-out"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
         <li class="dropdown" id="sign-in">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Login<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li id="google-sign-in"><a href="#"><span class="fa fa-google-plus-official" style="font-size:24px"></span> Google</a></li>
-                  <li id="github-sign-in"><a href="#"><span class="fa fa-github" style="font-size:24px"></span> Github</a></li>
-                </ul>
-            </li>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Login<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li id="google-sign-in"><a href="#"><span class="fa fa-google-plus-official" style="font-size:24px"></span> Google</a></li>
+            <li id="github-sign-in"><a href="#"><span class="fa fa-github" style="font-size:24px"></span> Github</a></li>
+          </ul>
+        </li>
         <!-- <li id="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
       </ul>
     </div>
@@ -43,41 +43,47 @@
     <h1>La Mia Vetrina</h1>
 
 
-    <div class="row">    <!--  start of canvas div -->
-         <div class="col-md-9">
-            <div id="canvas">
-              <canvas id="room-canvas" width="999" height="666"></canvas>
-            </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div id="canvas">
+          <canvas id="room-canvas" width="999" height="666"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#rooms">Rooms</a></li>
+          <li><a data-toggle="tab" href="#floors">Floors</a></li>
+          <li><a data-toggle="tab" href="#bg">Backgrounds</a></li>
+          <li><a data-toggle="tab" href="#artwork">Artwork</a></li>
+          <li><a data-toggle="tab" href="#furniture">Furniture</a></li>
+          <li><a data-toggle="tab" href="#texture">Textures</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="rooms" class="tab-pane fade in active">
           </div>
-
-            <div class="col-md-3">
-
-              Wall Color: <input type='text' id="full"/>
-
-              <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#rooms">Rooms</a></li>
-                <li><a data-toggle="tab" href="#floors">Floors</a></li>
-                <li><a data-toggle="tab" href="#bg">Backgrounds</a></li>
-                <li><a data-toggle="tab" href="#artwork">Artwork</a></li>
-                <li><a data-toggle="tab" href="#furniture">Furniture</a></li>
-              </ul>
-
-            <div class="tab-content">
-              <div id="rooms" class="tab-pane fade in active">
-              </div>
-              <div id="floors" class="tab-pane fade">
-              </div>
-              <div id="bg" class="tab-pane fade">
-              </div>
-              <div id="artwork" class="tab-pane fade">
-              </div>        
-              <div id="furniture" class="tab-pane fade">
-              </div>
-            </div>
+          <div id="floors" class="tab-pane fade">
           </div>
-  </div>    <!-- end of canvas div -->
+          <div id="bg" class="tab-pane fade">
+          </div>
+          <div id="artwork" class="tab-pane fade">
+          </div>
+          <div id="furniture" class="tab-pane fade">
+          </div>
+          <div id="texture" class="tab-pane fade">
 
-</div>    
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        Wall Color: <input type='text' id="full" />
+      </div>
+    </div>
+
+  </div>
 
   <!-- Delete Modal -->
   <div id="deleteModal" class="modal fade" role="dialog">
@@ -90,7 +96,7 @@
         </div>
         <div class="modal-body">
 
-            <h2>Delete selected object from your canvas?</h2>
+          <h2>Delete selected object from your canvas?</h2>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" id="delete-obj" data-dismiss="modal">Delete</button>
@@ -101,7 +107,7 @@
     </div>
   </div>
 
-    <!-- Message Modal -->
+  <!-- Message Modal -->
   <div id="msgModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -112,7 +118,7 @@
         </div>
         <div class="modal-body">
           <div class="message">
-            
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>

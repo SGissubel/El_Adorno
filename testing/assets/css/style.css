@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 /*@font-face {
   font-family: 'LCDBOLD';
   src: url('../LCDBOLD/LCDBOLD.eot');
@@ -32,8 +33,8 @@
   font-size: 15px;
 }
 
-.navbar > .container .navbar-brand,
-.navbar > .container-fluid .navbar-brand {
+.navbar>.container .navbar-brand,
+.navbar>.container-fluid .navbar-brand {
   margin-left: 150px;
 }
 
@@ -84,8 +85,8 @@ body {
 }
 
 .mod-flex {
-	margin-left: 50px;
-    margin-right: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 #room-canvas {
@@ -97,34 +98,37 @@ body {
 }
 
 .full-spectrum .sp-palette {
-max-width: 200px;
+  max-width: 200px;
 }
 
-
 .panel-default>.panel-heading {
-    background-image: none;
-    background-color: #1d5510;
-    color: white;
+  background-image: none;
+  background-color: #1d5510;
+  color: white;
 }
 
 .panel-body {
   background: #222;
   color: #eee;
-
 }
 
+/*.tab-pane {
+  overflow: auto;
+}
+*/
 .btn-default {
-    background-color: #1d5510;
-    color: white;
-     text-shadow: none; 
-    background-image: none;
-    border-color: #dbdbdb;
-    border-color: #ccc;
+  background-color: #1d5510;
+  color: white;
+  text-shadow: none;
+  background-image: none;
+  border-color: #dbdbdb;
+  border-color: #ccc;
 }
 
-.btn-default:focus, .btn-default:hover {
-    background-color: white;
-    color: #1d5510;
+.btn-default:focus,
+.btn-default:hover {
+  background-color: white;
+  color: #1d5510;
 }
 
 #container {
