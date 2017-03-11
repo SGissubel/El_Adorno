@@ -8,22 +8,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/urbanviewphoto/impulso.git"
+    "url": "git+https://github.com/branieljose/impulso.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/urbanviewphoto/impulso/issues"
+    "url": "https://github.com/branieljose/impulso/issues"
   },
-  "homepage": "https://github.com/urbanviewphoto/impulso#readme",
+  "homepage": "https://github.com/branieljose/impulso#readme",
   "dependencies": {
-    "ase-utils": "^0.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
-    "color-convert": "^1.9.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
-    "image-size": "^0.5.1",
-    "jimp": "^0.2.27",
-    "to-num": "^1.0.1",
-    "wait-sync": "^1.0.1"
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.1",
+    "method-override": "^2.3.7",
+    "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.4.1"
   }
 }

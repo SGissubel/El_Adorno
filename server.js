@@ -1,44 +1,39 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var methodOverride = require("method-override");
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var methodOverride = require('method-override');
 
 var port = 3000;
 
 var app = express();
+var cookieParser = require('cookie-parser');
+
+var session = require('express-session');
+//allow sessions
+app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*1000 }}));
+app.use(cookieParser());
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(process.cwd() + "/public"));
+app.use(express.static(process.cwd() + "/testing"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Override with POST having ?_method=DELETE
+
 app.use(methodOverride("_method"));
 
-// Set Handlebars.
-// var exphbs = require("express-handlebars");
 
-// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// app.set("view engine", "handlebars");
-
-// app.get('/', function(req, res){
-// 	res.send('hi')
-// });
-// Import routes and give the server access to them.
-var moviesController = require("./controllers/moviesController.js");
-var actorsController = require("./controllers/actorsController.js");
-
-app.use("/movies", moviesController);
-app.use("/actors", actorsController);
-
-app.listen(port, function(){
-	console.log('listening on port ' + port)
-});
+var userController = require("./controllers/userController.js");
+var signupController = require("./controllers/signupController.js");
 
 
 
+app.use("/home", userController);
+app.use("/signup", signupController);
 
 
 
-
-
-
+app.listen(port);
