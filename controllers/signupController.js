@@ -1,11 +1,11 @@
 //getting npm packages ready
 const express = require('express');
-const mysql = require('mysql');
 const bodyParser = require("body-parser");
 const path = require("path");
 const bcrypt = require('bcryptjs');
+const mysql = require('mysql');
 
-
+var user = require("../models/user.js");
 //setting up router for implementation
 const router = express.Router();
 

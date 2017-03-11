@@ -1,5 +1,5 @@
 // Import MySQL connection.
-var connection = require("../config/connection.js");
+var connection = require("/connection.js");
 
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {
@@ -61,7 +61,7 @@ var orm = {
       }
       cb(result);
     });
-  }
+  },
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
