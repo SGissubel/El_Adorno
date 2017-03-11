@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="assets/css/spectrum.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.vertical-tabs.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
   <!--<link rel="stylesheet" href="assets/css/jquery.ui.rotatable.css">-->
 </head>
 
@@ -40,7 +42,7 @@
     </div>
     <br>
 
-    <h1>La Mia Vetrina</h1>
+    <h1 class="logo-font">LΛ MIΛ VETRINΛ</h1>
 
 
     <div class="row">
@@ -49,19 +51,21 @@
           <canvas id="room-canvas" width="999" height="666"></canvas>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-1">
 
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#rooms">Rooms</a></li>
-          <li><a data-toggle="tab" href="#floors">Floors</a></li>
-          <li><a data-toggle="tab" href="#bg">Backgrounds</a></li>
-          <li><a data-toggle="tab" href="#artwork">Artwork</a></li>
-          <li><a data-toggle="tab" href="#furniture">Furniture</a></li>
-          <li><a data-toggle="tab" href="#texture">Textures</a></li>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-left sideways">
+          <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font">Rooms</a></li>
+          <li><a data-toggle="tab" href="#floors" class="panel-font">Floors</a></li>
+          <li><a data-toggle="tab" href="#bg" class="panel-font">Backgrounds</a></li>
+          <li><a data-toggle="tab" href="#artwork" class="panel-font">Artwork</a></li>
+          <li><a data-toggle="tab" href="#furniture" class="panel-font">Furniture</a></li>
+          <li><a data-toggle="tab" href="#texture" class="panel-font">Textures</a></li>
         </ul>
+      </div>
+      <div class="col-md-2">
 
+        <!-- Tab panes -->
         <div class="tab-content">
           <div id="rooms" class="tab-pane fade in active">
           </div>
@@ -78,10 +82,44 @@
           </div>
         </div>
       </div>
-      <div class="col-md-1">
-        Wall Color: <input type='text' id="full" />
+    </div>
+
+
+
+    </div>
+  </div>
+  <!--<div class="row">
+    <div class="col-md-8">
+
+      <ul class="nav nav-tabs nav-stacked">
+        <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font">Rooms</a></li>
+        <li><a data-toggle="tab" href="#floors" class="panel-font">Floors</a></li>
+        <li><a data-toggle="tab" href="#bg" class="panel-font">Backgrounds</a></li>
+        <li><a data-toggle="tab" href="#artwork" class="panel-font">Artwork</a></li>
+        <li><a data-toggle="tab" href="#furniture" class="panel-font">Furniture</a></li>
+        <li><a data-toggle="tab" href="#texture" class="panel-font">Textures</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="rooms" class="tab-pane fade in active">
+        </div>
+        <div id="floors" class="tab-pane fade">
+        </div>
+        <div id="bg" class="tab-pane fade">
+        </div>
+        <div id="artwork" class="tab-pane fade">
+        </div>
+        <div id="furniture" class="tab-pane fade">
+        </div>
+        <div id="texture" class="tab-pane fade">
+
+        </div>
       </div>
     </div>
+    <div class="col-md-1">
+      Wall Color: <input type='text' id="full" />
+    </div>
+  </div>-->
 
   </div>
 
