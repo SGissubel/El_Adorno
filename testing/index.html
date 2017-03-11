@@ -23,12 +23,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="hidden" id="sign-out"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
         <li class="dropdown" id="sign-in">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Login<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li id="google-sign-in"><a href="#"><span class="fa fa-google-plus-official" style="font-size:24px"></span> Google</a></li>
-                  <li id="github-sign-in"><a href="#"><span class="fa fa-github" style="font-size:24px"></span> Github</a></li>
-                </ul>
-            </li>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Login<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li id="google-sign-in"><a href="#"><span class="fa fa-google-plus-official" style="font-size:24px"></span> Google</a></li>
+            <li id="github-sign-in"><a href="#"><span class="fa fa-github" style="font-size:24px"></span> Github</a></li>
+          </ul>
+        </li>
         <!-- <li id="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
       </ul>
     </div>
@@ -40,103 +40,51 @@
     </div>
     <br>
 
-
-
-
-
-
-
-
-
-
-
     <h1>La Mia Vetrina</h1>
 
 
-    <div class="row">    <!--  start of canvas div -->
-         <div class="col-md-9">
-            <div id="canvas">
-              <canvas id="room-canvas" width="999" height="666"></canvas>
-            </div>
-          </div>
-
-            <div class="col-md-3">
-
-              Wall Color: <input type='text' id="full"/>
-
-              <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#rooms">Rooms</a></li>
-                <li><a data-toggle="tab" href="#floors">Floors</a></li>
-                <li><a data-toggle="tab" href="#bg">Backgrounds</a></li>
-                <li><a data-toggle="tab" href="#artwork">Artwork</a></li>
-                <li><a data-toggle="tab" href="#furniture">Furniture</a></li>
-              </ul>
-
-            <div class="tab-content">
-              <div id="rooms" class="tab-pane fade in active">
-              </div>
-              <div id="floors" class="tab-pane fade">
-              </div>
-              <div id="bg" class="tab-pane fade">
-              </div>
-              <div id="artwork" class="tab-pane fade">
-              </div>        
-              <div id="furniture" class="tab-pane fade">
-              </div>
-            </div>
-          </div>
-  </div>    <!-- end of canvas div -->
-
-</div>    
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- Edit Modal -->
-  <div id="editModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><span class="fa fa-edit" style="font-size:24px"></span> Edit Train Information</h4>
-        </div>
-        <div class="modal-body">
-          <form role="form">
-            <div class="form-group">
-              <label for="train-name-edit">Train Name:</label>
-              <input class="form-control" id="train-name-edit" type="text">
-            </div>
-            <div class="form-group">
-              <label for="destination-edit">Destination:</label>
-              <input class="form-control" id="destination-edit" type="text">
-            </div>
-            <div class="form-group">
-              <label for="first-train-time-edit">First Train Time: (Military)</label>
-              <input class="form-control timepicker" name="timepicker" id="first-train-time-edit">
-            </div>
-            <div class="form-group">
-              <label for="frequency-edit">Frequency: (Minutes)</label>
-              <input class="form-control" id="frequency-edit" type="text">
-            </div>
-          </form>
-          <div class="modal-footer">
-            <input class="btn btn-default" id="edit-train-info" type="submit">
-            <button type="button" class="btn btn-default close-edit" data-dismiss="modal">Close</button>
-          </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div id="canvas">
+          <canvas id="room-canvas" width="999" height="666"></canvas>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-8">
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#rooms">Rooms</a></li>
+          <li><a data-toggle="tab" href="#floors">Floors</a></li>
+          <li><a data-toggle="tab" href="#bg">Backgrounds</a></li>
+          <li><a data-toggle="tab" href="#artwork">Artwork</a></li>
+          <li><a data-toggle="tab" href="#furniture">Furniture</a></li>
+          <li><a data-toggle="tab" href="#texture">Textures</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="rooms" class="tab-pane fade in active">
+          </div>
+          <div id="floors" class="tab-pane fade">
+          </div>
+          <div id="bg" class="tab-pane fade">
+          </div>
+          <div id="artwork" class="tab-pane fade">
+          </div>
+          <div id="furniture" class="tab-pane fade">
+          </div>
+          <div id="texture" class="tab-pane fade">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1">
+        Wall Color: <input type='text' id="full" />
+      </div>
+    </div>
+
   </div>
+
   <!-- Delete Modal -->
   <div id="deleteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -144,36 +92,22 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><span class="fa fa-eraser" style="font-size:24px"></span> Delete Train Record</h4>
+          <h4 class="modal-title"><span class="fa fa-trash" style="font-size:24px"></span> Delete Object</h4>
         </div>
         <div class="modal-body">
-          <form role="form">
-            <div class="form-group">
-              <label for="train-name-delete">Train Name:</label>
-              <input class="form-control" id="train-name-delete" disabled type="text">
-            </div>
-            <div class="form-group">
-              <label for="destination-delete">Destination:</label>
-              <input class="form-control" id="destination-delete" disabled type="text">
-            </div>
-            <div class="form-group">
-              <label for="first-train-time-delete">First Train Time: (Military)</label>
-              <input class="form-control timepicker" name="timepicker" disabled id="first-train-time-delete">
-            </div>
-            <div class="form-group">
-              <label for="frequency-delete">Frequency: (Minutes)</label>
-              <input class="form-control" id="frequency-delete" disabled type="text">
-            </div>
-          </form>
+
+          <h2>Delete selected object from your canvas?</h2>
+
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="delete-train-info" data-dismiss="modal">Delete</button>
-            <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" id="delete-obj" data-dismiss="modal">Delete</button>
+            <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Cancel</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-    <!-- Message Modal -->
+
+  <!-- Message Modal -->
   <div id="msgModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -184,10 +118,10 @@
         </div>
         <div class="modal-body">
           <div class="message">
-            
+
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Ok</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
           </div>
         </div>
       </div>
