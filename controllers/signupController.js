@@ -5,7 +5,7 @@ const path = require("path");
 const bcrypt = require('bcryptjs');
 const mysql = require('mysql');
 
-var user = require("../models/user.js");
+// var user = require("../models/user.js");
 //setting up router for implementation
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //
 router.get("/", function(request, response) {
-    response.sendFile(path.join(__dirname, "../testing/signin.html"));
+    response.sendFile(path.join(__dirname, "../public/app/signin.html"));
 
 });
 

@@ -17,7 +17,7 @@ router.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //
 router.get("/", function(request, response) {
-    response.sendFile(path.join(__dirname, "../testing/index.html"));
+    response.sendFile(path.join(__dirname, "../public/app/index.html"));
  
 });
 
