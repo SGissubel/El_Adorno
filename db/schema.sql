@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS layers (
   position_left INT(11) NOT NULL,
   aspect VARCHAR(255),
   color VARCHAR(255),
+  opacity INT(11) NOT NULL,  
   file_name VARCHAR(255) NOT NULL,
   file_path VARCHAR(255) NOT NULL,
   room_id INT(11) NOT NULL,
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS layers (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS object_type (
+CREATE TABLE IF NOT EXISTS object_types (
   id INT(11) NOT NULL AUTO_INCREMENT,
   obj_type VARCHAR(255) NOT NULL,
   PRIMARY KEY (id))
@@ -71,7 +72,7 @@ CREATE TABLE IF NOT EXISTS objects (
   PRIMARY KEY (id),
   CONSTRAINT obj_type_id
     FOREIGN KEY (obj_type_id)
-    REFERENCES object_type (id)
+    REFERENCES object_types (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

@@ -1,13 +1,13 @@
 USE impulso_db;
 
 -- Load Object Types 
-INSERT INTO object_type (obj_type) VALUES ('Artworks');
-INSERT INTO object_type (obj_type) VALUES ('Backgrounds');
-INSERT INTO object_type (obj_type) VALUES ('Color_Palettes');
-INSERT INTO object_type (obj_type) VALUES ('Floors');
-INSERT INTO object_type (obj_type) VALUES ('Furniture');
-INSERT INTO object_type (obj_type) VALUES ('Rooms');
-INSERT INTO object_type (obj_type) VALUES ('Textures');
+INSERT INTO object_types (obj_type) VALUES ('Artworks');
+INSERT INTO object_types (obj_type) VALUES ('Backgrounds');
+INSERT INTO object_types (obj_type) VALUES ('Color_Palettes');
+INSERT INTO object_types (obj_type) VALUES ('Floors');
+INSERT INTO object_types (obj_type) VALUES ('Furniture');
+INSERT INTO object_types (obj_type) VALUES ('Rooms');
+INSERT INTO object_types (obj_type) VALUES ('Textures');
 
 -- Load Objects - Artwork
 INSERT INTO objects (obj_name, obj_type_id, height, width, aspect, color, opacity, file_name, file_path) 
