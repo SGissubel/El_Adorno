@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
   var canvas = $("#room-canvas");
+  var c = document.getElementById('room-canvas');
 
   var delLayer;
   var patt;
@@ -56,8 +57,8 @@ $(document).ready(function () {
       fromCenter: false,
       x: 0,
       y: 0,
-      width: 999,
-      height: 666
+      width: c.width,
+      height: c.height
     });
 
     canvas.setLayer("color", {
@@ -72,33 +73,33 @@ $(document).ready(function () {
   // START -----------------------    This code will be replaced by retrieving data from our database   --------------------------------------
 
   var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_01.png").attr("data-drag", false)
-    .attr("data-width", 999).attr("data-height", 666).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
+    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
     .attr("src", "room_01.png").attr("width", "150px").attr("alt", "room_01");
 
   $("#floors").append($imgThumbnail);
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_02.png").attr("data-drag", false)
-    .attr("data-width", 999).attr("data-height", 666).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
+    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
     .attr("src", "room_02.png").attr("width", "150px").attr("alt", "room_02");
 
   $("#floors").append($imgThumbnail);
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_03.png").attr("data-drag", false)
-    .attr("data-width", 999).attr("data-height", 666).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
+    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
     .attr("src", "room_03.png").attr("width", "150px").attr("alt", "room_03");
 
   $("#floors").append($imgThumbnail);
 
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_04.png").attr("data-drag", false)
-    .attr("data-width", 999).attr("data-height", 666).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
+    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
     .attr("src", "room_04.png").attr("width", "150px").attr("alt", "room_04");
 
   $("#rooms").append($imgThumbnail);
 
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_05.png").attr("data-drag", false)
-    .attr("data-width", 999).attr("data-height", 666).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
+    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
     .attr("src", "room_05.png").attr("width", "150px").attr("alt", "room_05");
 
   $("#bg").append($imgThumbnail);
@@ -117,25 +118,25 @@ $(document).ready(function () {
   $("#artwork").append($imgThumbnail);
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_01.png").attr("data-drag", true)
-    .attr("data-width", 600).attr("data-height", 268).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_01").attr("data-copy", 1)
+    .attr("data-width", c.height).attr("data-height", 268).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_01").attr("data-copy", 1)
     .attr("data-type", "furn").attr("src", "furn_01.png").attr("width", "150px").attr("alt", "furn_01");
 
   $("#furniture").append($imgThumbnail);
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_02.png").attr("data-drag", true)
-    .attr("data-width", 600).attr("data-height", 211).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_02").attr("data-copy", 1)
+    .attr("data-width", c.height).attr("data-height", 211).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_02").attr("data-copy", 1)
     .attr("data-type", "furn").attr("src", "furn_02.png").attr("width", "150px").attr("alt", "furn_02");
 
   $("#furniture").append($imgThumbnail);
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_03.png").attr("data-drag", true)
-    .attr("data-width", 600).attr("data-height", 245).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_03").attr("data-copy", 1)
+    .attr("data-width", c.height).attr("data-height", 245).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_03").attr("data-copy", 1)
     .attr("data-type", "furn").attr("src", "furn_03.png").attr("width", "150px").attr("alt", "furn_03");
 
   $("#furniture").append($imgThumbnail);
 
   $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_04.png").attr("data-drag", true)
-    .attr("data-width", 600).attr("data-height", 265).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_04").attr("data-copy", 1)
+    .attr("data-width", c.height).attr("data-height", 265).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_04").attr("data-copy", 1)
     .attr("data-type", "furn").attr("src", "furn_04.png").attr("width", "150px").attr("alt", "furn_04");
 
   $("#furniture").append($imgThumbnail);
@@ -185,6 +186,7 @@ $(document).ready(function () {
 
   // END -----------------------    This code will be replaced by retrieving data from our database   --------------------------------------
 
+  // canvas.detectPixelRatio();
 
   $(document).on("click", ".img-base", function () {
 
@@ -374,8 +376,8 @@ $(document).ready(function () {
         index: colorIndex,
         x: 0,
         y: 0,
-        width: 999,
-        height: 666
+        width: c.width,
+        height: c.height
       }).drawLayers();
 
       colorExists = true;

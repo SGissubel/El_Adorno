@@ -13,44 +13,6 @@ CREATE TABLE IF NOT EXISTS users (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS rooms (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  room_name VARCHAR(255) NOT NULL,
-  user_id INT(11) NOT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT user_id
-    FOREIGN KEY (user_id)
-    REFERENCES users (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-CREATE TABLE IF NOT EXISTS layers (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  fixed_layer boolean NOT NULL,
-  layer_number INT(11) NOT NULL,
-  obj_type_id INT(11) NOT NULL,
-  obj_type VARCHAR(255) NOT NULL,
-  height INT(11) NOT NULL,
-  width INT(11) NOT NULL,
-  position_top INT(11) NOT NULL,
-  position_left INT(11) NOT NULL,
-  aspect VARCHAR(255),
-  color VARCHAR(255),
-  opacity INT(11) NOT NULL,  
-  file_name VARCHAR(255) NOT NULL,
-  file_path VARCHAR(255) NOT NULL,
-  room_id INT(11) NOT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT room_id
-    FOREIGN KEY (room_id)
-    REFERENCES rooms (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
 CREATE TABLE IF NOT EXISTS object_types (
   id INT(11) NOT NULL AUTO_INCREMENT,
   obj_type VARCHAR(255) NOT NULL,
@@ -62,6 +24,7 @@ CREATE TABLE IF NOT EXISTS objects (
   id INT(11) NOT NULL AUTO_INCREMENT,
   obj_name VARCHAR(255) NOT NULL,
   obj_type_id INT(11) NOT NULL,
+  static BOOLEAN NOT NULL,
   height INT(11) NOT NULL,
   width INT(11) NOT NULL,
   aspect VARCHAR(255),
@@ -73,6 +36,44 @@ CREATE TABLE IF NOT EXISTS objects (
   CONSTRAINT obj_type_id
     FOREIGN KEY (obj_type_id)
     REFERENCES object_types (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS layers (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  layer_index INT(11) NOT NULL,
+  height INT(11) NOT NULL,
+  width INT(11) NOT NULL,
+  position_top INT(11) NOT NULL,
+  position_left INT(11) NOT NULL,
+  aspect VARCHAR(255),
+  object_id INT(11) NOT NULL,  
+  PRIMARY KEY (id),
+  CONSTRAINT object_id
+    FOREIGN KEY (object_id)
+    REFERENCES objects (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS showrooms (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  room_name VARCHAR(255) NOT NULL,
+  number_layers int(11) NOT NULL,
+  user_id INT(11) NOT NULL, 
+  layer_id int(11) NOT NULL,   
+  PRIMARY KEY (id),
+  CONSTRAINT user_id
+    FOREIGN KEY (user_id)
+    REFERENCES users (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT layer_id
+    FOREIGN KEY (layer_id)
+    REFERENCES layers (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
