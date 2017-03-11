@@ -402,4 +402,11 @@ $(document).ready(function () {
 
 
 
+
+
 }); // end document ready
+
+// logic for sign in/up from
+document.querySelector('.img__btn').addEventListener('click', function() {
+  document.querySelector('.cont').classList.toggle('s--signup');
+});
