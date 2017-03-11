@@ -1,4 +1,4 @@
-var Jimp = require("jimp");
+
 var ase = require('ase-utils');
 var fs = require('fs');
 var convert = require('color-convert');
@@ -49,10 +49,10 @@ for (var i=0; i<colors.length; i++){
                                 colorArray[1]+','+
                                 colorArray[2]+')');
 
-    console.log('Color: ' + colorName + ' , #' + colorHex + ' ,' + 
-                            colorModel + '(' + colorArray[0] + ',' + 
-                            colorArray[1] + ',' + colorArray[2] + ') ,' + 
-                            colorType); 
+    // console.log('Color: ' + colorName + ' , #' + colorHex + ' ,' + 
+    //                         colorModel + '(' + colorArray[0] + ',' + 
+    //                         colorArray[1] + ',' + colorArray[2] + ') ,' + 
+    //                         colorType); 
 }
 console.log(names); 
 console.log(palette);

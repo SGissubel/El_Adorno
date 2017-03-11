@@ -54,14 +54,14 @@ var orm = {
     var queryString = "SELECT * FROM " + table;
     queryString += " WHERE ";
     queryString += condition;
-
+    console.log(queryString); 
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
       cb(result);
     });
-  }
+  },
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
