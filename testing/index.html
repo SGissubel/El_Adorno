@@ -3,15 +3,15 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Train Tracker</title>
+  <title>LΛ MIΛ VETRINΛ</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.vertical-tabs.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="assets/css/spectrum.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.vertical-tabs.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
   <!--<link rel="stylesheet" href="assets/css/jquery.ui.rotatable.css">-->
 </head>
@@ -24,6 +24,7 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="hidden" id="sign-out"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+
         <li>
           <a class="sign-in"  href="/signup"><span class="glyphicon glyphicon-user"></span> Login</a>
         </li>
@@ -44,25 +45,12 @@
     <div class="row">
       <div class="col-md-9">
         <div id="canvas">
-          <canvas id="room-canvas" width="999" height="666"></canvas>
+          <canvas id="room-canvas"  width="999" height="666"></canvas>
         </div>
       </div>
-      <div class="col-md-1">
-
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs tabs-left sideways">
-          <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font">Rooms</a></li>
-          <li><a data-toggle="tab" href="#floors" class="panel-font">Floors</a></li>
-          <li><a data-toggle="tab" href="#bg" class="panel-font">Backgrounds</a></li>
-          <li><a data-toggle="tab" href="#artwork" class="panel-font">Artwork</a></li>
-          <li><a data-toggle="tab" href="#furniture" class="panel-font">Furniture</a></li>
-          <li><a data-toggle="tab" href="#texture" class="panel-font">Textures</a></li>
-        </ul>
-      </div>
       <div class="col-md-2">
-
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content text-center">
           <div id="rooms" class="tab-pane fade in active">
           </div>
           <div id="floors" class="tab-pane fade">
@@ -78,6 +66,19 @@
           </div>
         </div>
       </div>
+              <div class="col-md-1">
+        <p id="wall-color">Wall Color: <input type='text' id="full" /></p>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-right sideways">
+          <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font">Rooms</a></li>
+          <li><a data-toggle="tab" href="#floors" class="panel-font">Floors</a></li>
+          <li><a data-toggle="tab" href="#bg" class="panel-font">Backgrounds</a></li>
+          <li><a data-toggle="tab" href="#artwork" class="panel-font">Artwork</a></li>
+          <li><a data-toggle="tab" href="#furniture" class="panel-font">Furniture</a></li>
+          <li><a data-toggle="tab" href="#texture" class="panel-font">Textures</a></li>
+        </ul>
+      </div>
+
     </div>
 
 
