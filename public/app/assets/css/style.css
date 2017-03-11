@@ -16,8 +16,7 @@
 
 .logo-font {
   font-family: "Roboto", "San Serif";
-    font-weight: 100;
-
+  font-weight: 100;
 }
 
 h1 {
@@ -32,13 +31,19 @@ h1 {
 .tab-pane {
   height: 660px;
   overflow: auto;
+  direction: rtl;
+}
 
+.mod-md-1 {
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 #wall-color {
   position: relative;
   top: -50px;
 }
+
 .navbar {
   border: none;
   border-top: 23px solid transparent;
@@ -70,6 +75,10 @@ h1 {
 
 .navbar-inverse .navbar-nav>li>a {
   color: #d9d9d9;
+}
+
+.nav>li>a {
+  padding: 5px 15px;
 }
 
 #user-container {
@@ -109,8 +118,8 @@ body {
 }
 
 .mod-flex {
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 #room-canvas {
@@ -122,8 +131,8 @@ body {
 }
 
 .sideways>li {
-    height: 0px;
-
+  height: 0px;
+  width: 100px;
 }
 
 .full-spectrum .sp-palette {
@@ -141,10 +150,12 @@ body {
   color: #eee;
 }
 
+
 /*.tab-pane {
   overflow: auto;
 }
 */
+
 .btn-default {
   background-color: #d9d9d9;
   color: white;
@@ -174,22 +185,21 @@ body {
 
 @media screen and (max-width: 2500px) {
   #room-canvas {
-    width: 1200px; 
+    width: 1200px;
     height: 800px;
   }
 }
 
 @media screen and (max-width: 2000px) {
   #room-canvas {
-    width: 999px; 
+    width: 999px;
     height: 666px;
   }
 }
 
 @media screen and (max-width: 1550px) {
   #room-canvas {
-    width: 900px; 
+    width: 900px;
     height: 600px;
   }
 }
-
