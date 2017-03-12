@@ -183,7 +183,7 @@ body {
   display: none;
 }
 
-@media screen and (max-width: 2500px) {
+/*@media screen and (max-width: 2500px) {
   #room-canvas {
     width: 1200px;
     height: 800px;
@@ -202,4 +202,4 @@ body {
     width: 900px;
     height: 600px;
   }
-}
+}*/

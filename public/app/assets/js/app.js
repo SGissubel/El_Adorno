@@ -1,7 +1,11 @@
 $(document).ready(function () {
 
-  var canvas = $("#room-canvas");
-  var c = document.getElementById('room-canvas');
+  var canvas;
+  var c;
+
+  var $canvasWidth;
+  var $canvasHeight;
+
 
   var delLayer;
   var patt;
@@ -12,6 +16,34 @@ $(document).ready(function () {
   var backgroundMode = false;
   var roomMode = false;
   var artworkCount = 0;
+
+  function setCanvas() {
+    if ($(window).width() > 2000 && $(window).width() <= 2500) {
+      $canvasWidth = 1200;
+      $canvasHeight = 800;
+    } else {
+      if ($(window).width() > 1550 && $(window).width() <= 2000) {
+        $canvasWidth = 999;
+        $canvasHeight = 666;
+      } else {
+        if ($(window).width() <= 1550) {
+          $canvasWidth = 900;
+          $canvasHeight = 600;
+        } else { //browser window is bigger than 2500
+          $canvasWidth = 1800;
+          $canvasHeight = 1200;
+        }
+      }
+    }
+
+    var $canvas = $("<canvas>").attr("id", "room-canvas").attr("width", $canvasWidth).attr("height", $canvasHeight);
+
+    $("#canvas").append($canvas);
+    canvas = $("#room-canvas");
+    c = document.getElementById('room-canvas');
+
+  }
+
 
   function showHandles(layer) {
     return canvas.setLayer(layer, {
@@ -68,6 +100,8 @@ $(document).ready(function () {
     canvas.moveLayer("texture", 0).drawLayers();
 
   };
+
+  setCanvas();
 
 
   // START -----------------------    This code will be replaced by retrieving data from our database   --------------------------------------
@@ -187,6 +221,7 @@ $(document).ready(function () {
   // END -----------------------    This code will be replaced by retrieving data from our database   --------------------------------------
 
   // canvas.detectPixelRatio();
+  // canvas.restoreCanvas();
 
   $(document).on("click", ".img-base", function () {
 
@@ -401,6 +436,11 @@ $(document).ready(function () {
     ]
   });
 
+  $(document).on("resize", canvas, function () {
+
+    canvas.drawLayers();
+
+  });
 
 
 
@@ -409,6 +449,6 @@ $(document).ready(function () {
 }); // end document ready
 
 // logic for sign in/up from
-document.querySelector('.img__btn').addEventListener('click', function() {
-  document.querySelector('.cont').classList.toggle('s--signup');
-});
+// document.querySelector('.img__btn').addEventListener('click', function() {
+//   document.querySelector('.cont').classList.toggle('s--signup');
+// });
