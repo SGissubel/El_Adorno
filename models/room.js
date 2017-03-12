@@ -3,33 +3,33 @@ var orm = require("../config/orm.js");
 
 var room = {
   allAndJoin: function(tableTwo, tableOneJoinId, tableTwoJoinId, cb) {
-    orm.allAndJoin("rooms", tableTwo, tableOneJoinId, tableTwoJoinId, function(res){
+    orm.allAndJoin("showrooms", tableTwo, tableOneJoinId, tableTwoJoinId, function(res){
       cb(res);
     });
   },
   all: function(cb) {
-    orm.all("rooms", function(res) {
+    orm.all("showrooms", function(res) {
       cb(res);
     });
   },
   some: function(condition, cb) {
-    orm.some("rooms", condition, function(res) {
+    orm.some("showrooms", condition, function(res) {
       cb(res);
     });
   },  
   // The variables cols and vals are arrays.
   create: function(cols, vals, cb) {
-    orm.create("rooms", cols, vals, function(res) {
+    orm.create("showrooms", cols, vals, function(res) {
       cb(res);
     });
   },
   update: function(objColVals, condition, cb) {
-    orm.update("rooms", objColVals, condition, function(res) {
+    orm.update("showrooms", objColVals, condition, function(res) {
       cb(res);
     });
   },
   delete: function(condition, cb) {
-    orm.delete("rooms", condition, function(res) {
+    orm.delete("showrooms", condition, function(res) {
       cb(res);
     });
   }

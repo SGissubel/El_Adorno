@@ -1,7 +1,11 @@
 $(document).ready(function () {
 
-  var canvas = $("#room-canvas");
-  var c = document.getElementById('room-canvas');
+  var canvas;
+  var c;
+
+  var $canvasWidth;
+  var $canvasHeight;
+
 
   var delLayer;
   var patt;
@@ -12,6 +16,34 @@ $(document).ready(function () {
   var backgroundMode = false;
   var roomMode = false;
   var artworkCount = 0;
+
+  function setCanvas() {
+    if ($(window).width() > 2000 && $(window).width() <= 2500) {
+      $canvasWidth = 1200;
+      $canvasHeight = 800;
+    } else {
+      if ($(window).width() > 1550 && $(window).width() <= 2000) {
+        $canvasWidth = 999;
+        $canvasHeight = 666;
+      } else {
+        if ($(window).width() <= 1550) {
+          $canvasWidth = 900;
+          $canvasHeight = 600;
+        } else { //browser window is bigger than 2500
+          $canvasWidth = 1800;
+          $canvasHeight = 1200;
+        }
+      }
+    }
+
+    var $canvas = $("<canvas>").attr("id", "room-canvas").attr("width", $canvasWidth).attr("height", $canvasHeight);
+
+    $("#canvas").append($canvas);
+    canvas = $("#room-canvas");
+    c = document.getElementById('room-canvas');
+
+  }
+
 
   function showHandles(layer) {
     return canvas.setLayer(layer, {
@@ -69,124 +101,105 @@ $(document).ready(function () {
 
   };
 
+  setCanvas();
 
-  // START -----------------------    This code will be replaced by retrieving data from our database   --------------------------------------
+//load Showrooms
+  $.ajax({
+    url: "/rooms",
+    method: "GET"
+  }).done(function (data) {
+    for (var i = 0; i < data.length; i++) {
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
-  var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_01.png").attr("data-drag", false)
-    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
-    .attr("src", "room_01.png").attr("width", "150px").attr("alt", "room_01");
+      $("#rooms").append($imgThumbnail);
 
-  $("#floors").append($imgThumbnail);
+    }
+  });
 
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_02.png").attr("data-drag", false)
-    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
-    .attr("src", "room_02.png").attr("width", "150px").attr("alt", "room_02");
+//load Floors
+  $.ajax({
+    url: "/floors",
+    method: "GET"
+  }).done(function (data) {
+    for (var i = 0; i < data.length; i++) {
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
-  $("#floors").append($imgThumbnail);
+      $("#floors").append($imgThumbnail);
 
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_03.png").attr("data-drag", false)
-    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
-    .attr("src", "room_03.png").attr("width", "150px").attr("alt", "room_03");
+    }
+  });
 
-  $("#floors").append($imgThumbnail);
+//load Backgrounds
+  $.ajax({
+    url: "/backgrounds",
+    method: "GET"
+  }).done(function (data) {
+    for (var i = 0; i < data.length; i++) {
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
+      $("#backgrounds").append($imgThumbnail);
 
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_04.png").attr("data-drag", false)
-    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
-    .attr("src", "room_04.png").attr("width", "150px").attr("alt", "room_04");
+    }
+  });
 
-  $("#rooms").append($imgThumbnail);
-
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", "room_05.png").attr("data-drag", false)
-    .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
-    .attr("src", "room_05.png").attr("width", "150px").attr("alt", "room_05");
-
-  $("#bg").append($imgThumbnail);
-
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", "art_01.png").attr("data-drag", true)
-    .attr("data-width", 553).attr("data-height", 395).attr("data-x", 200).attr("data-y", 200).attr("data-name", "art_01").attr("data-copy", 1)
-    .attr("data-type", "art").attr("src", "art_01.png").attr("width", "150px").attr("alt", "art_01");
-
-  $("#artwork").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", "art_02.png").attr("data-drag", true)
-    .attr("data-width", 500).attr("data-height", 417).attr("data-x", 200).attr("data-y", 200).attr("data-name", "art_02").attr("data-copy", 1)
-    .attr("data-type", "art").attr("src", "art_02.png").attr("width", "150px").attr("alt", "art_02");
-
-  $("#artwork").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_01.png").attr("data-drag", true)
-    .attr("data-width", c.height).attr("data-height", 268).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_01").attr("data-copy", 1)
-    .attr("data-type", "furn").attr("src", "furn_01.png").attr("width", "150px").attr("alt", "furn_01");
-
-  $("#furniture").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_02.png").attr("data-drag", true)
-    .attr("data-width", c.height).attr("data-height", 211).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_02").attr("data-copy", 1)
-    .attr("data-type", "furn").attr("src", "furn_02.png").attr("width", "150px").attr("alt", "furn_02");
-
-  $("#furniture").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_03.png").attr("data-drag", true)
-    .attr("data-width", c.height).attr("data-height", 245).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_03").attr("data-copy", 1)
-    .attr("data-type", "furn").attr("src", "furn_03.png").attr("width", "150px").attr("alt", "furn_03");
-
-  $("#furniture").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", "furn_04.png").attr("data-drag", true)
-    .attr("data-width", c.height).attr("data-height", 265).attr("data-x", 500).attr("data-y", 100).attr("data-name", "furn_04").attr("data-copy", 1)
-    .attr("data-type", "furn").attr("src", "furn_04.png").attr("width", "150px").attr("alt", "furn_04");
-
-  $("#furniture").append($imgThumbnail);
-
-
-  //Textures
+//load Textures
 
   var removeTexture = $("<button>").text("No Texture").addClass("btn btn-default no-texture").attr("type", "button");
 
   $("#texture").append(removeTexture);
 
+  $.ajax({
+    url: "/textures",
+    method: "GET"
+  }).done(function (data) {
+    for (var i = 0; i < data.length; i++) {
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", "patt_01.jpg").attr("data-drag", false)
-    .attr("data-name", "patt_01").attr("data-type", "patt").attr("src", "patt_04.jpg").attr("width", "150px").attr("alt", "patt_01");
+      $("#textures").append($imgThumbnail);
 
-  $("#texture").append($imgThumbnail);
+    }
+  });
 
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", "patt_02.jpg").attr("data-drag", false)
-    .attr("data-name", "patt_02").attr("data-type", "patt").attr("src", "patt_02.jpg").attr("width", "150px").attr("alt", "patt_02");
+//load Artwork
+  $.ajax({
+    url: "/artwork",
+    method: "GET"
+  }).done(function (data) {
+    for (var i = 0; i < data.length; i++) {
+      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
+        .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
+        .attr("data-type", "art").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
-  $("#texture").append($imgThumbnail);
+      $("#artwork").append($imgThumbnail);
 
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", "patt_03.jpg").attr("data-drag", false)
-    .attr("data-name", "patt_03").attr("data-type", "patt").attr("src", "patt_03.jpg").attr("width", "150px").attr("alt", "patt_03");
+    }
+  });
 
-  $("#texture").append($imgThumbnail);
+//load Furniture
+  $.ajax({
+    url: "/furniture",
+    method: "GET"
+  }).done(function (data) {
+    for (var i = 0; i < data.length; i++) {
+      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
+        .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
+        .attr("data-type", "furn").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", "patt_04.jpg").attr("data-drag", false)
-    .attr("data-name", "patt_04").attr("data-type", "patt").attr("src", "patt_04.jpg").attr("width", "150px").attr("alt", "patt_04");
+      $("#furniture").append($imgThumbnail);
 
-  $("#texture").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", "patt_05.jpg").attr("data-drag", false)
-    .attr("data-name", "patt_05").attr("data-type", "patt").attr("src", "patt_05.jpg").attr("width", "150px").attr("alt", "patt_05");
-
-  $("#texture").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", "patt_06.jpg").attr("data-drag", false)
-    .attr("data-name", "patt_06").attr("data-type", "patt").attr("src", "patt_06.jpg").attr("width", "150px").attr("alt", "patt_06");
-
-  $("#texture").append($imgThumbnail);
-
-  $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", "patt_07.jpg").attr("data-drag", false)
-    .attr("data-name", "patt_07").attr("data-type", "patt").attr("src", "patt_07.jpg").attr("width", "150px").attr("alt", "patt_07");
-
-  $("#texture").append($imgThumbnail);
-
-  // END -----------------------    This code will be replaced by retrieving data from our database   --------------------------------------
+    }
+  });
 
   // canvas.detectPixelRatio();
+  // canvas.restoreCanvas();
 
   $(document).on("click", ".img-base", function () {
 
@@ -261,8 +274,10 @@ $(document).ready(function () {
       fromCenter: false,
       x: $(this).data("x"),
       y: $(this).data("y"),
-      width: $(this).data("width"),
-      height: $(this).data("height"),
+      // width: $(this).data("width") / 4,
+      // height: $(this).data("height") / 4,
+      width: this.naturalWidth / 2,
+      height: this.naturalHeight / 2,
       resizeFromCenter: false,
       constrainProportions: true,
       handlePlacement: "corners",
@@ -401,6 +416,11 @@ $(document).ready(function () {
     ]
   });
 
+  $(document).on("resize", canvas, function () {
+
+    canvas.drawLayers();
+
+  });
 
 
 
@@ -409,6 +429,6 @@ $(document).ready(function () {
 }); // end document ready
 
 // logic for sign in/up from
-document.querySelector('.img__btn').addEventListener('click', function() {
-  document.querySelector('.cont').classList.toggle('s--signup');
-});
+// document.querySelector('.img__btn').addEventListener('click', function() {
+//   document.querySelector('.cont').classList.toggle('s--signup');
+// });

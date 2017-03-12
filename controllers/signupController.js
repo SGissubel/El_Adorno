@@ -1,13 +1,13 @@
 //getting npm packages ready
-const express = require('express');
-const bodyParser = require("body-parser");
-const path = require("path");
-const bcrypt = require('bcryptjs');
-const mysql = require('mysql');
+var express = require('express');
+var bodyParser = require("body-parser");
+var path = require("path");
+var bcrypt = require('bcryptjs');
+var mysql = require('mysql');
 
 // var user = require("../models/user.js");
 //setting up router for implementation
-const router = express.Router();
+var router = express.Router();
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -23,6 +23,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.text());
 router.use(bodyParser.json({ type: "application/vnd.api+json" }));
+// router.use(express.static(process.cwd() + "../public/app/"));
 
 //
 router.get("/", function(request, response) {
@@ -60,38 +61,38 @@ router.post('/user_login', function(req, res) {
 
 router.post('/user_signup', function(req, res) {
 
-var query = "SELECT * FROM users WHERE email = ?"
+    var query = "SELECT * FROM users WHERE email = ?"
 
-connection.query(query, [req.body.email], function(err, response) {
+    connection.query(query, [req.body.email], function(err, response) {
 
         if (response.length > 0) {
             res.send('we already have an email or username for this account')
         } else {
 
-        bcrypt.genSalt(10, function(err, salt) {
-          bcrypt.hash(req.body.password_hash, salt, function(err, hash) {            
-            var query = "INSERT INTO users (user_name, first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?, ?)";
+            bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash(req.body.password_hash, salt, function(err, hash) {
+                    var query = "INSERT INTO users (user_name, first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?, ?)";
 
-                
-            connection.query(query, [ req.body.username, req.body.first_name, req.body.last_name, req.body.email, hash], function(err, response) {
-                   console.log(req.body); 
-              req.session.logged_in = true;
 
-              req.session.id = response.insertId; //only way to get id of an insert for the mysql npm package
+                    connection.query(query, [req.body.username, req.body.first_name, req.body.last_name, req.body.email, hash], function(err, response) {
+                        console.log(req.body);
+                        req.session.logged_in = true;
 
-              var query = "SELECT * FROM users WHERE id = ?"
-              connection.query(query, [ req.session.id ], function(err, response) {
-                req.session.user_name = response[0].username;
-                req.session.email = response[0].email;
-                res.redirect('/');
-              });
+                        req.session.id = response.insertId; //only way to get id of an insert for the mysql npm package
+
+                        var query = "SELECT * FROM users WHERE id = ?"
+                        connection.query(query, [req.session.id], function(err, response) {
+                            req.session.user_name = response[0].username;
+                            req.session.email = response[0].email;
+                            res.redirect('/');
+                        });
+                    });
+                });
             });
-          });
-      });
 
         }
-});
+    });
 });
 
 
-                    module.exports = router;
+module.exports = router;
