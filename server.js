@@ -22,13 +22,10 @@ app.use(express.static(process.cwd() + "/testing"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-app.use(methodOverride("_method"));
-
-
 var userController = require("./controllers/userController.js");
 var signupController = require("./controllers/signupController.js");
 
+app.use(methodOverride("_method"));
 
 
 app.use("/home", userController);

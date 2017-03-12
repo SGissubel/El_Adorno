@@ -26,7 +26,7 @@
         <li class="hidden" id="sign-out"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
 
         <li>
-          <a class="sign-in"  href="/signup"><span class="glyphicon glyphicon-user"></span> Login</a>
+          <a class="sign-in" href="/signup"><span class="glyphicon glyphicon-user"></span> Login</a>
         </li>
         <!-- <li id="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
       </ul>
@@ -50,6 +50,7 @@
       </div>
       <div class="col-md-2">
         <!-- Tab panes -->
+        <span id="wall-color">Wall Color: <input type='text' id="full" /></span>
         <div class="tab-content text-center">
           <div id="rooms" class="tab-pane fade in active">
           </div>
@@ -67,15 +68,14 @@
         </div>
       </div>
       <div class="col-md-1 mod-md-1">
-        <p id="wall-color">Wall Color: <input type='text' id="full" /></p>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs tabs-right sideways">
-          <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font">Rooms</a></li>
-          <li><a data-toggle="tab" href="#floors" class="panel-font">Floors</a></li>
-          <li><a data-toggle="tab" href="#bg" class="panel-font">Backgrounds</a></li>
-          <li><a data-toggle="tab" href="#artwork" class="panel-font">Artwork</a></li>
-          <li><a data-toggle="tab" href="#furniture" class="panel-font">Furniture</a></li>
-          <li><a data-toggle="tab" href="#texture" class="panel-font">Textures</a></li>
+          <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font tab-padding">Rooms</a></li>
+          <li><a data-toggle="tab" href="#floors" class="panel-font tab-padding">Floors</a></li>
+          <li><a data-toggle="tab" href="#bg" class="panel-font tab-padding">Backgrounds</a></li>
+          <li><a data-toggle="tab" href="#artwork" class="panel-font tab-padding">Artwork</a></li>
+          <li><a data-toggle="tab" href="#furniture" class="panel-font tab-padding">Furniture</a></li>
+          <li><a data-toggle="tab" href="#texture" class="panel-font tab-padding">Textures</a></li>
         </ul>
       </div>
 
@@ -165,11 +165,12 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="assets/js/jcanvas.min.js"></script>
   <script src="assets/js/jcanvas-handles.min.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/spectrum.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 </body>
 
 </html>
