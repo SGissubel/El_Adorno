@@ -15,29 +15,29 @@ VALUES ('art01',1,false,666,999,'3:2',null,100,'art01.png','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
 VALUES ('art02',1,false,666,999,'3:2',null,100,'art02.png','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Bayway Diner',1,false,666,999,'3:2',null,100,'Bayway_Diner.png','Media/Artwork/');
+VALUES ('Bayway Diner',1,false,666,999,'3:2',null,100,'Bayway_Diner.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Blue Hour Manhattan',1,false,666,999,'3:2',null,100,'Blue_Hour_Manhattan.png','Media/Artwork/');
+VALUES ('Blue Hour Manhattan',1,false,666,999,'3:2',null,100,'Blue_Hour_Manhattan.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Denver Capitol',1,false,666,999,'3:2',null,100,'Denver_Capitol.png','Media/Artwork/');
+VALUES ('Denver Capitol',1,false,666,999,'3:2',null,100,'Denver_Capitol.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Midtown Magic',1,false,666,999,'3:2',null,100,'Midtown_Magic.png','Media/Artwork/');
+VALUES ('Midtown Magic',1,false,666,999,'3:2',null,100,'Midtown_Magic.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Monster Bridge',1,false,666,999,'3:2',null,100,'Monster_Bridge.png','Media/Artwork/');
+VALUES ('Monster Bridge',1,false,666,999,'3:2',null,100,'Monster_Bridge.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Center City Philadelphia',1,false,666,999,'3:2',null,100,'Center_City_Philadelphia.png','Media/Artwork/');
+VALUES ('Center City Philadelphia',1,false,666,999,'3:2',null,100,'Center_City_Philadelphia.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Sleepy Hollow LightHouse',1,false,666,666,'1:1',null,100,'Sleepy_Hollow_LightHouse.png','Media/Artwork/');
+VALUES ('Sleepy Hollow LightHouse',1,false,666,666,'1:1',null,100,'Sleepy_Hollow_LightHouse.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Two Cities',1,false,666,999,'3:2',null,100,'Two_Cities.png','Media/Artwork/');
+VALUES ('Two Cities',1,false,666,999,'3:2',null,100,'Two_Cities.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Freedom Tower Lights',1,false,666,666,'1:1',null,100,'Freedom_Tower_Lights.png','Media/Artwork/');
+VALUES ('Freedom Tower Lights',1,false,666,666,'1:1',null,100,'Freedom_Tower_Lights.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Gehry Building',1,false,999,666,'2:3',null,100,'Gehry_Building.png','Media/Artwork/');
+VALUES ('Gehry Building',1,false,999,666,'2:3',null,100,'Gehry_Building.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Jersey City IndieGrove',1,false,999,666,'2:3',null,100,'Jersey_City_IndieGrove.png','Media/Artwork/');
+VALUES ('Jersey City IndieGrove',1,false,999,666,'2:3',null,100,'Jersey_City_IndieGrove.jpg','Media/Artwork/');
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
-VALUES ('Arthur Kill Bridge',1,false,666,999,'3:2',null,100,'Arthur_Kill_Bridge.png','Media/Artwork/');
+VALUES ('Arthur Kill Bridge',1,false,666,999,'3:2',null,100,'Arthur_Kill_Bridge.jpg','Media/Artwork/');
 
 -- Load Objects - Backgrounds
 INSERT INTO objects (obj_name, obj_type_id, static, height, width, aspect, color, opacity, file_name, file_path) 
