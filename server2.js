@@ -12,7 +12,8 @@ var port = 3000;
 var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
-
+//Vinny put this back, needed to serve index.html content
+app.use(express.static(process.cwd() + "/public"));
 
 
 var cookieParser = require('cookie-parser');
@@ -22,7 +23,8 @@ var session = require('express-session');
 app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*1000 }}));
 app.use(cookieParser());
 
-app.use(express.static(process.cwd() + "/public/app"));
+//Vinny commented out, conflicts with index.html
+// app.use(express.static(process.cwd() + "/public/app"));
 
 app.use(methodOverride("_method"));
 
