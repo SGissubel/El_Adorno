@@ -3,12 +3,11 @@
 
 <head>
     <title>SING IN</title>
-</head>
-
-<body>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/signin.css">
-    <p class="tip">Click on button in image container</p>
+    <link rel="stylesheet" type="text/css" href="assets/css/style1.css">
+</head>
+<body>
+<p class="tip">Click on button in image container</p>
     <div class="cont">
         <div class="form sign-in">
             <h2>Welcome back,</h2>
@@ -74,7 +73,7 @@
     </a>
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- <script type="text/javascript" src="/assets/js/app.js"></script> -->
-    <script type="text/javascript" src="/assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/logic.js"></script>
     <script type="text/javascript">
     
     const currentURL = window.location.origin;
@@ -91,12 +90,12 @@
         console.log(userSession)
         
         //AJAX post the data to the friends API.
-        $.post(currentURL + "/signup/user_login", userSession, function(data) {
-
-            if (!data) {
-                alert("SUCCESS!");
-            }
-
+        $.post(currentURL + "/login/user_login", userSession, function(data) {
+          console.log(data);
+            if(data == true){
+             location.href = "http://localhost:3000/app"
+            }else{location.href = "http://localhost:3000/app"}
+           
 
         });
 
@@ -120,11 +119,12 @@
         console.log(newUser);
         
         //AJAX post the data to the friends API.
-        $.post(currentURL + "/signup/user_signup", newUser, function(data) {
+        $.post(currentURL + "/login/user_signup", newUser, function(data) {
 
-            if (!data) {
-                alert("SUCCESS!");
-            }
+            if(data == true){
+             location.href = "http://localhost:3000/app"
+            } 
+            // else{location.href = "http://localhost:3000/app"}
 
 
         });

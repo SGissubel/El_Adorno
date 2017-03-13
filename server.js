@@ -18,17 +18,14 @@ app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*10
 app.use(cookieParser());
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(process.cwd() + "/testing"));
+app.use(express.static(process.cwd() + "/public/app"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
-app.use(methodOverride("_method"));
-
 
 var userController = require("./controllers/userController.js");
 var signupController = require("./controllers/signupController.js");
 
+app.use(methodOverride("_method"));
 
 
 app.use("/home", userController);
