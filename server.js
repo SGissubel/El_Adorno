@@ -10,6 +10,11 @@ var methodOverride = require('method-override');
 var port = 3000;
 
 var app = express();
+
+// Serve static content for the app from the "public" directory in the application directory.
+
+
+
 var cookieParser = require('cookie-parser');
 
 var session = require('express-session');
@@ -17,20 +22,23 @@ var session = require('express-session');
 app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*1000 }}));
 app.use(cookieParser());
 
-// Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(process.cwd() + "/public/app"));
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
-var userController = require("./controllers/userController.js");
-var signupController = require("./controllers/signupController.js");
 
 app.use(methodOverride("_method"));
 
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/home", userController);
-app.use("/signup", signupController);
+var objectsController = require("./controllers/objectsController.js");
+var signupController = require("./controllers/signupController.js")
 
+
+
+app.get('/app', function(req, res){
+  res.sendFile(path.join(__dirname, "./public/app/index.html"));
+})
+
+app.use("/", objectsController);
+app.use("/login", signupController);
 
 
 app.listen(port);
