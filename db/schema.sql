@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS objects (
   obj_name VARCHAR(255) NOT NULL,
   obj_type_id INT(11) NOT NULL,
   static BOOLEAN NOT NULL,
+  useradd BOOLEAN NOT NULL,
   height INT(11) NOT NULL,
   width INT(11) NOT NULL,
   aspect VARCHAR(255),
