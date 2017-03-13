@@ -26,12 +26,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 
-var userController = require("./controllers/userController.js");
+// var userController = require("./controllers/userController.js");
 var signupController = require("./controllers/signupController.js");
 
 
 
-app.use("/home", userController);
+// app.use("/home", userController);
 app.use("/signup", signupController);
 
 

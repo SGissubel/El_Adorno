@@ -207,7 +207,6 @@ $(document).ready(function () {
 
 });
 
-
   $(document).on("click", ".img-base", function () {
 
     if (floorMode) canvas.removeLayer("floor");
@@ -355,6 +354,14 @@ button.addEventListener('click', function (e) {
     var dataURL = c.toDataURL('image/png');
     button.href = dataURL;
 });
+
+  $('#btn-save').on('click', function() {
+
+    
+
+});
+
+
 
 // function download() {
 //     var dt = c.toDataURL('image/jpeg');
