@@ -26,7 +26,9 @@
         <li class="hidden" id="sign-out"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
 
         <li>
+
           <a class="sign-in" href="/login"><span class="glyphicon glyphicon-user"></span> Login</a>
+        <!--  <a class="sign-in" data-toggle="modal" href="#login-modal"><span class="glyphicon glyphicon-user"></span> Login</a> -->
         </li>
         <!-- <li id="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
       </ul>
@@ -52,17 +54,17 @@
         <!-- Tab panes -->
         <span id="wall-color">Wall Color: <input type='text' id="full" /></span>
         <div class="tab-content text-center">
-          <div id="rooms" class="tab-pane fade in active">
+          <div id="rooms" class="tab-pane tab-pane-mod fade in active">
           </div>
-          <div id="floors" class="tab-pane fade">
+          <div id="floors" class="tab-pane tab-pane-mod fade">
           </div>
-          <div id="backgrounds" class="tab-pane fade">
+          <div id="backgrounds" class="tab-pane tab-pane-mod fade">
           </div>
-          <div id="artwork" class="tab-pane fade">
+          <div id="artwork" class="tab-pane tab-pane-mod fade">
           </div>
-          <div id="furniture" class="tab-pane fade">
+          <div id="furniture" class="tab-pane tab-pane-mod fade">
           </div>
-          <div id="textures" class="tab-pane fade">
+          <div id="textures" class="tab-pane tab-pane-mod fade">
 
           </div>
         </div>
@@ -88,42 +90,17 @@
 
     </div>
 
-
-
-  </div>
-  </div>
-  <!--<div class="row">
-    <div class="col-md-8">
-
-      <ul class="nav nav-tabs nav-stacked">
-        <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font">Rooms</a></li>
-        <li><a data-toggle="tab" href="#floors" class="panel-font">Floors</a></li>
-        <li><a data-toggle="tab" href="#bg" class="panel-font">Backgrounds</a></li>
-        <li><a data-toggle="tab" href="#artwork" class="panel-font">Artwork</a></li>
-        <li><a data-toggle="tab" href="#furniture" class="panel-font">Furniture</a></li>
-        <li><a data-toggle="tab" href="#texture" class="panel-font">Textures</a></li>
-      </ul>
-
-      <div class="tab-content">
-        <div id="rooms" class="tab-pane fade in active">
-        </div>
-        <div id="floors" class="tab-pane fade">
-        </div>
-        <div id="bg" class="tab-pane fade">
-        </div>
-        <div id="artwork" class="tab-pane fade">
-        </div>
-        <div id="furniture" class="tab-pane fade">
-        </div>
-        <div id="texture" class="tab-pane fade">
-
-        </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-1">
+        <!--<input class="hidden" id="sv-dir" type="file" webkitdirectory mozdirectory msdirectory odirectory directory />-->
+        <!--<input type="file" nwsaveas accept=".png,.jpg" />-->
+        <!--<a id="downloadLnk" download="YourFileName.jpg">Download as image</a>-->
+        <!--<a class="btn btn-default" id="save-canvas-file" download="YourFileName.jpg"> Save to File</a>  -->
+        <!--<a href="#" class="button" id="btn-download">Download</a>-->
+        <a href="#" class="button btn btn-default" id="btn-download" download="my-file-name.png">Download</a>
       </div>
     </div>
-    <div class="col-md-1">
-      Wall Color: <input type='text' id="full" />
-    </div>
-  </div>-->
+
 
   </div>
 
@@ -138,7 +115,7 @@
         </div>
         <div class="modal-body">
 
-          <h2>Delete selected object from your canvas?</h2>
+          <h4>Delete selected object from your canvas?</h4>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" id="delete-obj" data-dismiss="modal">Delete</button>
@@ -169,8 +146,211 @@
       </div>
     </div>
   </div>
+
+  <!-- login Modal Large modal -->
+  <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="LargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+          <h4 class="modal-title" id="login-modalLabel">
+            Login/Registration - <a href="https://www.miavetrina">miavetrina.com</a></h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6" style="padding-right: 30px;">
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                    <li><a href="#registration" data-toggle="tab">Registration</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+
+                    <div class="tab-pane active" id="login">
+                      <br>
+                      <form role="form" class="form-horizontal">
+                        <div class="row">
+                          <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">
+                                        Email</label>
+                            <div class="col-md-9">
+                              <input type="email" class="form-control" id="email1" placeholder="Email" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group">
+                            <label for="exampleInputPassword1" class="col-md-3 control-label">
+                                        Password</label>
+                            <div class="col-md-9">
+                              <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-3">
+                          </div>
+                          <div class="col-md-9">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                            Submit</button>
+                            <a href="javascript:;">Forgot your password?</a>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <div class="tab-pane" id="registration">
+                      <br>
+                      <form role="form" class="form-horizontal">
+                        <div class="form-group">
+                          <label for="email" class="col-md-3 control-label">
+                                        User Name</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" name="name" placeholder="User Name" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="email" class="col-md-3 control-label">
+                                        First Name</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" name="first" placeholder="First Name" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="email" class="col-md-3 control-label">
+                                        Last Name</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" name="last" placeholder="Last Name" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="email" class="col-md-3 control-label">
+                                        Email</label>
+                          <div class="col-md-9">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="password" class="col-md-3 control-label">
+                                        Password</label>
+                          <div class="col-md-9">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-3">
+                          </div>
+                          <div class="col-md-9">
+                            <button type="button" class="btn btn-primary btn-sm">
+                                            Save and Continue</button>
+                            <button type="button" class="btn btn-default btn-sm">
+                                            Cancel</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- Reason to  Register -->
+            <div class="col-md-6" style="border-left: 1px dotted #C2C2C2; margin-left: 0px;">
+              <h2 class="lead text-success">Benefits of Registering</h2>
+              <ul class="list-unstyled" style="line-height: 4">
+                <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account
+                </li>
+                <li><span class="fa fa-check text-success"></span> View and Edit your Showrooms on any computer</li>
+                <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer
+                </li>
+                <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture)
+                </li>
+              </ul>
+              <br>
+              <p><button class="btn btn-info btn-block" id="btnRegister">Yes please, register now!</button></p>
+              <div id="OR" class="hidden-xs">
+                OR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Modal Login Large  -->
+
+
+  <!-- Register/Sign-in Modal -->
+
+  <!--<div id="login-modal" class="modal fade" role="dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">Login or Register for MIΛ VETRINΛ</h2>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well">
+              <form id="loginForm" method="POST">
+                <div class="form-group">
+                  <label for="username" class="control-label">Username</label>
+                  <input type="text" class="form-control" name="username" value="" required="" title="Please enter your username" placeholder="username">
+                  <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                  <label for="password" class="control-label">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="password" value="" required="" title="Please enter your password">
+                  <span class="help-block"></span>
+                </div>
+                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+                <div class="checkbox">
+                  <label>
+                                      <input type="checkbox" name="remember" id="remember"> Remember login
+                                  </label>
+                  <p class="help-block">(if this is a private computer)</p>
+                </div>
+                <button type="submit" value="login" name="submit" class="btn btn-success btn-block">Login</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p class="lead">Register now for <span class="text-success">FREE</span></p>
+            <ul class="list-unstyled" style="line-height: 2">
+              <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account</li>
+              <li><span class="fa fa-check text-success"></span> View and Edit your Showrooms on any computer</li>
+              <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer</li>
+              <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture)</li>
+            </ul>
+            <p><button type="button" class="btn btn-info btn-block">Yes please, register now!</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="assets/js/jcanvas.min.js"></script>
