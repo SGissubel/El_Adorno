@@ -30,16 +30,17 @@ app.use(methodOverride("_method"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var objectsController = require("./controllers/objectsController.js");
-var signupController = require("./controllers/signupController.js")
-
+var objectsController  = require("./controllers/objectsController.js");
+var palettesController = require("./controllers/palettesController.js");
+var signupController   = require("./controllers/signupController.js");
 
 
 app.get('/app', function(req, res){
   res.sendFile(path.join(__dirname, "./public/app/index.html"));
 })
 
-app.use("/", objectsController);
+app.use("/objects", objectsController);
+app.use("/palettes", palettesController);
 app.use("/login", signupController);
 
 
