@@ -24,6 +24,7 @@ app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*10
 app.use(cookieParser());
 
 //Vinny commented out, conflicts with index.html
+//app.use(express.static(process.cwd() + "/public/app"));
 app.use(express.static(process.cwd() + "/public"));
 
 app.use(methodOverride("_method"));

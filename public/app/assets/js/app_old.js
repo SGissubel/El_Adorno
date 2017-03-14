@@ -1,8 +1,8 @@
+//hello
 $(document).ready(function () {
 
   var canvas;
   var c;
-  var appLoggedIn = false;
 
   var $canvasWidth;
   var $canvasHeight;
@@ -10,8 +10,6 @@ $(document).ready(function () {
 
   var delLayer;
   var patt;
-  var patt_obj_id;
-  var patt_type;
 
   var textureExists = false;
   var colorExists = false;
@@ -21,11 +19,11 @@ $(document).ready(function () {
   var artworkCount = 0;
 
   function setCanvas() {
-    if ($(window).width() > 1900 && $(window).width() <= 2500) {
+    if ($(window).width() > 2000 && $(window).width() <= 2500) {
       $canvasWidth = 1200;
       $canvasHeight = 800;
     } else {
-      if ($(window).width() > 1550 && $(window).width() <= 1900) {
+      if ($(window).width() > 1550 && $(window).width() <= 2000) {
         $canvasWidth = 999;
         $canvasHeight = 666;
       } else {
@@ -74,7 +72,7 @@ $(document).ready(function () {
     });
   };
 
-  function draw(patt, _this) {
+  function draw(patt) {
     var objOpacity;
 
     if (colorExists) objOpacity = 1;
@@ -89,10 +87,6 @@ $(document).ready(function () {
       fillStyle: patt,
       opacity: objOpacity,
       draggable: false,
-      data: {
-        type: patt_type,
-        objid: patt_obj_id
-      },
       fromCenter: false,
       x: 0,
       y: 0,
@@ -110,72 +104,72 @@ $(document).ready(function () {
 
   setCanvas();
 
-  //load Rooms
+//load Showrooms
   $.ajax({
     url: "/objects/rooms",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
-
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
+      console.log(data[i].file_path+data[i].file_name);
       $("#rooms").append($imgThumbnail);
 
     }
   });
 
-  //load Floors
+//load Floors
   $.ajax({
     url: "/objects/floors",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
       $("#floors").append($imgThumbnail);
 
     }
   });
 
-  //load Backgrounds
+//load Backgrounds
   $.ajax({
     url: "/objects/backgrounds",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
       $("#backgrounds").append($imgThumbnail);
 
     }
   });
 
-  //load Textures
+//load Textures
 
   var removeTexture = $("<button>").text("No Texture").addClass("btn btn-default no-texture").attr("type", "button");
 
-  $("#textures").append(removeTexture);
+  $("#texture").append(removeTexture);
 
   $.ajax({
     url: "/objects/textures",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
-      var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
-        .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+    var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
+      .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
+      .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
       $("#textures").append($imgThumbnail);
 
     }
   });
 
-  //load Artwork
+//load Artwork
   $.ajax({
     url: "/objects/artwork",
     method: "GET"
@@ -183,14 +177,14 @@ $(document).ready(function () {
     for (var i = 0; i < data.length; i++) {
       var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
         .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-        .attr("data-type", "art").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+        .attr("data-type", "art").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
       $("#artwork").append($imgThumbnail);
 
     }
   });
 
-  //load Furniture
+//load Furniture
   $.ajax({
     url: "/objects/furniture",
     method: "GET"
@@ -198,7 +192,7 @@ $(document).ready(function () {
     for (var i = 0; i < data.length; i++) {
       var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
         .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-        .attr("data-type", "furn").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+        .attr("data-type", "furn").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name);
 
       $("#furniture").append($imgThumbnail);
 
@@ -208,11 +202,11 @@ $(document).ready(function () {
   // canvas.detectPixelRatio();
   // canvas.restoreCanvas();
 
-  $('#btnRegister').on('click', function () {
+  $('#btnRegister').on('click', function() {
 
     $("a[href='#registration']").click();
 
-  });
+});
 
   $(document).on("click", ".img-base", function () {
 
@@ -258,8 +252,7 @@ $(document).ready(function () {
       source: $(this).data("src"),
       draggable: $(this).data("drag"),
       data: {
-        type: $(this).data("type"),
-        objid: $(this).data("obj-id")
+        type: $(this).data("type")
       },
       fromCenter: false,
       intangible: true,
@@ -283,18 +276,17 @@ $(document).ready(function () {
       source: $(this).data("src"),
       draggable: $(this).data("drag"),
       data: {
-        type: $(this).data("type"),
-        objid: $(this).data("obj-id")
+        type: $(this).data("type")
       },
       fromCenter: false,
       x: $(this).data("x"),
       y: $(this).data("y"),
-      width: this.naturalWidth,
-      height: this.naturalHeight,
+      // width: $(this).data("width") / 4,
+      // height: $(this).data("height") / 4,
+      width: this.naturalWidth / 2,
+      height: this.naturalHeight / 2,
       resizeFromCenter: false,
       constrainProportions: true,
-      shadowColor: '#222',
-      shadowBlur: 10,
       handlePlacement: "corners",
       dblclick: function (layer) {
         delLayer = layer;
@@ -330,8 +322,6 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".img-patt", function () {
-    patt_type = $(this).data("type");
-    patt_obj_id = $(this).data("obj-id");
 
     patt = canvas.createPattern({
       source: $(this).data("src"),
@@ -357,27 +347,43 @@ $(document).ready(function () {
 
   });
 
-  var button = document.getElementById('btn-download');
+var button = document.getElementById('btn-download');
 
-  button.addEventListener('click', function (e) {
+button.addEventListener('click', function (e) {
     var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
     $(this).attr("download", fileName);
     var dataURL = c.toDataURL('image/png');
     button.href = dataURL;
-  });
+});
 
-  $('#btn-save').on('click', function () {
+  $('#btn-save').on('click', function() {
 
-    var l = canvas.getLayers(function (layer) {
-      return (layer.name);
-    });
+    
 
-    for (var i = 0; i < l.length; i++) {
-      console.log("layer name: " + l[i].name + " index: " + l[i].index + " height: " + l[i].height + " width: " + l[i].width + " position_top: " + l[i].y + " position_left: " + l[i].x + " aspect_ratio: " + l[i].aspectRatio + " other info: " + Object.keys(l[i].data) + " : " + Object.values(l[i].data))
+});
 
-    }
 
-  });
+
+// function download() {
+//     var dt = c.toDataURL('image/jpeg');
+//     this.href = dt;
+// };
+
+//   $(document).on("click", "#save-canvas-file", function () {
+
+//     // console.log(canvas.getCanvasImage('png'));
+
+//   download();
+//   });
+
+  // $(document).on("change", "#sv-dir", function (e) {
+  
+  //   console.log($("#sv-dir").val());
+  //   var files = e.target.files;
+  //   var path = files[0].webkitRelativePath;
+  //   var Folder = path.split("/");
+  //   alert(Folder[0]);
+  // });
 
   $("#full").spectrum({
     color: "#ECC",
@@ -426,9 +432,6 @@ $(document).ready(function () {
         fillStyle: color.toHexString(),
         opacity: colorOpacity,
         draggable: false,
-        data: {
-          color: color.toHexString()
-        },
         fromCenter: false,
         index: colorIndex,
         x: 0,
@@ -901,113 +904,6 @@ $(document).ready(function () {
     canvas.drawLayers();
 
   });
-
-
-  // User register/login
-
-  var currentURL = window.location.origin;
-
-  $("#login-submit").on("click", function (e) {
-    e.preventDefault();
-    var userN = $("#login-user-name").val();
-    var pass = $("#login-password").val();
-
-    var userSession = {
-      user_name: userN,
-      password_hash: pass
-    }
-
-    console.log(userSession)
-
-    //AJAX post the data to the friends API.
-    $.post("/login/user_login", userSession, function (data) {
-      console.log(data);
-      if (data.logged_in == true) {
-        appLoggedIn = true;
-        // var profilePicUrl = data.photoURL;
-
-        // Set the user's profile pic and name.
-        // this.userPic.css("backgroundImage", "url(" + profilePicUrl + ")");
-        $("#user-name").text("Welcome, " + data.first_name);
-
-        // Show user's profile and sign-out button.
-        $("#user-name").removeClass("hidden");
-        $("#user-pic").removeClass("hidden");
-        $("#sign-out").removeClass("hidden");
-
-        // Hide sign-in button.
-        $("#sign-in").addClass("hidden");
-        $("#login-modal").modal("toggle");
-        // process user logged in
-      } else {
-        appLoggedIn = false;
-        $("#user-name").addClass("hidden");
-        // $("#user-pic").addClass("hidden");
-        $("#sign-out").addClass("hidden");
-        $("#sign-in").removeClass("hidden");
-
-        //display error message
-      }
-
-
-    });
-
-  });
-
-  $("#reg-save").on("click", function (e) {
-    e.preventDefault();
-    var userName = $("#reg-user-name").val();
-    var firstName = $("#reg-first-name").val();
-    var lastName = $("#reg-last-name").val();
-    var email = $("#reg-email").val();
-    var password = $("#reg-password").val();
-
-    var newUser = {
-      username: userName,
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
-      password_hash: password
-    };
-
-    console.log(newUser);
-
-    // $.ajax({
-    //   url: "/login/user_signup",
-    //   method: "POST",
-    //   data: newUser
-    // }).done(function (data) {
-    //               if(data == true){
-    //            location.href = "/app"
-    //           } 
-    // });
-
-    $.post("/login/user_signup", newUser, function (data) {
-
-      if (data.logged_in == true) {
-        console.log(data);
-        appLoggedIn = true;
-        $("#user-name").text("Welcome, " + data.first_name);
-
-        // Show user's profile and sign-out button.
-        $("#user-name").removeClass("hidden");
-        $("#user-pic").removeClass("hidden");
-        $("#sign-out").removeClass("hidden");
-
-        // Hide sign-in button.
-        $("#sign-in").addClass("hidden");
-        $("#login-modal").modal("toggle");
-      } else {
-        $("#user-name").addClass("hidden");
-        // $("#user-pic").addClass("hidden");
-        $("#sign-out").addClass("hidden");
-        $("#sign-in").removeClass("hidden");
-
-        //display error message
-      }
-    });
-
-  }); //end reg-save
 
 
 
