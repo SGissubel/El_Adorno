@@ -13,7 +13,7 @@ var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
 //Vinny put this back, needed to serve index.html content
-app.use(express.static(process.cwd() + "/public"));
+//app.use(express.static(process.cwd() + "/public/app"));
 
 
 var cookieParser = require('cookie-parser');

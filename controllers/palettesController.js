@@ -7,7 +7,7 @@ var router = express.Router();
 // Import the model (cat.js) to use its database functions.
 var object = require('../models/palette.js');
 
-function getPalette(colorTable){
+function getPalette(colorTable, format){
 
 	// Requires for getPalette function
 	var ase = require('ase-utils');
@@ -21,8 +21,9 @@ function getPalette(colorTable){
 	var groups = output.groups; 
 	var colors = output.colors;
 
-	var name       = {}; 
-	var clrpalette = []; 
+	var objName    = {}; 
+	var stgName    = '';
+	var clrPalette = []; 
 
 	// Read array 
 	for (var i=0; i<colors.length; i++){
@@ -52,12 +53,22 @@ function getPalette(colorTable){
 	    var nam = colorName 
 
 	    // Build name object 
-	    name = {name:nam, hex:hex, rgb:rgb}; 
-
+	    objName = {name:nam, hex:hex, rgb:rgb};  
+	    //stgName = colorName.replace(/\s/g, '')+','+colorHex + ',' + rgb; 
+	    stgName = "'"+colorName+"'"+',#'+colorHex+','+rgb; 	     
 	    // Load palette array
-	    clrpalette.push(name); 
+	    if (format == 'name')
+	    	clrPalette.push(nam); 
+	    if (format == 'hex')
+	    	clrPalette.push(hex);
+	    if (format == 'rgb')
+	    	clrPalette.push(rgb);
+	    if (format == 'string') 
+	    	clrPalette.push(stgName);
+	    if (format == 'object')
+	    	clrPalette.push(objName);
 	}
-	return clrpalette;	
+	return clrPalette;	
 }
 
 // Create all our routes and set up logic within those routes where required.
@@ -68,10 +79,11 @@ router.get("/", function(req, res) {
 	});	
 });
 
-router.get("/palette/:id", function(req, res) {
+router.get("/palette/:id/:format", function(req, res) {
 	object.some("id=" + [req.params.id], function(data){
 		var colorPalette = data[0].file_path + data[0].file_name;
-		var clrpalette = getPalette(colorPalette);  
+		var format = [req.params.format]; 
+		var clrpalette = getPalette(colorPalette,format);  
 		res.send(clrpalette);
 	});	
 });
