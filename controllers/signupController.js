@@ -11,80 +11,100 @@ var user = require("../models/user.js");
 var router = express.Router();
 
 var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    port: 3306,
-    database: "impulso_db"
+	host: "localhost",
+	user: "root",
+	password: "root",
+	port: 3306,
+	database: "impulso_db"
 });
 
 
 //setting up the packages to be used by express 
 router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.urlencoded({
+	extended: true
+}));
 router.use(bodyParser.text());
-router.use(bodyParser.json({ type: "application/vnd.api+json" }));
+router.use(bodyParser.json({
+	type: "application/vnd.api+json"
+}));
 
 
 //
-router.get("/", function(request, response) {
-    response.sendFile(path.join(__dirname, "../public/app/signin.html"));
+router.get("/", function (request, response) {
+	response.sendFile(path.join(__dirname, "../public/app/signin.html"));
 
 });
 
-router.post('/user_login', function(req, res) {
+router.post('/user_login', function (req, res) {
 
-    user.some("user_name=" + JSON.stringify(req.body.user_name), function(data) {
+	user.some("user_name=" + JSON.stringify(req.body.user_name), function (data) {
 
-        if (data.length == 0) {
-            console.log("INVALID USERNAME")
-            res.send(false)
-        } else {
-            bcrypt.compare(req.body.password_hash, data[0].password_hash, function(err, result) {
-                console.log(req.body.password_hash);
-                console.log(result);
+		if (data.length == 0) {
+			console.log("INVALID USERNAME")
+			res.send(false)
+		} else {
+			bcrypt.compare(req.body.password_hash, data[0].password_hash, function (err, result) {
+				console.log(req.body.password_hash);
+				console.log(result);
 
-                if (result == true) {
-                    console.log("LOGIN SUCCEDED");
-                    req.session.logged_in = true;
-                    req.session.user_id = data[0].id;
-                    req.session.user_name = data[0].username;
-                    res.send(true);
-                } else {
-                    console.log("WRONG PASSWORD");
-                    res.redirect('/login')
-                }
-            })
-        }
-    });
+				if (result == true) {
+					console.log("LOGIN SUCCEDED");
+					req.session.logged_in = true;
+					req.session.user_id = data[0].id;
+					req.session.user_name = data[0].user_name;
+					req.session.first_name = data[0].first_name;
+					req.session.last_name = data[0].last_name;
+					req.session.email = data[0].email;
+					res.send(req.session);
+				} else {
+					console.log("WRONG PASSWORD");
+					res.redirect('/login')
+				}
+			})
+		}
+	});
 });
 
-router.post('/user_signup', function(req, res) {
+router.post('/user_signup', function (req, res) {
 
-    user.some("user_name=" + JSON.stringify(req.body.username), function(data) {
-        if (data.length == 0) {
-            user.some("email=" + JSON.stringify(req.body.email), function(data) {
-            if (data.length == 0){
-                bcrypt.genSalt(10, function(err, salt) {
-                    bcrypt.hash(req.body.password_hash, salt, function(err, hash) {
+	user.some("user_name=" + JSON.stringify(req.body.username), function (data) {
+		if (data.length == 0) {
+			user.some("email=" + JSON.stringify(req.body.email), function (data) {
+				if (data.length == 0) {
+					bcrypt.genSalt(10, function (err, salt) {
+						bcrypt.hash(req.body.password_hash, salt, function (err, hash) {
 
-                        user.create("user_name, first_name, last_name, email, password_hash", [req.body.username, req.body.first_name, req.body.last_name, req.body.email, hash], function(data) {
-                                res.send(true)
+							user.create("user_name, first_name, last_name, email, password_hash", [req.body.username, req.body.first_name, req.body.last_name, req.body.email, hash], function (data) {
+
+								req.session.user_id = data.insertId; //only way to get id of an insert for the mysql npm package
+
+								var query = "SELECT * FROM users WHERE id = ?"
+								connection.query(query, [req.session.user_id], function (err, response) {
+									req.session.logged_in = true;
+									req.session.user_id = response[0].id;
+									req.session.user_name = response[0].username;
+									req.session.first_name = response[0].first_name;
+									req.session.last_name = response[0].last_name;
+									req.session.email = response[0].email;
+									res.send(req.session);
+								});
 
 
+							});
 
-                        });
+						})
+					})
+				} else {
+					console.log("EMAIL ALREADY EXIST")
+				}
+			});
 
-                    })
-                })
-             }else { console.log("EMAIL ALREADY EXIST")}
-         });
-
-        } else {
-            res.send();
-            console.log("USERNAME NOT AVAILABLE")
-        }
-    });
+		} else {
+			res.send();
+			console.log("USERNAME NOT AVAILABLE")
+		}
+	});
 });
 
 
