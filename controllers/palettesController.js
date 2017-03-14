@@ -81,7 +81,7 @@ router.get("/", function(req, res) {
 
 router.get("/palette/:id/:format", function(req, res) {
 	object.some("id=" + [req.params.id], function(data){
-		var colorPalette = data[0].file_path + data[0].file_name;
+		var colorPalette = './public' + data[0].file_path + data[0].file_name;
 		var format = [req.params.format]; 
 		var clrpalette = getPalette(colorPalette,format);  
 		res.send(clrpalette);
