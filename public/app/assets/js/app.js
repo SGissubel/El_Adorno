@@ -201,6 +201,12 @@ $(document).ready(function () {
   // canvas.detectPixelRatio();
   // canvas.restoreCanvas();
 
+  $('#btnRegister').on('click', function() {
+
+    $("a[href='#registration']").click();
+
+});
+
   $(document).on("click", ".img-base", function () {
 
     if (floorMode) canvas.removeLayer("floor");
@@ -339,6 +345,44 @@ $(document).ready(function () {
     canvas.removeLayer(delLayer).drawLayers();
 
   });
+
+var button = document.getElementById('btn-download');
+
+button.addEventListener('click', function (e) {
+    var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
+    $(this).attr("download", fileName);
+    var dataURL = c.toDataURL('image/png');
+    button.href = dataURL;
+});
+
+  $('#btn-save').on('click', function() {
+
+    
+
+});
+
+
+
+// function download() {
+//     var dt = c.toDataURL('image/jpeg');
+//     this.href = dt;
+// };
+
+//   $(document).on("click", "#save-canvas-file", function () {
+
+//     // console.log(canvas.getCanvasImage('png'));
+
+//   download();
+//   });
+
+  // $(document).on("change", "#sv-dir", function (e) {
+  
+  //   console.log($("#sv-dir").val());
+  //   var files = e.target.files;
+  //   var path = files[0].webkitRelativePath;
+  //   var Folder = path.split("/");
+  //   alert(Folder[0]);
+  // });
 
   $("#full").spectrum({
     color: "#ECC",

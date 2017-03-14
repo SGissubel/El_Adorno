@@ -12,7 +12,8 @@ var port = 3000;
 var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
-
+//Vinny put this back, needed to serve index.html content
+app.use(express.static(process.cwd() + "/public"));
 
 
 var cookieParser = require('cookie-parser');
@@ -22,7 +23,8 @@ var session = require('express-session');
 app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*1000 }}));
 app.use(cookieParser());
 
-app.use(express.static(process.cwd() + "/public/app"));
+//Vinny commented out, conflicts with index.html
+// app.use(express.static(process.cwd() + "/public/app"));
 
 app.use(methodOverride("_method"));
 
@@ -41,4 +43,31 @@ app.use("/", objectsController);
 app.use("/login", signupController);
 
 
-app.listen(port);
+app.listen(port, function() {
+    console.log('listening on port ' + port)
+
+});
+
+
+
+/* ===========================================================
+					SOCKET.IO SERVER
+=============================================================*/
+
+var io  = require('socket.io').listen(5001),
+    dl = require('delivery'),
+    fs  = require('fs');
+
+io.sockets.on('connection', function(socket){
+  delivery = dl.listen(socket);
+  delivery.on('receive.success',function(file){
+
+    fs.writeFile(file.name,file.buffer, function(err){
+      if(err){
+        console.log('File could not be saved.');
+      }else{
+        console.log('File saved.');
+      };
+    });
+  });
+});

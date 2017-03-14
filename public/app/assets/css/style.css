@@ -28,7 +28,7 @@ h1 {
   font-weight: 900;
 }
 
-.tab-pane {
+.tab-pane-mod {
   height: 660px;
   overflow: auto;
   direction: rtl;
@@ -43,6 +43,36 @@ h1 {
   position: relative;
   top: -50px;
 }
+
+/*#login-modal {
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 10%;
+}*/
+
+#login-modal {
+ font-family: "Roboto", "San Serif";
+ font-weight: 700;
+}
+
+div#OR {
+   height: 30px;
+   width: 30px;
+   border: 1px solid #C2C2C2 ;
+   border-radius: 50%;
+   font-weight: bold;
+   line-height: 28px;
+   text-align: center;
+   font-size: 12px;
+   float: left;
+   position: absolute;
+   left: -16px;
+   top: 40%;
+   z-index: 1;
+   background: #DFDFDF ;
+}
+
+
 
 .navbar {
   border: none;
@@ -157,18 +187,17 @@ body {
 */
 
 .btn-default {
-  background-color: #d9d9d9;
+  background-color: #222222;
   color: white;
   text-shadow: none;
   background-image: none;
-  border-color: #dbdbdb;
   border-color: #ccc;
 }
 
 .btn-default:focus,
 .btn-default:hover {
   background-color: white;
-  color: #d9d9d9;
+  color: #222222;
 }
 
 #container {
