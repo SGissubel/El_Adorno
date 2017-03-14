@@ -13,7 +13,7 @@ function getPalette(colorTable){
 	var ase = require('ase-utils');
 	var fs = require('fs');
 	var convert = require('color-convert');
-	
+
 	var buffer = fs.readFileSync(colorTable);
 
 	// Input values 
@@ -89,7 +89,7 @@ router.get("/allcolors", function(req, res) {
 	});	
 });
 
-router.get("/palette:id", function(req, res) {
+router.get("/palette/:id", function(req, res) {
 	object.some("obj_type_id=3 and id=" + [req.params.id], function(data){
 		var colorPalette = data[0].file_path + data[0].file_name;
 		var palette = getPalette(colorPalette);  
