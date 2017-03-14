@@ -24,7 +24,7 @@ app.use(session({ secret: 'app', cookie: { maxAge: 6*1000*1000*1000*1000*1000*10
 app.use(cookieParser());
 
 //Vinny commented out, conflicts with index.html
-// app.use(express.static(process.cwd() + "/public/app"));
+app.use(express.static(process.cwd() + "/public"));
 
 app.use(methodOverride("_method"));
 
@@ -44,4 +44,31 @@ app.use("/palettes", palettesController);
 app.use("/login", signupController);
 
 
-app.listen(port);
+app.listen(port, function() {
+    console.log('listening on port ' + port)
+
+});
+
+
+
+/* ===========================================================
+					SOCKET.IO SERVER
+=============================================================*/
+
+var io  = require('socket.io').listen(5001),
+    dl = require('delivery'),
+    fs  = require('fs');
+
+io.sockets.on('connection', function(socket){
+  delivery = dl.listen(socket);
+  delivery.on('receive.success',function(file){
+
+    fs.writeFile(file.name,file.buffer, function(err){
+      if(err){
+        console.log('File could not be saved.');
+      }else{
+        console.log('File saved.');
+      };
+    });
+  });
+});
