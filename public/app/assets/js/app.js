@@ -106,7 +106,7 @@ $(document).ready(function () {
 
 //load Showrooms
   $.ajax({
-    url: "/rooms",
+    url: "/objects/rooms",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
@@ -121,7 +121,7 @@ $(document).ready(function () {
 
 //load Floors
   $.ajax({
-    url: "/floors",
+    url: "objects/floors",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
@@ -136,7 +136,7 @@ $(document).ready(function () {
 
 //load Backgrounds
   $.ajax({
-    url: "/backgrounds",
+    url: "objects/backgrounds",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
@@ -156,7 +156,7 @@ $(document).ready(function () {
   $("#texture").append(removeTexture);
 
   $.ajax({
-    url: "/textures",
+    url: "objects/textures",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
@@ -171,7 +171,7 @@ $(document).ready(function () {
 
 //load Artwork
   $.ajax({
-    url: "/artwork",
+    url: "objects/artwork",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
@@ -186,7 +186,7 @@ $(document).ready(function () {
 
 //load Furniture
   $.ajax({
-    url: "/furniture",
+    url: "objects/furniture",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
