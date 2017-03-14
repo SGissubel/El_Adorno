@@ -19,6 +19,20 @@
   font-weight: 100;
 }
 
+#sign-in,
+#sign-out {
+  cursor: pointer;
+  top: 14px;
+  position: relative;
+  color: #d9d9d9;
+  left: -10px;
+}
+
+#sign-in:hover,
+#sign-out:hover {
+  color: #666666;
+}
+
 h1 {
   margin-top: 0px;
 }
@@ -44,6 +58,7 @@ h1 {
   top: -50px;
 }
 
+
 /*#login-modal {
   margin-left: 25%;
   margin-right: 25%;
@@ -51,28 +66,26 @@ h1 {
 }*/
 
 #login-modal {
- font-family: "Roboto", "San Serif";
- font-weight: 700;
+  font-family: "Roboto", "San Serif";
+  font-weight: 700;
 }
 
 div#OR {
-   height: 30px;
-   width: 30px;
-   border: 1px solid #C2C2C2 ;
-   border-radius: 50%;
-   font-weight: bold;
-   line-height: 28px;
-   text-align: center;
-   font-size: 12px;
-   float: left;
-   position: absolute;
-   left: -16px;
-   top: 40%;
-   z-index: 1;
-   background: #DFDFDF ;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #C2C2C2;
+  border-radius: 50%;
+  font-weight: bold;
+  line-height: 28px;
+  text-align: center;
+  font-size: 12px;
+  float: left;
+  position: absolute;
+  left: -16px;
+  top: 40%;
+  z-index: 1;
+  background: #DFDFDF;
 }
-
-
 
 .navbar {
   border: none;
@@ -140,7 +153,7 @@ div#OR {
   line-height: 36px;
   padding-right: 10px;
   padding-left: 20px;
-  color:#454545;
+  color: #454545;
 }
 
 body {
@@ -211,6 +224,7 @@ body {
 *.hidden {
   display: none;
 }
+
 
 /*@media screen and (max-width: 2500px) {
   #room-canvas {
