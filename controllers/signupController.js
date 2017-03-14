@@ -45,7 +45,7 @@ router.post('/user_login', function(req, res) {
                 console.log(result);
 
                 if (result == true) {
-                    console.log("LOGIN SUCCEDED");
+                    console.log("LOGIN SUCCEEDED");
                     req.session.logged_in = true;
                     req.session.user_id = data[0].id;
                     req.session.user_name = data[0].username;
