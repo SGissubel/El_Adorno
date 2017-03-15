@@ -28,16 +28,16 @@
 
         <li>
 
-          <a class="sign-in" href="/login"><span class="glyphicon glyphicon-user"></span> Login</a>
-        <!--  <a class="sign-in" data-toggle="modal" href="#login-modal"><span class="glyphicon glyphicon-user"></span> Login</a> -->
+          <!--<a class="sign-in" href="/login"><span class="glyphicon glyphicon-user"></span> Login</a>-->
+          <a id="sign-in" data-toggle="modal" href="#login-modal"><span class="glyphicon glyphicon-user"></span> Login</a> 
         </li>
-        <!-- <li id="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
+         <!--<li id="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li> -->
       </ul>
     </div>
   </nav>
   <div class="container-flex mod-flex">
     <div id="user-container">
-      <div id="user-pic"></div>
+      <div class="hidden" id="user-pic"></div>
       <div id="user-name"></div>
     </div>
     <br>
@@ -93,7 +93,7 @@
         <!--<a class="btn btn-default" id="save-canvas-file" download="YourFileName.jpg"> Save to File</a>  -->
         <!--<a href="#" class="button" id="btn-download">Download</a>-->
         <a href="#" class="button btn btn-default" id="btn-download" download="my-file-name.png">Download Showroom</a>
-        <a href="#" class="button btn btn-default" id="btn-save">Save Showroom</a>
+        <button class="button btn btn-default" id="btn-save">Save Showroom</button>
       </div>
     </div>
 
@@ -151,7 +151,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     ×</button>
           <h4 class="modal-title" id="login-modalLabel">
-            Login/Registration - <a href="https://www.miavetrina">miavetrina.com</a></h4>
+            Login/Registration - MIΛ VETRINΛ</h4>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -175,19 +175,17 @@
                       <form role="form" class="form-horizontal">
                         <div class="row">
                           <div class="form-group">
-                            <label for="email" class="col-md-3 control-label">
-                                        Email</label>
+                            <label for="login-user-name" class="col-md-3 control-label">User Name</label>
                             <div class="col-md-9">
-                              <input type="email" class="form-control" id="email1" placeholder="Email" />
+                              <input type="text" class="form-control" name="login-user-name" id="login-user-name" placeholder="UserName" />
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group">
-                            <label for="exampleInputPassword1" class="col-md-3 control-label">
-                                        Password</label>
+                            <label for="login-password" class="col-md-3 control-label">Password</label>
                             <div class="col-md-9">
-                              <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                              <input type="password" class="form-control" name="login-password" id="login-password" placeholder="Password" />
                             </div>
                           </div>
                         </div>
@@ -195,8 +193,7 @@
                           <div class="col-md-3">
                           </div>
                           <div class="col-md-9">
-                            <button type="submit" class="btn btn-primary btn-sm">
-                                            Submit</button>
+                            <button type="submit" class="btn btn-primary btn-sm" id="login-submit">Submit</button>
                             <a href="javascript:;">Forgot your password?</a>
                           </div>
                         </div>
@@ -207,48 +204,41 @@
                       <br>
                       <form role="form" class="form-horizontal">
                         <div class="form-group">
-                          <label for="email" class="col-md-3 control-label">
-                                        User Name</label>
+                          <label for="reg-user-name" class="col-md-3 control-label">User Name</label>
                           <div class="col-md-9">
-                            <input type="text" class="form-control" name="name" placeholder="User Name" />
+                            <input type="text" class="form-control" name="reg-user-name" id="reg-user-name" placeholder="UserName" />
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="email" class="col-md-3 control-label">
-                                        First Name</label>
+                          <label for="reg-first-name" class="col-md-3 control-label">First Name</label>
                           <div class="col-md-9">
-                            <input type="text" class="form-control" name="first" placeholder="First Name" />
+                            <input type="text" class="form-control" id="reg-first-name" name="reg-first-name" placeholder="First Name" />
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="email" class="col-md-3 control-label">
-                                        Last Name</label>
+                          <label for="reg-last-name" class="col-md-3 control-label">Last Name</label>
                           <div class="col-md-9">
-                            <input type="text" class="form-control" name="last" placeholder="Last Name" />
+                            <input type="text" class="form-control" id="reg-last-name" name="reg-last-name" placeholder="Last Name" />
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="email" class="col-md-3 control-label">
-                                        Email</label>
+                          <label for="reg-email" class="col-md-3 control-label">Email</label>
                           <div class="col-md-9">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
+                            <input type="email" class="form-control" id="reg-email" name="reg-email" placeholder="example@email.com" />
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="password" class="col-md-3 control-label">
-                                        Password</label>
+                          <label for="reg-password" class="col-md-3 control-label">Password</label>
                           <div class="col-md-9">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+                            <input type="password" class="form-control" id="reg-password" name="reg-password" placeholder="Password" />
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-3">
                           </div>
                           <div class="col-md-9">
-                            <button type="button" class="btn btn-primary btn-sm">
-                                            Save and Continue</button>
-                            <button type="button" class="btn btn-default btn-sm">
-                                            Cancel</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="reg-save">Save and Continue</button>
+                            <button type="button" class="btn btn-default btn-sm" id="reg-cancel">Cancel</button>
                           </div>
                         </div>
                       </form>
@@ -264,10 +254,10 @@
               <ul class="list-unstyled" style="line-height: 4">
                 <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account
                 </li>
-                <li><span class="fa fa-check text-success"></span> View and Edit your Showrooms on any computer</li>
+                <li><span class="fa fa-check text-success"></span> View &amp; Edit your Showrooms on any computer</li>
                 <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer
                 </li>
-                <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture)
+                <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture, etc.)
                 </li>
               </ul>
               <br>

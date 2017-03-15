@@ -7,7 +7,7 @@ select 'Palettes' as 'Loading Table';
 INSERT INTO palettes (palette_name, file_path, file_name)
 VALUES ('Behr HDC Colors','/app/Media/Colors/','behr-hdc-colors.ase'); 
 INSERT INTO palettes (palette_name, file_path, file_name)
-VALUES ('Behr Marquee Colors','/app/Media/Colors/','behr-marquee-colors.ase'); 
+VALUES ('Behr Marquee Colors','/appx/Media/Colors/','behr-marquee-colors.ase'); 
 INSERT INTO palettes (palette_name, file_path, file_name)
 VALUES ('Behr Plus 2003 Colors','/app/Media/Colors/','behr-pplus2003-colors.ase'); 
 INSERT INTO palettes (palette_name, file_path, file_name)
@@ -51,7 +51,7 @@ select @rcds as 'Rows Loaded';
 -- Load Objects - Artwork
 select 'Objects:Artwork' as 'Loading Table'; 
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('Abandoned Michelin Tire',1,false,false,null,'/app/Media/Artwork/','Abandoned_Michelin_Tire.jpg');
+VALUES ('Abandoned Micheline Tire',1,false,false,null,'/app/Media/Artwork/','Abandoned_Micheline_Tire.jpg');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
 VALUES ('Americana Diner',1,false,false,null,'/app/Media/Artwork/','Americana_Diner.jpg');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
