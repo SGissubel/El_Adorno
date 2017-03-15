@@ -153,7 +153,7 @@ $(document).ready(function () {
         .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
         .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
-      $("#backgrounds").append($imgThumbnail);
+      $("#decors").append($imgThumbnail);
 
     }
   });
