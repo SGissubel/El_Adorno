@@ -51,8 +51,8 @@
         noColorSelectedText: "No Color Selected",
         preferredFormat: false,
         className: "", // Deprecated - use containerClassName and replacerClassName instead.
-        containerClassName: "",
-        replacerClassName: "",
+        containerClassName: "spectrumContainer",
+        replacerClassName: "spectrumReplacer",
         showAlpha: false,
         theme: "sp-light",
         palette: [["#ffffff", "#000000", "#ff0000", "#ff8000", "#ffff00", "#008000", "#0000ff", "#4b0082", "#9400d3"]],

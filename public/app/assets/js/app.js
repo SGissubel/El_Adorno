@@ -388,6 +388,12 @@ $(document).ready(function () {
     showInput: true,
     className: "full-spectrum",
     showInitial: true,
+    showAlpha: true,
+    togglePaletteOnly: true,
+    togglePaletteMoreText: "more",
+    togglePaletteLessText: "less",
+    hideAfterPaletteSelect: true,
+
     showPalette: true,
     showPaletteOnly: false,
     showSelectionPalette: true,
