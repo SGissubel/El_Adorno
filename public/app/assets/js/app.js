@@ -162,6 +162,7 @@ $(document).ready(function () {
   $("#textures").append(removeTexture);
 
   $.ajax({
+
     url: "/objects/textures",
     method: "GET"
   }).done(function (data) {
@@ -565,9 +566,9 @@ $(document).ready(function () {
     // });
 
     $.post("/login/user_signup", newUser, function (data) {
-
-      if (data.logged_in == true) {
         console.log(data);
+      if (data.logged_in == true) {
+        
         appLoggedIn = true;
         $("#user-name").text("Welcome, " + data.first_name);
 
@@ -591,8 +592,18 @@ $(document).ready(function () {
 
   }); //end reg-save
 
-
-
+$("#sign-out").on("click", function(){
+$.ajax({
+      url: "/login/sign_out",
+      method: "get",
+      data: ""
+    }).done(function (data) {
+      console.log(data)
+                  if(data == true){
+               location.href = "/app"
+              } 
+    });
+})
 
 
 }); // end document ready

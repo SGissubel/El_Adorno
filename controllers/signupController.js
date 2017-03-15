@@ -36,30 +36,45 @@ router.get("/", function (request, response) {
 
 });
 
+router.get('/sign_out', function(req,res) {
+  req.session.destroy(function(err) {
+     res.send(true)
+  });
+});
+
+
+
 router.post('/user_login', function (req, res) {
 
 	user.some("user_name=" + JSON.stringify(req.body.user_name), function (data) {
 
 		if (data.length == 0) {
 			console.log("INVALID USERNAME")
-			res.send(false)
+			
+			req.session.status_code = 104;
+			req.session.logged_in = false;
+			res.send(req.session)
+			// res.sendStatus(req.session);
 		} else {
 			bcrypt.compare(req.body.password_hash, data[0].password_hash, function (err, result) {
 				console.log(req.body.password_hash);
 				console.log(result);
 
 				if (result == true) {
-					console.log("LOGIN SUCCEDED");
+					console.log("LOGGED IN SUCCESSFULLY");
 					req.session.logged_in = true;
 					req.session.user_id = data[0].id;
 					req.session.user_name = data[0].user_name;
 					req.session.first_name = data[0].first_name;
 					req.session.last_name = data[0].last_name;
 					req.session.email = data[0].email;
+					req.session.status_code = 106;
 					res.send(req.session);
 				} else {
 					console.log("WRONG PASSWORD");
-					res.redirect('/login')
+					req.session.status_code = 103;
+					req.session.logged_in = false;
+					res.send(req.session)
 				}
 			})
 		}
@@ -88,6 +103,7 @@ router.post('/user_signup', function (req, res) {
 									req.session.first_name = response[0].first_name;
 									req.session.last_name = response[0].last_name;
 									req.session.email = response[0].email;
+									req.session.status_code = 105;
 									res.send(req.session);
 								});
 
@@ -98,12 +114,17 @@ router.post('/user_signup', function (req, res) {
 					})
 				} else {
 					console.log("EMAIL ALREADY EXIST")
+					req.session.status_code = 101;
+					req.session.logged_in = false;
+					res.send(req.session)
 				}
 			});
 
 		} else {
-			res.send();
 			console.log("USERNAME NOT AVAILABLE")
+			req.session.status_code = 102;
+			req.session.logged_in = false;
+			res.send(req.session)
 		}
 	});
 });
