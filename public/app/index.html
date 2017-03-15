@@ -24,9 +24,11 @@
         <a class="navbar-brand" href="index.html"><span class="byname"> Impulso</span></a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li class="hidden" id="sign-out"><div><span class="glyphicon glyphicon-log-out"></span> Sign Out</div></li>
+        <li class="hidden" id="sign-out">
+          <div><span class="glyphicon glyphicon-log-out"></span> Sign Out</div>
+        </li>
 
-        <li >
+        <li>
 
           <!--<a class="sign-in" href="/login"><span class="glyphicon glyphicon-user"></span> Login</a>-->
           <div id="sign-in"><span class="glyphicon glyphicon-user"></span> Login/Register</div>
@@ -156,7 +158,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     ×</button>
             <h4 class="modal-title" id="login-modalLabel">
-              Login/Registration - MIΛ VETRINΛ</h4>
+              MIΛ VETRINΛ - Login/Registration</h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -177,20 +179,24 @@
 
                       <div class="tab-pane active" id="login">
                         <br>
-                        <form role="form" class="form-horizontal">
+                        <form role="form" class="form-horizontal login-form">
                           <div class="row">
                             <div class="form-group">
-                              <label for="login-user-name" class="col-md-3 control-label">User Name</label>
+                              <label for="login-user-name" class="col-md-3 control-label">User Name *</label>
                               <div class="col-md-9">
-                                <input type="text" class="form-control" name="login-user-name" id="login-user-name" placeholder="UserName" />
+                                <input type="text" class="form-control" name="login-user-name" id="login-user-name" placeholder="UserName" required
+                                data-error="User Name is required.">
+                              <div class="help-block with-errors"></div>
                               </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="form-group">
-                              <label for="login-password" class="col-md-3 control-label">Password</label>
+                              <label for="login-password" class="col-md-3 control-label">Password *</label>
                               <div class="col-md-9">
-                                <input type="password" class="form-control" name="login-password" id="login-password" placeholder="Password" />
+                                <input type="password" class="form-control" name="login-password" id="login-password" placeholder="Password" required
+                                data-error="Password is required.">
+                              <div class="help-block with-errors"></div>
                               </div>
                             </div>
                           </div>
@@ -198,8 +204,10 @@
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-9">
-                              <button type="submit" class="btn btn-primary btn-sm" id="login-submit">Submit</button>
-                              <a href="javascript:;">Forgot your password?</a>
+                              <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                              <br>
+                              <button type="submit" class="btn btn-primary" id="login-submit">Submit</button>
+                              <!--<a href="javascript:;">Forgot your password?</a>-->
                             </div>
                           </div>
                         </form>
@@ -207,80 +215,101 @@
 
                       <div class="tab-pane" id="registration">
                         <br>
-                        <form role="form" class="form-horizontal">
+                        <form role="form" class="form-horizontal registration-form">
                           <div class="form-group">
-                            <label for="reg-user-name" class="col-md-3 control-label">User Name</label>
+                            <label for="reg-user-name" class="col-md-3 control-label">User Name *</label>
                             <div class="col-md-9">
-                              <input type="text" class="form-control" name="reg-user-name" id="reg-user-name" placeholder="UserName" />
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="reg-first-name" class="col-md-3 control-label">First Name</label>
-                            <div class="col-md-9">
-                              <input type="text" class="form-control" id="reg-first-name" name="reg-first-name" placeholder="First Name" />
+                              <input type="text" class="form-control" name="reg-user-name" id="reg-user-name" placeholder="UserName" required
+                                data-error="User Name is required.">
+                              <div class="help-block with-errors"></div>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="reg-last-name" class="col-md-3 control-label">Last Name</label>
+                            <label for="reg-first-name" class="col-md-3 control-label">First Name *</label>
                             <div class="col-md-9">
-                              <input type="text" class="form-control" id="reg-last-name" name="reg-last-name" placeholder="Last Name" />
+                              <input type="text" class="form-control" id="reg-first-name" name="reg-first-name" placeholder="First Name" required
+                                data-error="First Name is required.">
+                              <div class="help-block with-errors"></div>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="reg-email" class="col-md-3 control-label">Email</label>
+                            <label for="reg-last-name" class="col-md-3 control-label">Last Name *</label>
                             <div class="col-md-9">
-                              <input type="email" class="form-control" id="reg-email" name="reg-email" placeholder="example@email.com" />
+                              <input type="text" class="form-control" id="reg-last-name" name="reg-last-name" placeholder="Last Name" required
+                                data-error="Last Name is required.">
+                              <div class="help-block with-errors"></div>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="reg-password" class="col-md-3 control-label">Password</label>
+                            <label for="reg-email" class="col-md-3 control-label">Email *</label>
                             <div class="col-md-9">
-                              <input type="password" class="form-control" id="reg-password" name="reg-password" placeholder="Password" />
+                              <input type="email" class="form-control" id="reg-email" name="reg-email" placeholder="example@email.com" required
+                                data-error="A valid Email is required.">
+                              <div class="help-block with-errors"></div>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-md-3">
-                            </div>
+                          <div class="form-group">
+                            <label for="reg-password" class="col-md-3 control-label">Password *</label>
                             <div class="col-md-9">
-                              <button type="button" class="btn btn-primary btn-sm" id="reg-save">Save and Continue</button>
-                              <button type="button" class="btn btn-default btn-sm" id="reg-cancel">Cancel</button>
+                              <input type="password" data-minlength="6" class="form-control" id="reg-password" placeholder="Password" required>
+                              <div class="help-block">Minimum of 6 characters</div>
                             </div>
                           </div>
+                            <div class="form-group">
+                              <label for="reg-password-confirm" class="col-md-3 control-label">Confirm *</label>
+                              <div class="col-md-9">
+                                <input type="password" class="form-control" id="reg-password-confirm" data-match="#reg-password" data-match-error="Password does not match"
+                                  placeholder="Confirm" required>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                              </div>
+                              <div class="col-md-9">
+                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                                <br>
+                                <button type="button" class="btn btn-primary" id="reg-save">Save and Continue</button>
+                                <button type="button" class="btn btn-default" id="reg-cancel">Cancel</button>
+                              </div>
+                            </div>
                         </form>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-              </div>
-              <!-- Reason to  Register -->
-              <div class="col-md-6" style="border-left: 1px dotted #C2C2C2; margin-left: 0px;">
-                <h2 class="lead text-success">Benefits of Registering</h2>
-                <ul class="list-unstyled" style="line-height: 4">
-                  <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account
-                  </li>
-                  <li><span class="fa fa-check text-success"></span> View &amp; Edit your Showrooms on any computer</li>
-                  <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer
-                  </li>
-                  <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture, etc.)
-                  </li>
-                </ul>
-                <br>
-                <p><button class="btn btn-info btn-block" id="btnRegister">Yes please, register now!</button></p>
-                <div id="OR" class="hidden-xs">
-                  OR</div>
+                </div>
+                <!-- Reason to  Register -->
+                <div class="col-md-6" style="border-left: 1px dotted #C2C2C2; margin-left: 0px;">
+                  <br><br>
+                  <h2 class="lead text-success">Benefits of Registering</h2>
+                  <ul class="list-unstyled" style="line-height: 4">
+                    <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account
+                    </li>
+                    <li><span class="fa fa-check text-success"></span> View &amp; Edit your Showrooms on any computer</li>
+                    <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer
+                    </li>
+                    <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture, etc.)
+                    </li>
+                  </ul>
+                  <br>
+                  <p><button class="btn btn-info btn-block" id="btnRegister">Yes please, register now!</button></p>
+                  <br><br><br><br>
+                  <div id="OR" class="hidden-xs">
+                    OR</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- END Modal Login Large  -->
+      <!-- END Modal Login Large  -->
 
 
-    <!-- Register/Sign-in Modal -->
+      <!-- Register/Sign-in Modal -->
 
-    <!--<div id="login-modal" class="modal fade" role="dialog">
+      <!--<div id="login-modal" class="modal fade" role="dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -328,29 +357,19 @@
 
   </div>-->
 
-
-
-
-
-
-
-
-
-
-
-
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-    <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="assets/js/jcanvas.min.js"></script>
-    <script src="assets/js/jcanvas-handles.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/spectrum.js"></script>
-    <!--<script src="assets/js/delivery.js"></script>
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+      <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
+      <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+      <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="assets/js/jcanvas.min.js"></script>
+      <script src="assets/js/jcanvas-handles.min.js"></script>
+      <script src="assets/js/validator.js"></script>
+      <script src="assets/js/app.js"></script>
+      <script src="assets/js/spectrum.js"></script>
+      <!--<script src="assets/js/delivery.js"></script>
     <script src="assets/js/socket.js"></script>-->
 
 </body>
