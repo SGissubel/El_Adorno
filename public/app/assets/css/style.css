@@ -2,16 +2,18 @@
   box-sizing: border-box;
 }
 
-#logo {
-  margin: -64px 0 0px -160px;
+/*#logo {
+  margin: -64px 0 0px -160px;*/
   /* play with these to position the image */
-  z-index: 100;
+  /*z-index: 100;
   width: 156px;
   padding: 5px;
-}
+}*/
 
 .byname {
+  font-family: "Dancing Script", "Roboto", "San Serif";
   color: #666666;
+  font-size: 45px;
 }
 
 .logo-font {
@@ -19,18 +21,43 @@
   font-weight: 100;
 }
 
-#sign-in,
-#sign-out {
-  cursor: pointer;
-  top: 14px;
+.user {
+  float: right;
   position: relative;
+  top: -98px;
+  left: -5px;
+  cursor: pointer;
   color: #d9d9d9;
-  left: -10px;
+}
+
+.nav-links {
+  /*font-family: 'Russo One', sans-serif;*/
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  top: 50px;
+  position: relative;
+  color: #666666;
+  right: 275px;
+  font-size: 20px;
+  }
+
+.nav-links:hover {
+  color: #222222;
 }
 
 #sign-in:hover,
 #sign-out:hover {
   color: #666666;
+}
+
+.account-container{
+  float: right;
+  position: relative;
+  top: -55px;
+  left: 130px;
 }
 
 h1 {
@@ -95,6 +122,9 @@ div#OR {
 .navbar {
   border: none;
   border-top: 23px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
   margin-bottom: 0px;
   min-height: 100px;
 }
@@ -112,7 +142,8 @@ div#OR {
 
 .navbar>.container .navbar-brand,
 .navbar>.container-fluid .navbar-brand {
-  margin-left: 150px;
+  margin-left: 20px;
+  line-height: 40px;
 }
 
 .navbar-inverse {
@@ -130,10 +161,8 @@ div#OR {
 }
 
 #user-container {
-  position: absolute;
   display: flex;
   flex-direction: row;
-  top: 31px;
   width: 100%;
   right: 0;
   padding-left: 10px;
