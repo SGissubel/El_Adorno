@@ -398,7 +398,7 @@ $(document).ready(function () {
     showPaletteOnly: false,
     showSelectionPalette: true,
     maxSelectionSize: 10,
-    preferredFormat: "rgb",
+    preferredFormat: "hex",
     localStorageKey: "spectrum.impulso",
     move: function (color) {
 

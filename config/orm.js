@@ -41,6 +41,19 @@ var orm = {
     });
 
   },
+  selectAndJoin: function(tableOne, tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, cb){
+    var queryString = "SELECT * FROM " + tableOne;
+    queryString += " LEFT JOIN " + tableTwo;
+    queryString += " ON " + tableOne + "." + tableOneJoinId;
+    queryString += "=" + tableTwo + "." + tableTwoJoinId;
+    queryString += " WHERE " + tableOne + "." + tableOneJoinId + '=' + tableOneJoinIdValue; 
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },  
   all: function(table, cb) {
     var queryString = "SELECT * FROM " + table + ";";
     connection.query(queryString, function(err, result) {
@@ -62,6 +75,17 @@ var orm = {
       cb(result);
     });
   },
+  last: function(table, cb) {
+    var queryString = "SELECT id FROM " + table;
+    queryString += " ORDER BY id DESC LIMIT 1";
+    console.log(queryString); 
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },  
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 

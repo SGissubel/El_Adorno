@@ -7,6 +7,11 @@ var showroom = {
       cb(res);
     });
   },
+  selectAndJoin: function(tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, cb) {
+    orm.selectAndJoin("showrooms", tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, function(res){
+      cb(res);
+    });
+  },  
   all: function(cb) {
     orm.all("showrooms", function(res) {
       cb(res);
@@ -17,6 +22,11 @@ var showroom = {
       cb(res);
     });
   },  
+  last: function(cb) {
+    orm.last("showrooms", function(res) {
+      cb(res);
+    });
+  },    
   // The variables cols and vals are arrays.
   create: function(cols, vals, cb) {
     orm.create("showrooms", cols, vals, function(res) {
