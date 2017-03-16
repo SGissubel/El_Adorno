@@ -398,7 +398,7 @@ $(document).ready(function () {
     showPaletteOnly: false,
     showSelectionPalette: true,
     maxSelectionSize: 10,
-    preferredFormat: "hex",
+    preferredFormat: "rgb",
     localStorageKey: "spectrum.impulso",
     move: function (color) {
 
@@ -619,6 +619,11 @@ $.ajax({
               } 
     });
 })
+
+
+$("#how-To").on("click", function () {
+   $("#how-To-Modal").modal("toggle");
+ });
 
 
 }); // end document ready
