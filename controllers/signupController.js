@@ -10,13 +10,13 @@ var user = require("../models/user.js");
 //setting up router for implementation
 var router = express.Router();
 
-var connection = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "root",
-	port: 3306,
-	database: "impulso_db"
-});
+// var connection = mysql.createConnection({
+// 	host: "localhost",
+// 	user: "root",
+// 	password: "root",
+// 	port: 3306,
+// 	database: "impulso_db"
+// });
 
 
 //setting up the packages to be used by express 
@@ -94,15 +94,15 @@ router.post('/user_signup', function (req, res) {
 							user.create("user_name, first_name, last_name, email, password_hash", [req.body.username, req.body.first_name, req.body.last_name, req.body.email, hash], function (data) {
 
 								req.session.user_id = data.insertId; //only way to get id of an insert for the mysql npm package
-
-								var query = "SELECT * FROM users WHERE id = ?"
-								connection.query(query, [req.session.user_id], function (err, response) {
+								console.log("session: " + req.session.user_id + ", data: " + data.insertId);
+								// var query = "SELECT * FROM users WHERE id = ?"
+								user.some("id=" + [req.session.user_id], function (data) {
 									req.session.logged_in = true;
-									req.session.user_id = response[0].id;
-									req.session.user_name = response[0].username;
-									req.session.first_name = response[0].first_name;
-									req.session.last_name = response[0].last_name;
-									req.session.email = response[0].email;
+									req.session.user_id = data[0].id;
+									req.session.user_name = data[0].username;
+									req.session.first_name = data[0].first_name;
+									req.session.last_name = data[0].last_name;
+									req.session.email = data[0].email;
 									req.session.status_code = 105;
 									res.send(req.session);
 								});
