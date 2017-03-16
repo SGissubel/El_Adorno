@@ -67,6 +67,7 @@ h1 {
 .panel-font {
   font-family: "Roboto", "San Serif";
   font-weight: 900;
+  color: #222222;
 }
 
 .tab-pane-mod {
@@ -83,6 +84,12 @@ h1 {
 
 .mod-md-2 {
   margin-left: 40px;
+  background-color: white;
+  border-left: 1px black solid;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid;
+  border-right: 1px black solid;
+  
 }
 
 #wall-color {
@@ -217,6 +224,7 @@ div#OR {
 
 body {
   margin: 0;
+  background-color: #f2f2f2;
 }
 
 .mod-flex {
@@ -226,6 +234,7 @@ body {
 
 #room-canvas {
   border: solid 1px;
+  background-color: white;
 }
 
 .img-thumbnail {
