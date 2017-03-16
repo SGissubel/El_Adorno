@@ -5,16 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MIΛ VETRINΛ</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.vertical-tabs.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" type="text/css" href="assets/css/spectrum.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700|Open+Sans|Raleway" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100|Russo+One|Dancing+Script:700|Open+Sans|Raleway" rel="stylesheet">
 
   <!--<link rel="stylesheet" href="assets/css/jquery.ui.rotatable.css">-->
 </head>
@@ -54,10 +51,20 @@
     <br>
 
   <div class="container-flex mod-flex">
+    <div class="row">
+      <div class="col-md-5">
 
     <h1 class="logo-font">MIΛ VETRINΛ</h1>
-
-
+      </div>
+      <div class="col-md-4 col-md-offset-3">
+      <div class="dropdown palette-dropdown">
+       <button class="btn btn-default dropdown-toggle" id="btn-palette" type="button" data-toggle="dropdown">Select Paint Brand...<span class="caret"></span></button>
+        <ul class="dropdown-menu palette-well">
+      </ul>
+      </div>
+         Wall Color: <input type='text' id="full" />        
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-9">
         <div id="canvas" class="text-center">
@@ -66,7 +73,6 @@
       </div>
       <div class="col-md-2 mod-md-2">
         <!-- Tab panes -->
-        <span id="wall-color">Wall Color: <input type='text' id="full" /></span>
         <div class="tab-content text-center">
           <div id="rooms" class="tab-pane tab-pane-mod fade in active">
           </div>
@@ -305,59 +311,8 @@
       </div>
       <!-- END Modal Login Large  -->
 
-
-      <!-- Register/Sign-in Modal -->
-
-      <!--<div id="login-modal" class="modal fade" role="dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title" id="myModalLabel">Login or Register for MIΛ VETRINΛ</h2>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="well">
-              <form id="loginForm" method="POST">
-                <div class="form-group">
-                  <label for="username" class="control-label">Username</label>
-                  <input type="text" class="form-control" name="username" value="" required="" title="Please enter your username" placeholder="username">
-                  <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                  <label for="password" class="control-label">Password</label>
-                  <input type="password" class="form-control" name="password" placeholder="password" value="" required="" title="Please enter your password">
-                  <span class="help-block"></span>
-                </div>
-                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
-                <div class="checkbox">
-                  <label>
-                                      <input type="checkbox" name="remember" id="remember"> Remember login
-                                  </label>
-                  <p class="help-block">(if this is a private computer)</p>
-                </div>
-                <button type="submit" value="login" name="submit" class="btn btn-success btn-block">Login</button>
-              </form>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <p class="lead">Register now for <span class="text-success">FREE</span></p>
-            <ul class="list-unstyled" style="line-height: 2">
-              <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account</li>
-              <li><span class="fa fa-check text-success"></span> View and Edit your Showrooms on any computer</li>
-              <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer</li>
-              <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture)</li>
-            </ul>
-            <p><button type="button" class="btn btn-info btn-block">Yes please, register now!</button></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>-->
-
-      <script src="https://code.jquery.com/jquery.js"></script>
-      <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
       <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
       <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>

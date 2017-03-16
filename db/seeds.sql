@@ -7,7 +7,7 @@ select 'Palettes' as 'Loading Table';
 INSERT INTO palettes (palette_name, file_path, file_name)
 VALUES ('Behr HDC Colors','/app/Media/Colors/','behr-hdc-colors.ase'); 
 INSERT INTO palettes (palette_name, file_path, file_name)
-VALUES ('Behr Marquee Colors','/appx/Media/Colors/','behr-marquee-colors.ase'); 
+VALUES ('Behr Marquee Colors','/app/Media/Colors/','behr-marquee-colors.ase'); 
 INSERT INTO palettes (palette_name, file_path, file_name)
 VALUES ('Behr Plus 2003 Colors','/app/Media/Colors/','behr-pplus2003-colors.ase'); 
 INSERT INTO palettes (palette_name, file_path, file_name)

@@ -70,6 +70,10 @@ h1 {
   color: #222222;
 }
 
+.panel-font:hover {
+  color: #222222;
+}
+
 .tab-pane-mod {
   height: 660px;
   overflow: auto;
@@ -92,8 +96,32 @@ h1 {
   
 }
 
-#wall-color {
-  position: relative;
+.palette-dropdown {
+  display: inline;
+}
+
+#btn-palette {
+  width: 250px;
+  text-align: left;
+}
+
+.caret {
+    vertical-align: bottom;
+    float: right;
+    margin-top: 9px; 
+  }
+
+.palette:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.palette {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  /*margin-left: 10px;*/
+  
   top: -50px;
 }
 
@@ -201,14 +229,11 @@ div#OR {
     background: #d9d9d9;
 }
 
-.spectrumReplacer {
-    background: #d9d9d9;
-}
-
 .sp-container {
   width: 240px;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  border: solid 1px #222222;
 }
 
  .sp-palette-container {
@@ -220,6 +245,32 @@ div#OR {
     width: 200px;
     padding-bottom: 0px;
     margin-bottom: 10px;
+}
+
+.spectrumReplacer {
+  background-color: #222222;
+}
+
+.sp-replacer {
+  border: solid 1px #666666;
+}
+
+.sp-input-container {
+  width: 130px;
+}
+
+.sp-replacer:hover {
+  border: solid 1px #222222;
+  background-color: white;
+  color: #222222;
+}
+
+.sp-dd {
+  color: white;
+}
+
+.sp-replacer:hover .sp-dd {
+  color: #222;
 }
 
 body {
