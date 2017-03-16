@@ -5,7 +5,7 @@ var path = require("path");
 var router = express.Router();
 
 // Import the model (cat.js) to use its database functions.
-var object = require('../models/palette.js');
+var palette = require('../models/palette.js');
 
 function getPalette(colorTable, format){
 
@@ -73,14 +73,14 @@ function getPalette(colorTable, format){
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-	object.all(function(data){
+	palette.all(function(data){
 		res.send(data);
 		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/palette/:id/:format", function(req, res) {
-	object.some("id=" + [req.params.id], function(data){
+	palette.some("id=" + [req.params.id], function(data){
 		var colorPalette = './public' + data[0].file_path + data[0].file_name;
 		var format = [req.params.format]; 
 		var clrpalette = getPalette(colorPalette,format);  
@@ -92,7 +92,7 @@ router.post("/crt_palette", function(req, res){
 	var cols = ['palette_name','file_name','file_path'];
 	var vals = [req.body.palette_name,req.body.file_name,req.body.file_path];
 
-	object.create(cols, vals, function(response){
+	palette.create(cols, vals, function(response){
 		res.redirect('/');
 	});
 });

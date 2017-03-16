@@ -19,7 +19,7 @@ $(document).ready(function () {
   var textureExists = false;
   var colorExists = false;
   var floorMode = false;
-  var backgroundMode = false;
+  var decorMode = false;
   var roomMode = false;
   var artworkCount = 0;
 
@@ -143,14 +143,14 @@ $(document).ready(function () {
     }
   });
 
-  //load Backgrounds
+  //load Decorss
   $.ajax({
-    url: "/objects/backgrounds",
+    url: "/objects/decors",
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
       var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "background").attr("data-type", "background")
+        .attr("data-width", c.width).attr("data-height", c.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "decor").attr("data-type", "decor")
         .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
       $("#decors").append($imgThumbnail);
@@ -222,10 +222,10 @@ $(document).ready(function () {
 
     if (floorMode) canvas.removeLayer("floor");
     if (roomMode) canvas.removeLayer("room");
-    if (backgroundMode) canvas.removeLayer("background");
+    if (decorMode) canvas.removeLayer("decor");
 
     floorMode = false;
-    backgroundMode = false;
+    decorMode = false;
     roomMode = false;
 
     var objIndex;
@@ -248,8 +248,8 @@ $(document).ready(function () {
       case "floor":
         floorMode = true;
         break;
-      case "background":
-        backgroundMode = true;
+      case "decor":
+        decorMode = true;
         break;
       case "room":
         roomMode = true;
@@ -390,7 +390,7 @@ $(document).ready(function () {
     showInitial: true,
     showAlpha: true,
     togglePaletteOnly: true,
-    togglePaletteMoreText: "more",
+    togglePaletteMoreText:"more",
     togglePaletteLessText: "less",
     hideAfterPaletteSelect: true,
 
@@ -398,7 +398,7 @@ $(document).ready(function () {
     showPaletteOnly: false,
     showSelectionPalette: true,
     maxSelectionSize: 10,
-    preferredFormat: "hex",
+    preferredFormat: "rgb",
     localStorageKey: "spectrum.impulso",
     move: function (color) {
 
@@ -527,7 +527,7 @@ $(document).ready(function () {
         // var profilePicUrl = data.photoURL;
 
         // Set the user's profile pic and name.
-        // this.userPic.css("backgroundImage", "url(" + profilePicUrl + ")");
+        // this.userPic.css("decorImage", "url(" + profilePicUrl + ")");
         $("#user-name").text("Welcome, " + data.first_name);
 
         // Show user's profile and sign-out button.

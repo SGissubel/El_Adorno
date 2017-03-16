@@ -40,7 +40,7 @@ select @rcds as 'Rows Loaded';
 -- Load Object Types 
 select 'Object_Types' as 'Loading Table'; 
 INSERT INTO object_types (obj_type) VALUES ('Artwork');
-INSERT INTO object_types (obj_type) VALUES ('Backgrounds');
+INSERT INTO object_types (obj_type) VALUES ('Decors');
 INSERT INTO object_types (obj_type) VALUES ('Floors');
 INSERT INTO object_types (obj_type) VALUES ('Furniture');
 INSERT INTO object_types (obj_type) VALUES ('Rooms');
@@ -51,7 +51,7 @@ select @rcds as 'Rows Loaded';
 -- Load Objects - Artwork
 select 'Objects:Artwork' as 'Loading Table'; 
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('Abandoned Micheline Tire',1,false,false,null,'/app/Media/Artwork/','Abandoned_Micheline_Tire.jpg');
+VALUES ('Abandoned Michelin Tire',1,false,false,null,'/app/Media/Artwork/','Abandoned_Michelin_Tire.jpg');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
 VALUES ('Americana Diner',1,false,false,null,'/app/Media/Artwork/','Americana_Diner.jpg');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
@@ -90,51 +90,71 @@ INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path,
 VALUES ('Philadelphia City Hall',1,false,false,null,'/app/Media/Artwork/','Philadelphia_City_Hall.jpg');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
 VALUES ('Raritan Reflections',1,false,false,null,'/app/Media/Artwork/','Raritan_Reflections.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('Factory POV',1,false,false,null,'/app/Media/Artwork/','Factory_POV.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('Midnight Express',1,false,false,null,'/app/Media/Artwork/','Midnight_Express.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('Baltimore Magic',1,false,false,null,'/app/Media/Artwork/','Baltimore_Magic.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('Jersey City Twilight',1,false,false,null,'/app/Media/Artwork/','Jersey_City_Twilight.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('Ocean Ave Nights',1,false,false,null,'/app/Media/Artwork/','Ocean_Ave_Nights.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('Center City Magic Hour',1,false,false,null,'/app/Media/Artwork/','Center_City_Magic_Hour.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('Kearny NS9492',1,false,false,null,'/app/Media/Artwork/','Kearny_NS9492.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('West 17th',1,false,false,null,'/app/Media/Artwork/','West_17th.jpg');
+INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
+VALUES ('459 W18th',1,false,false,null,'/app/Media/Artwork/','459_W18th.jpg');
+
+
 select count(*) from objects where obj_type_id=1 into @rcds; 
 select @rcds as 'Rows Loaded';
 
 -- Load Objects - Backgrounds
-select 'Objects:Backgrounds' as 'Loading Table'; 
+select 'Objects:Decors' as 'Loading Table'; 
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround01',2,true,false,null,'/app/Media/Backgrounds/','bg01.png');
+VALUES ('decor01',2,true,false,null,'/app/Media/Decors/','dc01.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround02',2,true,false,null,'/app/Media/Backgrounds/','bg02.png');
+VALUES ('decor02',2,true,false,null,'/app/Media/Decors/','dc02.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround03',2,true,false,null,'/app/Media/Backgrounds/','bg03.png');
+VALUES ('decor03',2,true,false,null,'/app/Media/Decors/','dc03.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround05',2,true,false,null,'/app/Media/Backgrounds/','bg05.png');
+VALUES ('decor05',2,true,false,null,'/app/Media/Decors/','dc05.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround06',2,true,false,null,'/app/Media/Backgrounds/','bg06.png');
+VALUES ('decor06',2,true,false,null,'/app/Media/Decors/','dc06.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround08',2,true,false,null,'/app/Media/Backgrounds/','bg08.png');
+VALUES ('decor08',2,true,false,null,'/app/Media/Decors/','dc08.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround09',2,true,false,null,'/app/Media/Backgrounds/','bg09.png');
+VALUES ('decor09',2,true,false,null,'/app/Media/Decors/','dc09.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround10',2,true,false,null,'/app/Media/Backgrounds/','bg10.png');
+VALUES ('decor10',2,true,false,null,'/app/Media/Decors/','dc10.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround11',2,true,false,null,'/app/Media/Backgrounds/','bg11.png');
+VALUES ('decor11',2,true,false,null,'/app/Media/Decors/','dc11.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround12',2,true,false,null,'/app/Media/Backgrounds/','bg12.png');
+VALUES ('decor12',2,true,false,null,'/app/Media/Decors/','dc12.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround13',2,true,false,null,'/app/Media/Backgrounds/','bg13.png');
+VALUES ('decor13',2,true,false,null,'/app/Media/Decors/','dc13.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround14',2,true,false,null,'/app/Media/Backgrounds/','bg14.png');
+VALUES ('decor14',2,true,false,null,'/app/Media/Decors/','dc14.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround15',2,true,false,null,'/app/Media/Backgrounds/','bg15.png');
+VALUES ('decor15',2,true,false,null,'/app/Media/Decors/','dc15.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('backGround18',2,true,false,null,'/app/Media/Backgrounds/','bg18.png');
+VALUES ('decor18',2,true,false,null,'/app/Media/Decors/','dc18.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('bedRoom01',2,true,false,null,'/app/Media/Backgrounds/','br01.png');
+VALUES ('bedRoom01',2,true,false,null,'/app/Media/Decors/','br01.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('cafe01',2,true,false,null,'/app/Media/Backgrounds/','cafe01.png');
+VALUES ('cafe01',2,true,false,null,'/app/Media/Decors/','cafe01.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('cafe02',2,true,false,null,'/app/Media/Backgrounds/','cafe02.png');
+VALUES ('cafe02',2,true,false,null,'/app/Media/Decors/','cafe02.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('cafe03',2,true,false,null,'/app/Media/Backgrounds/','cafe03.png');
+VALUES ('cafe03',2,true,false,null,'/app/Media/Decors/','cafe03.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('waitingRoom01',2,true,false,null,'/app/Media/Backgrounds/','wr01.png');
+VALUES ('waitingRoom01',2,true,false,null,'/app/Media/Decors/','wr01.png');
 INSERT INTO objects (obj_name, obj_type_id, static, useradd, user_id, file_path, file_name) 
-VALUES ('waitingRoom02',2,true,false,null,'/app/Media/Backgrounds/','wr02.png');
+VALUES ('waitingRoom02',2,true,false,null,'/app/Media/Decors/','wr02.png');
 select count(*) from objects where obj_type_id=2 into @rcds; 
 select @rcds as 'Rows Loaded';
 

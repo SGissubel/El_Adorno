@@ -22,7 +22,7 @@ router.get("/artwork", function(req, res) {
 	});	
 });
 
-router.get("/backgrounds", function(req, res) {
+router.get("/decors", function(req, res) {
 	object.some("obj_type_id=2", function(data){
 		res.send(data);
 		//res.send('../public/index', {objects: data});
@@ -57,7 +57,7 @@ router.get("/textures", function(req, res) {
 	});	
 });
 
-router.post("/crt_object", function(req, res){
+router.post("/create_object", function(req, res){
 	var cols = ['obj_name','obj_type_id','static','useradd',
 				'user_id','file_path','file_name'];
 	var vals = [req.body.obj_name, req.body.obj_type_id,req.body.static,
@@ -68,6 +68,14 @@ router.post("/crt_object", function(req, res){
 		res.redirect('/');
 	});
 });
+
+router.post("/delete_object", function(req, res){
+	// condition will be 'id = x'
+	object.delete(condition, function(response){
+		res.redirect('/');
+	});
+});
+
 
 // Export routes for server.js to use.
 module.exports = router;
