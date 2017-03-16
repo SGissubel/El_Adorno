@@ -33,8 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 var objectsController   = require("./controllers/objectsController.js");
 var palettesController  = require("./controllers/palettesController.js");
-// var layersController    = require("./controllers/layersController.js");
-// var showroomsController = require("./controllers/showroomsController.js");
+var showroomsController = require("./controllers/showroomsController.js");
 var signupController    = require("./controllers/signupController.js");
 
 
@@ -44,8 +43,7 @@ app.get('/app', function(req, res){
 
 app.use("/objects", objectsController);
 app.use("/palettes", palettesController);
-// app.use("/layers", layersController);
-// app.use("/showrooms", showroomsController);
+app.use("/showrooms", showroomsController);
 app.use("/login", signupController);
 
 

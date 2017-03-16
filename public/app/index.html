@@ -25,7 +25,9 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <div id="how-to" class="nav-links"> How to</div>
+          <!-- <div id="how-to" class="nav-links"> How to</div> -->
+          <div id='how-To' class="nav-links">How to <span class="glyphicon glyphicon-question-sign"></span>
+          </div>
         </li>
         <li>
           <div id="about" class="nav-links"> About</div>
@@ -311,8 +313,89 @@
       </div>
       <!-- END Modal Login Large  -->
 
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- how-To Modal -->
+    <div class="modal fade" id="how-To-Modal" tabindex="-1" role="dialog" aria-labelledby="how-To-Modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="how-To-Modal">How to...create a MIΛ VETRINΛ Inspiration Showroom Design</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>What are...</h4>
+                    <ul><strong>Wall Colors:</strong>
+                        <li>Color is used to personalize Decor or Floor space.</li>
+                    </ul>
+                    <ul><strong>Rooms:</strong>
+                        <li>Are ready made MIΛ VETRINΛ inspiration Showroom designs.</li> 
+                        <li>Customize your inspiration Room by accessorizing with Furniture and/or Artwork.</li>
+                        <p>NOTE: You cannot add wall color to a ready made Room.</p>
+                    </ul>
+                    <ul><strong>Decors and Floors</strong>
+                        <li>These spaces allow you to personalize your inspiration.</li>
+                        <li>Decors are spaces with some furnishings.</li>
+                        <li>Floors are spaces with no furnishings.</li>
+                    </ul>
+                    <ul><strong>Artwork and Furniture</strong> 
+                        <li>Use to accessorize your inspiration Room, Decor or Floor space.</li>
+                        <li>To move, select and drag</li> 
+                        <li>To resize, hover to a corner and pull one of the square handles.</li>
+                        <li>To remove, double click on the Artwork or Furniture then confirm delete.</li>
+                    </ul>
+                    <ul>
+                        <strong>Textures</strong> 
+                        <li>Use to add Texture to your Wall Color. This provides depth to your wall.</li>
+                        <li>Adding texture will not affect your design.</li>
+                    </ul>
+                    <h4>How to use Rooms...</h4>
+                    <ul><strong>Select your Room from the Rooms tab, then Accessorize...</strong>
+                        <li>Add Furniture</li>
+                        <li>Add Artwork</li>
+                        <p>NOTE: You cannot add Wall Color.</p>
+                    </ul>
+                    <h4>How to use Floors...</h4>
+                    <ul><strong>Select Floor space from the Floors tab, then Customize...</strong>
+                        <li>Add Wall Color</li>
+                        <li>Add Artwork</li>
+                        <li>Add Furniture</li>
+                        <li>Add Texture</li>
+                        <p>NOTE: If you add a Decor space you will automatically replace your Floor space.  App will keep your Wall Color, Artwork, Furniture and wall Texture. </p>
+                    </ul>
+                    <h4>How to use Decors...</h4>
+                    <ul><strong>Select Decor from the Decors tab, then Customize...</strong>
+                        <li>Add Wall Color</li> 
+                        <li>Add Artwork</li>
+                        <li>Add Furniture</li>
+                        <li>Add Textures</li>
+                        <p>NOTE: If you add a Floor space you will automatically replace your Decor space. App will keep your Wall Color, Artwork, Furniture and wall Texture.</p>
+                    </ul>
+                    <h4>How to use Artwork...</h4>
+                    <ul><strong>Select Artwork from the Artwork tab, then use to Accessorize you inspiration...</strong>
+                        <li>Add to Rooms, Decors and Floor spaces</li>
+                        <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double clicking on the Artwork and confirming delete.</li>                        
+                    </ul>
+                    <h4>How to use Furniture...</h4> 
+                    <ul><strong>Select from Furnitue from the Furniture tab, then use to Accessorize your inspiration...</strong>            
+                        <li>Add to Rooms, Decors and Floor spaces</li>
+                        <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double clicking on the Furniture and confirming delete.</li>
+                    </ul>                        
+                    <h4>How to use Textures...</h4> 
+                    <ul><strong>Select Texture from the Textures tab, then use to add texture to your wall.</strong>
+                        <li>Adding texture will not affect your design.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>  
+        </div>
+    </div> 
+    <!-- end how-To Modal -->
+
+      <script src="https://code.jquery.com/jquery.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
       <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
       <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>

@@ -711,4 +711,9 @@ $.ajax({
 })
 
 
+$("#how-To").on("click", function () {
+   $("#how-To-Modal").modal("toggle");
+ });
+
+
 }); // end document ready
