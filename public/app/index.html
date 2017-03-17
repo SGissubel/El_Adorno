@@ -114,6 +114,11 @@
         <button class="button btn btn-default" id="btn-save">Save Showroom</button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-1">
+        <div id="my-showrooms"></div>
+      </div>
+    </div>
   </div>
 
   <!-- Delete Modal -->
@@ -132,6 +137,33 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" id="delete-obj" data-dismiss="modal">Delete</button>
             <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Modal -->
+  <div id="save-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="fa fa-server" style="font-size:24px"></span> Save Showroom</h4>
+        </div>
+        <div class="modal-body">
+          <div id="save-new">
+            <h3>Save Showroom As:</h3>
+          </div>
+          <div id="save-existing">
+            <h4 id="curr-showroom"></h4>
+            <h3>Hit the Save button to update your current showroom or enter a name below to save a new showroom.</h3>
+          </div>
+            <input type="text" name="showroom-name" id="showroom-name" placeholder="Showroom Name">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="save-show" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default close-save" data-dismiss="modal">Cancel</button>
           </div>
         </div>
       </div>

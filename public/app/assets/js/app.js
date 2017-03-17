@@ -17,6 +17,8 @@ $(document).ready(function () {
   var patt_type;
   var palArray = [];
   var palObj = [];
+  var currentShowroomName;
+  var currentShowroomId = 0;
 
   var textureExists = false;
   var colorExists = false;
@@ -534,16 +536,78 @@ $(document).ready(function () {
     checkUser();
     if (appLoggedIn) {
 
-      var l = canvas.getLayers(function (layer) {
-        return (layer.name);
-      });
-
-      for (var i = 0; i < l.length; i++) {
-        console.log("layer name: " + l[i].name + " index: " + l[i].index + " height: " + l[i].height + " width: " + l[i].width + " position_top: " + l[i].y + " position_left: " + l[i].x + " aspect_ratio: " + l[i].aspectRatio + " other info: " + Object.keys(l[i].data) + " : " + Object.values(l[i].data))
-
+      //prompt user for showroom name if new, or if they want to save as new name
+      if (currentShowroomName) {
+        $("#curr-showroom").text(currentShowroomName);
+        $("#save-new").addClass("hidden");
+        $("#save-existing").removeClass("hidden");
+        $("#save-modal").modal("toggle");
+      } else {
+        $("#save-new").removeClass("hidden");
+        $("#save-existing").addClass("hidden");
+        $("#save-modal").modal("toggle");
       }
     } else $("#login-modal").modal("toggle");
   });
+
+  $('#save-show').on('click', function () {
+    var parmShowroomName = $("#showroom-name").val().trim();
+    var parmShowroomId;
+    var parmObj = {
+      showroom_id: 0,
+      showroom_name: "",
+      showroom_layers: []
+    };
+    var parmLayers = [{}];
+    var parmLayer = {
+      name: "",
+      index: 0,
+      height: 0,
+      width: 0,
+      position_top: 0,
+      position_left: 0,
+      aspect_ratio: 0.0,
+      color: "",
+      obj_type: "",
+      obj_id: 0
+    };
+
+    if (parmShowroomName = "") {
+      //pass 0 as currShowroomId, will create a new showroom
+      parmShowroomId = 0;
+    } else {
+      //pass currShowroomId 
+        //if it is not null, will save current showroom. 
+        //If it is null, it will create a new showroom.
+      parmShowroomId = currentShowroomId;
+    }
+
+    parmObj.showroom_id = parmShowroomId;
+    parmObj.showroom_name = parmShowroomName;
+    
+      var l = canvas.getLayers(function (layer) {
+        return (layer.name);
+      });
+      //create layer object
+      for (var i = 0; i < l.length; i++) {
+        parmLayer.name = l[i].name 
+        parmLayer.index = l[i].index
+        parmLayer.height =  l[i].height
+        parmLayer.width = l[i].width 
+        parmLayer.position_top = l[i].y
+        parmLayer.position_left = l[i].x 
+        parmLayer.aspect_ratio = l[i].aspectRatio
+        if (l[i].name === "color") {
+          parmLayer.color = l[i].data.color
+        } else {
+          parmLayer.obj_type = l[i].data.type
+          parmLayer.obj_id = l[i].data.objid
+        }
+       }
+    
+
+  }
+
 
   $("#full").spectrum({
     color: "white",
@@ -739,16 +803,6 @@ $(document).ready(function () {
       password_hash: password
     };
 
-    // $.ajax({
-    //   url: "/login/user_signup",
-    //   method: "POST",
-    //   data: newUser
-    // }).done(function (data) {
-    //               if(data == true){
-    //            location.href = "/app"
-    //           } 
-    // });
-
     $.post("/login/user_signup", newUser, function (data) {
       console.log(data);
       if (data.logged_in == true) {
@@ -766,6 +820,26 @@ $(document).ready(function () {
         // Hide sign-in button.
         $("#sign-in").addClass("hidden");
         $("#login-modal").modal("toggle");
+
+        //retrieve saved Showrooms, if any
+        $.ajax({
+          url: "/showrooms/user/" + data.user_id,
+          method: "GET"
+        }).done(function (data) {
+          $("#my-showrooms").empty();
+          if (data.length > 0) {
+            var $h4 = $("<h4>").text("My Showrooms");
+            $("#my-showrooms").append($h4);
+          }
+          for (var i = 0; i < data.length; i++) {
+            var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
+            .attr("data-id", data[i].id).text(data[i].showroom_name);
+
+            $("#my-showrooms").append($divShowroom);
+          }
+        });
+
+
       } else {
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
