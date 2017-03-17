@@ -65,7 +65,6 @@ router.post("/create_object", function(req, res){
 				req.body.file_path,req.body.file_name];
 
 	object.create(cols, vals, function(response){
-		res.redirect('/');
 	});
 });
 

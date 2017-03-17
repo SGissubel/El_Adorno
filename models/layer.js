@@ -7,6 +7,11 @@ var layer = {
       cb(res);
     });
   },
+  selectAndJoin: function(tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, cb) {
+    orm.selectAndJoin("layers", tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, function(res){
+      cb(res);
+    });
+  },    
   all: function(cb) {
     orm.all("layers", function(res) {
       cb(res);

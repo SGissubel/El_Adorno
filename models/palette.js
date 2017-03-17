@@ -7,6 +7,11 @@ var palette = {
       cb(res);
     });
   },
+  selectAndJoin: function(tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, cb) {
+    orm.selectAndJoin("palettes", tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, function(res){
+      cb(res);
+    });
+  },    
   all: function(cb) {
     orm.all("palettes", function(res) {
       cb(res);

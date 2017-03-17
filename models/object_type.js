@@ -7,6 +7,11 @@ var object_type = {
       cb(res);
     });
   },
+  selectAndJoin: function(tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, cb) {
+    orm.selectAndJoin("object_types", tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, function(res){
+      cb(res);
+    });
+  },    
   all: function(cb) {
     orm.all("object_types", function(res) {
       cb(res);
