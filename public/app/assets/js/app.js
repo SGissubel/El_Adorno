@@ -552,13 +552,15 @@ $(document).ready(function () {
 
   $('#save-show').on('click', function () {
     var parmShowroomName = $("#showroom-name").val().trim();
+    var reqType;
     var parmShowroomId;
     var parmObj = {
       showroom_id: 0,
       showroom_name: "",
+      showroom_user_id: 0,
       showroom_layers: []
     };
-    var parmLayers = [{}];
+    var parmLayers = [];
     var parmLayer = {
       name: "",
       index: 0,
@@ -572,41 +574,64 @@ $(document).ready(function () {
       obj_id: 0
     };
 
-    if (parmShowroomName = "") {
-      //pass 0 as currShowroomId, will create a new showroom
-      parmShowroomId = 0;
-    } else {
-      //pass currShowroomId 
-        //if it is not null, will save current showroom. 
-        //If it is null, it will create a new showroom.
+    if ((currentShowroomName) && (parmShowroomName == "")) {
+      //we are updating a current showroom
       parmShowroomId = currentShowroomId;
+      parmShowroomName = currentShowroomName;
+      reqType = "PUT"
+    } else if (!(currentShowroomName)) {
+      //we are creating a brand new showroom
+      parmShowroomId = 0;
+      reqType = "POST"
+    } else {
+      //we are creating a new showroom based on the current showroom (save as)
+      parmShowroomId = 0;
+      reqType = "POST"
     }
+
+    var data = JSON.parse(sessionStorage.userSession);
 
     parmObj.showroom_id = parmShowroomId;
     parmObj.showroom_name = parmShowroomName;
-    
-      var l = canvas.getLayers(function (layer) {
-        return (layer.name);
-      });
-      //create layer object
-      for (var i = 0; i < l.length; i++) {
-        parmLayer.name = l[i].name 
-        parmLayer.index = l[i].index
-        parmLayer.height =  l[i].height
-        parmLayer.width = l[i].width 
-        parmLayer.position_top = l[i].y
-        parmLayer.position_left = l[i].x 
-        parmLayer.aspect_ratio = l[i].aspectRatio
-        if (l[i].name === "color") {
-          parmLayer.color = l[i].data.color
-        } else {
-          parmLayer.obj_type = l[i].data.type
-          parmLayer.obj_id = l[i].data.objid
-        }
-       }
-    
+    parmObj.showroom_user_id = data.user_id;
 
-  }
+    var l = canvas.getLayers(function (layer) {
+      return (layer.name);
+    });
+    //create layer object
+    for (var i = 0; i < l.length; i++) {
+      parmLayer.name = l[i].name;
+      parmLayer.index = l[i].index;
+      parmLayer.height = l[i].height;
+      parmLayer.width = l[i].width;
+      parmLayer.position_top = l[i].y;
+      parmLayer.position_left = l[i].x;
+      parmLayer.aspect_ratio = l[i].aspectRatio;
+      if (l[i].name === "color") {
+        parmLayer.color = l[i].data.color;
+        parmLayer.obj_type = "";
+        parmLayer.obj_id = null;
+      } else {
+        parmLayer.obj_type = l[i].data.type;
+        parmLayer.obj_id = l[i].data.objid;
+        parmLayer.color = "";
+      }
+      parmLayers.push(parmLayer);
+    }
+
+    parmObj.showroom_layers = parmLayers;
+
+    //send request to save showroom
+    $.ajax({
+      url: "/showrooms/showroom",
+      data: JSON.stringify(parmObj),
+      method: reqType
+    }).done(function (data) {
+      //check for success
+      console.log("done");
+    });
+
+  });
 
 
   $("#full").spectrum({
@@ -833,7 +858,7 @@ $(document).ready(function () {
           }
           for (var i = 0; i < data.length; i++) {
             var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
-            .attr("data-id", data[i].id).text(data[i].showroom_name);
+              .attr("data-id", data[i].id).text(data[i].showroom_name);
 
             $("#my-showrooms").append($divShowroom);
           }

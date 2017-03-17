@@ -23,7 +23,34 @@ router.get("/showroom/:id", function(req, res) {
 	});	
 });
 
-router.post("/create_showroom", function(req, res){
+router.post("/showroom", function(req, res){
+	// var showroom_name = req.body.showroom_name;
+	// console.log(showroom_name);
+	console.log(req.body);
+	// //first this to do is create a new showroom record
+	// var cols = ['showroom_name','user_id'];
+	// var vals = [req.body.showroom_name,req.body.showroom_user_id];
+
+	// // showroom.create(cols, vals, function(response){
+	// // });
+
+		//then create the layer records
+		var layers = JSON.parse(req.body);
+		console.log(layers);
+	// for (var i = 0; i < layers.length; i++) {
+
+	// 	var element = array[i];
+		
+	// }
+
+	// var cols = ['showroom_name','user_id'];
+	// var vals = [req.body.showroom_name,req.body.user_id];
+
+	// showroom.create(cols, vals, function(response){
+	// });
+});
+
+router.put("/showroom", function(req, res){
 	var cols = ['showroom_name','user_id'];
 	var vals = [req.body.showroom_name,req.body.user_id];
 
