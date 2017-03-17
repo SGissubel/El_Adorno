@@ -702,6 +702,20 @@ $(document).ready(function () {
         $("#sign-in").removeClass("hidden");
 
         //display error message
+        var errorMsg;
+        switch (data.status_code) {
+          case 103:
+            errorMsg = "The Password entered is invalid.";
+            break;
+          case 104:
+            errorMsg = "An account does not exist for the given User Name.";
+            break;
+          default:
+            errorMsg = "Error Code: " + data.status_code;
+            break;
+        }
+
+        $("#login-error").text(errorMsg);
       }
 
 
@@ -758,6 +772,20 @@ $(document).ready(function () {
         $("#sign-in").removeClass("hidden");
 
         //display error message
+        var errorMsg;
+        switch (data.status_code) {
+          case 101:
+            errorMsg = "An account with that Email already exists.";
+            break;
+          case 102:
+            errorMsg = "An account with that User Name already exists.";
+            break;
+          default:
+            errorMsg = "Error Code: " + data.status_code;
+            break;
+        }
+
+        $("#reg-error").text(errorMsg);
       }
     });
 

@@ -106,7 +106,7 @@ h1 {
 }
 
 #btn-palette {
-  width: 250px;
+  width: 270px;
   text-align: left;
 }
 
@@ -150,6 +150,11 @@ div#OR {
   top: 40%;
   z-index: 1;
   background: #DFDFDF;
+}
+
+#reg-error, #login-error {
+  color: darkred;
+  font-weight: 700;
 }
 
 .navbar {
@@ -337,6 +342,11 @@ body {
 
 #container {
   text-align: center;
+}
+
+.paint-container {
+  font-family: "Roboto", "San Serif";
+  font-weight: 900;
 }
 
 .clearfix {
