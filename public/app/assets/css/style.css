@@ -40,7 +40,7 @@
   top: 50px;
   position: relative;
   color: #666666;
-  right: 275px;
+  right: 80px;
   font-size: 20px;
   }
 
@@ -54,10 +54,10 @@
 }
 
 .account-container{
-  float: right;
+  /*visibility: hidden;*/
   position: relative;
-  top: -55px;
-  left: 85px;
+  top: 55px;
+  left: 15px;
 }
 
 h1 {
@@ -96,6 +96,11 @@ h1 {
   
 }
 
+.control-label {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .palette-dropdown {
   display: inline;
 }
@@ -125,16 +130,9 @@ h1 {
   top: -50px;
 }
 
-
-/*#login-modal {
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-top: 10%;
-}*/
-
-#login-modal {
+#login-hdr {
   font-family: "Roboto", "San Serif";
-  font-weight: 700;
+  font-weight: 800;
 }
 
 div#OR {
@@ -208,7 +206,7 @@ div#OR {
 #user-container #user-pic {
   top: -3px;
   position: relative;
-  display: inline-block;
+  /*display: inline-block;*/
   background-image: url("../images/profile_placeholder.png");
   background-repeat: no-repeat;
   width: 40px;
@@ -330,6 +328,11 @@ body {
 .btn-default:hover {
   background-color: white;
   color: #222222;
+}
+
+.btn-default:disabled {
+  background-color: #C2C2C2;
+  color: #222;
 }
 
 #container {
