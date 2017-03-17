@@ -20,7 +20,7 @@ var cookieParser = require('cookie-parser');
 
 var session = require('express-session');
 //allow sessions
-app.use(session({ secret: 'app', cookie: { maxAge: 6*1000 }}));
+app.use(session({ secret: 'app', cookie: { maxAge: 14400000 }}));
 app.use(cookieParser());
 
 //Vinny commented out, conflicts with index.html

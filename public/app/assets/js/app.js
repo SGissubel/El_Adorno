@@ -49,8 +49,57 @@ $(document).ready(function () {
     canvas = $("#room-canvas");
     c = document.getElementById('room-canvas');
 
-  }
+  };
 
+  function checkUser() {
+
+    if (sessionStorage.userSession) {
+
+      var data = JSON.parse(sessionStorage.userSession);
+
+      //check to see if session is expired
+      console.log(moment.utc()._d);
+      console.log(moment.utc(data.cookie.expires)._d);
+
+      if (moment.utc()._d > moment.utc(data.cookie.expires)._d) {
+        //cookie expired
+        appLoggedIn = false;
+        sessionStorage.removeItem("userSession");
+
+        $(".account-container").css('visibility', 'hidden');
+        $("#sign-out").addClass("hidden");
+
+        // Hide sign-in button.
+        $("#sign-in").removeClass("hidden");
+
+      } else {
+        //user session is in sessionStorage and has not expired
+        appLoggedIn = true;
+        // Set the user's profile pic and name.
+        // this.userPic.css("decorImage", "url(" + profilePicUrl + ")");
+        $("#user-name").text("Welcome, " + data.first_name);
+
+        // Show user's profile and sign-out button.
+        $(".account-container").css('visibility', 'visible');
+        $("#sign-out").removeClass("hidden");
+
+        // Hide sign-in button.
+        $("#sign-in").addClass("hidden");
+      }
+    } else {
+      appLoggedIn = false;
+      sessionStorage.removeItem("userSession");
+
+      $(".account-container").css('visibility', 'hidden');
+      $("#sign-out").addClass("hidden");
+
+      // Hide sign-in button.
+      $("#sign-in").removeClass("hidden");
+
+    }
+
+
+  };
 
   function showHandles(layer) {
     return canvas.setLayer(layer, {
@@ -114,6 +163,8 @@ $(document).ready(function () {
 
   setCanvas();
 
+  checkUser();
+
   //load Rooms
   $.ajax({
     url: "/objects/rooms",
@@ -150,96 +201,94 @@ $(document).ready(function () {
     method: "GET"
   }).done(function (data) {
     for (var i = 0; i < data.length; i++) {
-      var $liPalette = $("<li>").addClass("palette").attr("data-id", data[i].id).text( data[i].palette_name);
+      var $liPalette = $("<li>").addClass("palette").attr("data-id", data[i].id).text(data[i].palette_name);
 
       $(".palette-well").append($liPalette);
 
     }
   });
 
- $(document).on("click", ".palette", function () {
-   var palName = $(this).text();
-   var paId = $(this).data("id");
-   $("#btn-palette").html(palName + "<span class=\"caret\"></span>");
+  $(document).on("click", ".palette", function () {
+    var palName = $(this).text();
+    var paId = $(this).data("id");
+    $("#btn-palette").html(palName + "<span class=\"caret\"></span>");
 
-  $.ajax({
-    url: "/palettes/palette/" + paId + "/object",
-    method: "GET"
-  }).done(function (data) {
-    palArray = [];
-    for (var i = 0; i < data.length; i++) {
-      palArray.push(data[i].hex);
-    }
-    $("#full").spectrum({
-    color: "#ECC",
-    showInput: true,
-    className: "full-spectrum",
-    showInitial: true,
-    togglePaletteOnly: true,
-    togglePaletteMoreText:"more",
-    togglePaletteLessText: "less",
-    hideAfterPaletteSelect: true,
-    showPalette: true,
-    showPaletteOnly: false,
-    showSelectionPalette: true,
-    maxSelectionSize: 10,
-    preferredFormat: "name",
-    localStorageKey: "spectrum.impulso",
-    move: function (color) {
-
-    },
-    show: function () {
-
-    },
-    beforeShow: function () {
-
-    },
-    hide: function () {
-
-    },
-    change: function (color) {
-
-      var colorIndex;
-      var colorOpacity;
-
-      canvas.removeLayer("color");
-
-      if (textureExists) {
-        canvas.setLayer("texture", {
-          opacity: 1
-        });
-        colorIndex = 1;
-        colorOpacity = .9;
-      } else {
-        colorIndex = 0;
-        colorOpacity = 1;
+    $.ajax({
+      url: "/palettes/palette/" + paId + "/object",
+      method: "GET"
+    }).done(function (data) {
+      palArray = [];
+      for (var i = 0; i < data.length; i++) {
+        palArray.push(data[i].hex);
       }
+      $("#full").spectrum({
+        color: "#ECC",
+        showInput: true,
+        className: "full-spectrum",
+        showInitial: true,
+        togglePaletteOnly: true,
+        togglePaletteMoreText: "more",
+        togglePaletteLessText: "less",
+        hideAfterPaletteSelect: true,
+        showPalette: true,
+        showPaletteOnly: false,
+        showSelectionPalette: true,
+        maxSelectionSize: 10,
+        preferredFormat: "name",
+        sessionStorageKey: "spectrum.impulso",
+        move: function (color) {
 
-
-      canvas.addLayer({
-        name: "color",
-        type: "rectangle",
-        fillStyle: color.toHexString(),
-        opacity: colorOpacity,
-        draggable: false,
-        data: {
-          color: color.toHexString()
         },
-        fromCenter: false,
-        index: colorIndex,
-        x: 0,
-        y: 0,
-        width: c.width,
-        height: c.height
-      }).drawLayers();
+        show: function () {
 
-      colorExists = true;
-    },
-    palette:  [palArray]
+        },
+        beforeShow: function () {
+
+        },
+        hide: function () {
+
+        },
+        change: function (color) {
+
+          var colorIndex;
+          var colorOpacity;
+
+          canvas.removeLayer("color");
+
+          if (textureExists) {
+            canvas.setLayer("texture", {
+              opacity: 1
+            });
+            colorIndex = 1;
+            colorOpacity = .9;
+          } else {
+            colorIndex = 0;
+            colorOpacity = 1;
+          }
+
+
+          canvas.addLayer({
+            name: "color",
+            type: "rectangle",
+            fillStyle: color.toHexString(),
+            opacity: colorOpacity,
+            draggable: false,
+            data: {
+              color: color.toHexString()
+            },
+            fromCenter: false,
+            index: colorIndex,
+            x: 0,
+            y: 0,
+            width: c.width,
+            height: c.height
+          }).drawLayers();
+
+          colorExists = true;
+        },
+        palette: [palArray]
+      });
     });
-  });
-
-
 
   });
 
@@ -489,7 +538,7 @@ $(document).ready(function () {
     className: "full-spectrum",
     showInitial: true,
     togglePaletteOnly: true,
-    togglePaletteMoreText:"more",
+    togglePaletteMoreText: "more",
     togglePaletteLessText: "less",
     hideAfterPaletteSelect: true,
 
@@ -498,7 +547,7 @@ $(document).ready(function () {
     showSelectionPalette: true,
     maxSelectionSize: 10,
     preferredFormat: "rgb",
-    localStorageKey: "spectrum.impulso",
+    sessionStorageKey: "spectrum.impulso",
     move: function (color) {
 
     },
@@ -581,14 +630,12 @@ $(document).ready(function () {
     $("#login-modal").modal("toggle");
   });
 
-  $("#reg-cancel").on("click", function () {
-    $("#login-modal").modal("toggle");
-  });
-
   $("#sign-out").on("click", function () {
+
     appLoggedIn = false;
-    $("#user-name").addClass("hidden");
-    $("#user-pic").addClass("hidden");
+    sessionStorage.removeItem("userSession");
+
+    $(".account-container").css('visibility', 'hidden');
     $("#sign-out").addClass("hidden");
 
     // Hide sign-in button.
@@ -607,13 +654,15 @@ $(document).ready(function () {
       password_hash: pass
     }
 
-    console.log(userSession)
+    // console.log(userSession)
 
     //AJAX post the data to the friends API.
     $.post("/login/user_login", userSession, function (data) {
       console.log(data);
       if (data.logged_in == true) {
         appLoggedIn = true;
+        sessionStorage.setItem("userSession", JSON.stringify(data));
+
         // var profilePicUrl = data.photoURL;
 
         // Set the user's profile pic and name.
@@ -621,8 +670,7 @@ $(document).ready(function () {
         $("#user-name").text("Welcome, " + data.first_name);
 
         // Show user's profile and sign-out button.
-        $("#user-name").removeClass("hidden");
-        $("#user-pic").removeClass("hidden");
+        $(".account-container").css('visibility', 'visible');
         $("#sign-out").removeClass("hidden");
 
         // Hide sign-in button.
@@ -631,8 +679,9 @@ $(document).ready(function () {
         // process user logged in
       } else {
         appLoggedIn = false;
-        $("#user-name").addClass("hidden");
-        // $("#user-pic").addClass("hidden");
+        sessionStorage.removeItem("userSession");
+
+        $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
         $("#sign-in").removeClass("hidden");
 
@@ -671,23 +720,23 @@ $(document).ready(function () {
     // });
 
     $.post("/login/user_signup", newUser, function (data) {
-        console.log(data);
+      console.log(data);
       if (data.logged_in == true) {
-        
+
         appLoggedIn = true;
+        sessionStorage.setItem("userSession", JSON.stringify(data));
+
         $("#user-name").text("Welcome, " + data.first_name);
 
         // Show user's profile and sign-out button.
-        $("#user-name").removeClass("hidden");
-        $("#user-pic").removeClass("hidden");
+        $(".account-container").css('visibility', 'visible');
         $("#sign-out").removeClass("hidden");
 
         // Hide sign-in button.
         $("#sign-in").addClass("hidden");
         $("#login-modal").modal("toggle");
       } else {
-        $("#user-name").addClass("hidden");
-        // $("#user-pic").addClass("hidden");
+        $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
         $("#sign-in").removeClass("hidden");
 
@@ -697,23 +746,20 @@ $(document).ready(function () {
 
   }); //end reg-save
 
-$("#sign-out").on("click", function(){
-$.ajax({
+  $("#sign-out").on("click", function () {
+    $.ajax({
       url: "/login/sign_out",
       method: "get",
       data: ""
     }).done(function (data) {
       console.log(data)
-                  if(data == true){
-               location.href = "/app"
-              } 
     });
-})
+  })
 
 
-$("#how-To").on("click", function () {
-   $("#how-To-Modal").modal("toggle");
- });
+  $("#how-To").on("click", function () {
+    $("#how-To-Modal").modal("toggle");
+  });
 
 
 }); // end document ready
