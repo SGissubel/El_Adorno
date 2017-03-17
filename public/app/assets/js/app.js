@@ -550,17 +550,44 @@ $(document).ready(function () {
     } else $("#login-modal").modal("toggle");
   });
 
+  function ajaxSaveShowroom(url, parm, type) {
+    //send request to save showroom
+    $.ajax({
+      url: url,
+      data: parm,
+      method: type
+    }).done(function (data) {
+      //check for success
+      return data.status_code
+    });
+
+  }
+
+  function ajaxSaveLayer(parm) {
+    //send request to save showroom
+    $.ajax({
+      url: "/showrooms/create_layer",
+      data: parm,
+      method: "POST"
+    }).done(function (data) {
+      //check for success
+      return data.status_code
+    });
+
+  }
+
   $('#save-show').on('click', function () {
     var parmShowroomName = $("#showroom-name").val().trim();
     var reqType;
     var parmShowroomId;
+    var ajaxURL = "/showrooms/create_showroom";
+    var reqStatus;
     var parmObj = {
       showroom_id: 0,
       showroom_name: "",
-      showroom_user_id: 0,
-      showroom_layers: []
+      showroom_user_id: 0
     };
-    var parmLayers = [];
+    // var parmLayers = [];
     var parmLayer = {
       name: "",
       index: 0,
@@ -595,10 +622,17 @@ $(document).ready(function () {
     parmObj.showroom_name = parmShowroomName;
     parmObj.showroom_user_id = data.user_id;
 
+    //create showroom if necessary
+    if (reqType == "POST") {
+      reqStatus = ajaxSaveShowroom(ajaxURL, parmObj, reqType);    
+    }
+
+    //create layers
+
     var l = canvas.getLayers(function (layer) {
       return (layer.name);
     });
-    //create layer object
+
     for (var i = 0; i < l.length; i++) {
       parmLayer.name = l[i].name;
       parmLayer.index = l[i].index;
@@ -616,20 +650,10 @@ $(document).ready(function () {
         parmLayer.obj_id = l[i].data.objid;
         parmLayer.color = "";
       }
-      parmLayers.push(parmLayer);
+      reqStatus = ajaxSaveLayer(parmLayer);
     }
 
     parmObj.showroom_layers = parmLayers;
-
-    //send request to save showroom
-    $.ajax({
-      url: "/showrooms/showroom",
-      data: JSON.stringify(parmObj),
-      method: reqType
-    }).done(function (data) {
-      //check for success
-      console.log("done");
-    });
 
   });
 
