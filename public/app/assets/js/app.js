@@ -16,6 +16,7 @@ $(document).ready(function () {
   var patt_obj_id;
   var patt_type;
   var palArray = [];
+  var palObj = [];
 
   var textureExists = false;
   var colorExists = false;
@@ -65,7 +66,7 @@ $(document).ready(function () {
         //cookie expired
         appLoggedIn = false;
         sessionStorage.removeItem("userSession");
-
+        $("#btn-download").removeAttr("download").removeAttr("href");
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
 
@@ -75,6 +76,7 @@ $(document).ready(function () {
       } else {
         //user session is in sessionStorage and has not expired
         appLoggedIn = true;
+        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
         // Set the user's profile pic and name.
         // this.userPic.css("decorImage", "url(" + profilePicUrl + ")");
         $("#user-name").text("Welcome, " + data.first_name);
@@ -89,6 +91,7 @@ $(document).ready(function () {
     } else {
       appLoggedIn = false;
       sessionStorage.removeItem("userSession");
+      $("#btn-download").removeAttr("download").removeAttr("href");
 
       $(".account-container").css('visibility', 'hidden');
       $("#sign-out").addClass("hidden");
@@ -218,6 +221,8 @@ $(document).ready(function () {
       method: "GET"
     }).done(function (data) {
       palArray = [];
+      palObj = data;
+      console.log(palObj);
       for (var i = 0; i < data.length; i++) {
         palArray.push(data[i].hex);
       }
@@ -252,6 +257,8 @@ $(document).ready(function () {
 
           var colorIndex;
           var colorOpacity;
+          var colorName = palObj[(palArray.indexOf(color.toHexString().toUpperCase()))].name;
+          $("#color-name").html(colorName);
 
           canvas.removeLayer("color");
 
@@ -513,23 +520,29 @@ $(document).ready(function () {
   var button = document.getElementById('btn-download');
 
   button.addEventListener('click', function (e) {
-    var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
-    $(this).attr("download", fileName);
-    var dataURL = c.toDataURL('image/png');
-    button.href = dataURL;
+    checkUser();
+    if (appLoggedIn) {
+      var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
+      $(this).attr("download", fileName);
+      var dataURL = c.toDataURL('image/png');
+      button.href = dataURL;
+    } else $("#login-modal").modal("toggle");
   });
 
   $('#btn-save').on('click', function () {
 
-    var l = canvas.getLayers(function (layer) {
-      return (layer.name);
-    });
+    checkUser();
+    if (appLoggedIn) {
 
-    for (var i = 0; i < l.length; i++) {
-      console.log("layer name: " + l[i].name + " index: " + l[i].index + " height: " + l[i].height + " width: " + l[i].width + " position_top: " + l[i].y + " position_left: " + l[i].x + " aspect_ratio: " + l[i].aspectRatio + " other info: " + Object.keys(l[i].data) + " : " + Object.values(l[i].data))
+      var l = canvas.getLayers(function (layer) {
+        return (layer.name);
+      });
 
-    }
+      for (var i = 0; i < l.length; i++) {
+        console.log("layer name: " + l[i].name + " index: " + l[i].index + " height: " + l[i].height + " width: " + l[i].width + " position_top: " + l[i].y + " position_left: " + l[i].x + " aspect_ratio: " + l[i].aspectRatio + " other info: " + Object.keys(l[i].data) + " : " + Object.values(l[i].data))
 
+      }
+    } else $("#login-modal").modal("toggle");
   });
 
   $("#full").spectrum({
@@ -634,6 +647,7 @@ $(document).ready(function () {
 
     appLoggedIn = false;
     sessionStorage.removeItem("userSession");
+    $("#btn-download").removeAttr("download").removeAttr("href");
 
     $(".account-container").css('visibility', 'hidden');
     $("#sign-out").addClass("hidden");
@@ -662,6 +676,7 @@ $(document).ready(function () {
       if (data.logged_in == true) {
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
+        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
 
         // var profilePicUrl = data.photoURL;
 
@@ -680,6 +695,7 @@ $(document).ready(function () {
       } else {
         appLoggedIn = false;
         sessionStorage.removeItem("userSession");
+        $("#btn-download").removeAttr("download").removeAttr("href");
 
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
@@ -725,6 +741,7 @@ $(document).ready(function () {
 
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
+        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
 
         $("#user-name").text("Welcome, " + data.first_name);
 
