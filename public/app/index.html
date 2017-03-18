@@ -46,9 +46,9 @@
         </li>
       </ul>
     </div>
-  </nav>
   <div class="hidden user" id="sign-out"><span class="glyphicon glyphicon-log-out"></span> Sign Out</div>
   <div class="user" id="sign-in"><span class="glyphicon glyphicon-user"></span> Login/Register</div>
+  </nav>
 
   <br>
 
@@ -110,8 +110,19 @@
 
     <div class="row">
       <div class="col-md-8 col-md-offset-1">
+        <div class="canvas-btns-container"> 
         <a class="button btn btn-default" id="btn-download">Download Showroom</a>
         <button class="button btn btn-default" id="btn-save">Save Showroom</button>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="showrooms-container"> 
+        <div id="my-showrooms">
+
+        </div>
+        </div>
       </div>
     </div>
   </div>
@@ -132,6 +143,34 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" id="delete-obj" data-dismiss="modal">Delete</button>
             <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Modal -->
+  <div id="save-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="fa fa-server" style="font-size:24px"></span> Save Showroom</h4>
+        </div>
+        <div class="modal-body">
+          <div id="save-new">
+            <h4>Save Showroom As:</h4>
+          </div>
+          <div id="save-existing">
+            <h2 id="curr-showroom"></h2>
+            <h4>Hit the Save button to update your current showroom or enter a name below to save as a new showroom.</h4>
+          </div>
+            <input type="text" name="showroom-name" class="form-control" id="showroom-name" placeholder="Showroom Name">
+            <br>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="save-show" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default close-save" data-dismiss="modal">Cancel</button>
           </div>
         </div>
       </div>

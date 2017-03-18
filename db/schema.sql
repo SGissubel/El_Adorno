@@ -67,17 +67,12 @@ CREATE TABLE IF NOT EXISTS layers (
   width INT(11) NOT NULL,
   position_top INT(11) NOT NULL,
   position_left INT(11) NOT NULL,
-  aspect_ratio DECIMAL,
   color VARCHAR(255), 
   opacity DECIMAL,  
+  layer_type VARCHAR(255),
   object_id INT(11),
   showroom_id INT(11) NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT object_id
-    FOREIGN KEY (object_id)
-    REFERENCES objects (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT showroom_id
     FOREIGN KEY (showroom_id)
     REFERENCES showrooms (id)

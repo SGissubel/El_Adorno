@@ -24,7 +24,7 @@
 .user {
   float: right;
   position: relative;
-  top: -98px;
+  top: -71px;
   left: -5px;
   cursor: pointer;
   color: #d9d9d9;
@@ -89,10 +89,7 @@ h1 {
 .mod-md-2 {
   margin-left: 40px;
   background-color: white;
-  border-left: 1px black solid;
-  border-top: 1px black solid;
-  border-bottom: 1px black solid;
-  border-right: 1px black solid;
+  border: 1px black solid;
   
 }
 
@@ -314,7 +311,38 @@ body {
   background: #222;
   color: #eee;
 }
+.canvas-btns-container {
+  margin-top: 35px;
+  
+}
+#my-showrooms {
+  background-color: white;
+  border: 1px black solid;
+  padding: 20px;
+  display: block;  
+  margin-right: auto;  
+  margin-left: auto;  
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-family: "Roboto", "San Serif";
+  font-weight: 900;
+  font-size: 20px;
 
+}
+#my-showrooms > hr {
+
+border-top: 3px solid #eee;
+}
+
+#my-showrooms > h2, h3, h4 {
+font-weight: 900;
+}
+
+.my-showroom {
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+}
 
 /*.tab-pane {
   overflow: auto;
