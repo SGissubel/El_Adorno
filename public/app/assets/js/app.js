@@ -932,7 +932,8 @@ $(document).ready(function () {
   $('#save-show').on('click', function () {
     var parmShowroomName = $("#showroom-name").val().trim();
     //reset field
-    $("#showroom-name").reset();
+    //$("#showroom-name").reset();  Vinny's old code
+    $("#showroom-name").trigger("reset");  // new trigger function to reset
     var reqType;
     var parmShowroomId;
     var ajaxURL = "/showrooms/create_showroom";

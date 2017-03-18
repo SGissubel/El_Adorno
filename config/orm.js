@@ -39,7 +39,6 @@ var orm = {
       }
       cb(result);
     });
-
   },
   selectAndJoin: function(tableOne, tableTwo, tableOneJoinId, tableTwoJoinId, tableOneJoinIdValue, cb){
     var queryString = "SELECT * FROM " + tableOne;
