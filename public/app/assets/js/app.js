@@ -66,9 +66,11 @@ $(document).ready(function () {
     }).done(function (data) {
       $("#my-showrooms").empty();
       if (data.length > 0) {
+        $(".showrooms-container").removeClass("hidden");
         var $h3 = $("<h3>").text("My Showrooms");
         $("#my-showrooms").append($h3).append("<hr>");
-      }
+      } else $(".showrooms-container").addClass("hidden");
+
       for (var i = 0; i < data.length; i++) {
         var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
           .attr("data-id", data[i].id).text(data[i].showroom_name);
@@ -124,23 +126,23 @@ $(document).ready(function () {
   function addTexture(data) {
 
     $('img[data-obj-id="' + data.object_id + '"]').trigger("click");
-  //   textureExists = true;
+    //   textureExists = true;
 
-  //   console.log("addTexture: " + data);
+    //   console.log("addTexture: " + data);
 
-  //   $.ajax({
-  //     url: "/objects/object/" + data.object_id,
-  //     method: "GET"
-  //   }).done(function (obj_data) {
-  //     patt_type = data.layer_type;
-  //     patt_obj_id = data.object_id;
+    //   $.ajax({
+    //     url: "/objects/object/" + data.object_id,
+    //     method: "GET"
+    //   }).done(function (obj_data) {
+    //     patt_type = data.layer_type;
+    //     patt_obj_id = data.object_id;
 
-  //     patt = canvas.createPattern({
-  //       source: obj_data.file_path + obj_data.file_name,
-  //       repeat: "repeat",
-  //       load: draw
-  //     });
-  //   });
+    //     patt = canvas.createPattern({
+    //       source: obj_data.file_path + obj_data.file_name,
+    //       repeat: "repeat",
+    //       load: draw
+    //     });
+    //   });
   }
 
   function addColor(data) {
@@ -186,7 +188,7 @@ $(document).ready(function () {
 
   function addBaseImg(data) {
 
-    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width,data.position_top, data.position_left] );
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left]);
 
     // if (floorMode) canvas.removeLayer("floor");
     // if (roomMode) canvas.removeLayer("room");
@@ -252,7 +254,7 @@ $(document).ready(function () {
   }
 
   function addOtherObjects(data) {
-    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width,data.position_top, data.position_left] );
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left]);
 
     // var objIndex;
 
@@ -330,6 +332,7 @@ $(document).ready(function () {
 
         // Hide sign-in button.
         $("#sign-in").removeClass("hidden");
+        $(".showrooms-container").addClass("hidden");
 
       } else {
         //user session is in sessionStorage and has not expired
@@ -358,6 +361,8 @@ $(document).ready(function () {
 
       // Hide sign-in button.
       $("#sign-in").removeClass("hidden");
+      $(".showrooms-container").addClass("hidden");
+
 
     }
 
@@ -642,7 +647,7 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".img-base", function (e,h,w,t,l) {
+  $(document).on("click", ".img-base", function (e, h, w, t, l) {
     var height;
     var width;
     var top;
@@ -717,7 +722,7 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".img-art, .img-furn", function (e,h,w,t,l) {
+  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l) {
     var height;
     var width;
     var top;
@@ -1058,11 +1063,11 @@ $(document).ready(function () {
     ]
   });
 
-  $(document).on("resize", canvas, function () {
+  // $(document).on("resize", canvas, function () {
 
-    canvas.drawLayers();
+  //   canvas.drawLayers();
 
-  });
+  // });
 
 
   // User register/login
@@ -1082,6 +1087,8 @@ $(document).ready(function () {
 
     // Hide sign-in button.
     $("#sign-in").removeClass("hidden");
+    $(".showrooms-container").addClass("hidden");
+
   });
 
   var currentURL = window.location.origin;
@@ -1092,8 +1099,8 @@ $(document).ready(function () {
     var pass = $("#login-password").val();
 
     //reset fields
-    $( '.login-form' ).each(function(){
-        this.reset();
+    $('.login-form').each(function () {
+      this.reset();
     });
 
     var userSession = {
@@ -1134,6 +1141,8 @@ $(document).ready(function () {
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
         $("#sign-in").removeClass("hidden");
+        $(".showrooms-container").addClass("hidden");
+
 
         //display error message
         var errorMsg;
@@ -1166,8 +1175,8 @@ $(document).ready(function () {
     var password = $("#reg-password").val();
 
     //reset fields
-    $( '.registration-form' ).each(function(){
-        this.reset();
+    $('.registration-form').each(function () {
+      this.reset();
     });
 
     var newUser = {
@@ -1238,5 +1247,18 @@ $(document).ready(function () {
     $("#how-To-Modal").modal("toggle");
   });
 
+  $("#team").on("click", function () {
+    var currentURL = window.location.origin;
+
+    window.location= currentURL + "/app/team"
+
+  });
+
+  $("#contact").on("click", function () {
+    var currentURL = window.location.origin;
+
+    window.location= currentURL + "/app/contact"
+
+  });
 
 }); // end document ready
