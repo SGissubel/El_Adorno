@@ -10,6 +10,25 @@
   padding: 5px;
 }*/
 
+#contactText {
+  font-size: 20px;
+  width: 50%;
+  float: right;
+  margin-top: 120px;
+
+}
+
+.formTitle {
+  margin-left: 20px;
+}
+
+#contactForm {
+  width: 40%;
+  float: left;
+  margin-top: 20px;
+  margin-left: -20px;  
+}
+
 .byname {
   font-family: "Dancing Script", "Roboto", "San Serif";
   color: #666666;
@@ -24,7 +43,7 @@
 .user {
   float: right;
   position: relative;
-  top: -71px;
+  top: -98px;
   left: -5px;
   cursor: pointer;
   color: #d9d9d9;
