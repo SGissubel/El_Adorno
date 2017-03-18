@@ -15,6 +15,13 @@ router.get("/", function(req, res) {
 	});	
 });
 
+router.get("/object/:id", function(req, res) {
+	object.some("id=" + [req.params.id], function(data){
+		res.send(data);
+		//res.send('../public/index', {objects: data});
+	});	
+});
+
 router.get("/artwork", function(req, res) {
 	object.some("obj_type_id=1", function(data){
 		res.send(data);

@@ -52,7 +52,263 @@ $(document).ready(function () {
     canvas = $("#room-canvas");
     c = document.getElementById('room-canvas');
 
+    $("#my-showrooms").css('width', $canvasWidth);
+    $(".tab-pane-mod").css('height', $canvasHeight);
+
   };
+
+  function getShowrooms(userId) {
+
+    //retrieve saved Showrooms, if any
+    $.ajax({
+      url: "/showrooms/user/" + userId,
+      method: "GET"
+    }).done(function (data) {
+      $("#my-showrooms").empty();
+      if (data.length > 0) {
+        var $h3 = $("<h3>").text("My Showrooms");
+        $("#my-showrooms").append($h3).append("<hr>");
+      }
+      for (var i = 0; i < data.length; i++) {
+        var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
+          .attr("data-id", data[i].id).text(data[i].showroom_name);
+
+        $("#my-showrooms").append($divShowroom);
+      }
+    });
+  };
+
+  function displayShowroom(showroomId, userId) {
+
+    $.ajax({
+      url: "/showrooms/showroom/" + showroomId,
+      method: "GET"
+    }).done(function (data) {
+      canvas.removeLayers();
+      floorMode = false;
+      decorMode = false;
+      roomMode = false;
+      textureExists = false;
+      colorExists = false;
+      artworkCount = 0;
+
+      console.log(data);
+      currentShowroomName = data[0].showroom_name;
+      currentShowroomId = data[0].showroom_id;
+
+
+      for (var i = 0; i < data.length; i++) {
+        switch (data[i].layer_type) {
+          case "texture":
+            addTexture(data[i])
+            break;
+          case "color":
+            addColor(data[i])
+            break;
+          case "room":
+            addBaseImg(data[i]);
+            break;
+          case "decor":
+            addBaseImg(data[i]);
+            break;
+          case "floor":
+            addBaseImg(data[i]);
+            break;
+          default: //art, furniture
+            addOtherObjects(data[i]);
+        }
+      }
+    });
+  };
+
+  function addTexture(data) {
+
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click");
+  //   textureExists = true;
+
+  //   console.log("addTexture: " + data);
+
+  //   $.ajax({
+  //     url: "/objects/object/" + data.object_id,
+  //     method: "GET"
+  //   }).done(function (obj_data) {
+  //     patt_type = data.layer_type;
+  //     patt_obj_id = data.object_id;
+
+  //     patt = canvas.createPattern({
+  //       source: obj_data.file_path + obj_data.file_name,
+  //       repeat: "repeat",
+  //       load: draw
+  //     });
+  //   });
+  }
+
+  function addColor(data) {
+
+    var colorIndex;
+    var colorOpacity;
+    // var colorName = palObj[(palArray.indexOf(data.color.toUpperCase()))].name;
+    $("#color-name").html("");
+
+    canvas.removeLayer("color");
+
+    if (textureExists) {
+      canvas.setLayer("texture", {
+        opacity: 1
+      });
+      colorIndex = 1;
+      colorOpacity = .9;
+    } else {
+      colorIndex = 0;
+      colorOpacity = 1;
+    }
+
+
+    canvas.addLayer({
+      name: "color",
+      type: "rectangle",
+      fillStyle: data.color,
+      opacity: colorOpacity,
+      draggable: false,
+      data: {
+        color: data.color
+      },
+      fromCenter: false,
+      index: colorIndex,
+      x: 0,
+      y: 0,
+      width: c.width,
+      height: c.height
+    }).drawLayers();
+
+    colorExists = true;
+  }
+
+  function addBaseImg(data) {
+
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width,data.position_top, data.position_left] );
+
+    // if (floorMode) canvas.removeLayer("floor");
+    // if (roomMode) canvas.removeLayer("room");
+    // if (decorMode) canvas.removeLayer("decor");
+
+    // floorMode = false;
+    // decorMode = false;
+    // roomMode = false;
+
+    // var objIndex;
+
+    // if (data.layer_type === "room") {
+    //   if (colorExists) canvas.removeLayer("color");
+    //   if (textureExists) canvas.removeLayer("texture");
+    //   colorExists = false;
+    //   textureExists = false;
+    //   objIndex = 0;
+    //   $("#full").spectrum("disable");
+    // } else {
+    //   $("#full").spectrum("enable");
+    //   if (colorExists && textureExists) objIndex = 2 + artworkCount;
+    //   if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1 + artworkCount;
+    //   if (!(colorExists) && !(textureExists)) objIndex = 0 + artworkCount;
+    // }
+
+    // switch (data.layer_type) {
+    //   case "floor":
+    //     floorMode = true;
+    //     break;
+    //   case "decor":
+    //     decorMode = true;
+    //     break;
+    //   case "room":
+    //     roomMode = true;
+    //     break;
+    // }
+
+    // $.ajax({
+    //   url: "/objects/object/" + data.object_id,
+    //   method: "GET"
+    // }).done(function (obj_data) {
+    //   canvas.addLayer({
+    //     type: "image",
+    //     name: obj_data.obj_name,
+    //     source: obj_data.file_path + obj_data.file_name,
+    //     draggable: false,
+    //     data: {
+    //       type: data.layer_type,
+    //       objid: data.object_id
+    //     },
+    //     opacity: 1,
+    //     fromCenter: false,
+    //     intangible: true,
+    //     index: objIndex,
+    //     x: data.position_left,
+    //     y: data.position_top,
+    //     width: data.width,
+    //     height: data.height
+    //   }).drawLayers();
+
+    // });
+
+  }
+
+  function addOtherObjects(data) {
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width,data.position_top, data.position_left] );
+
+    // var objIndex;
+
+    // $.ajax({
+    //   url: "/objects/object/" + data.object_id,
+    //   method: "GET"
+    // }).done(function (obj_data) {
+    //   var layerName = obj_data.obj_name + "_" + 0;
+    //   canvas.addLayer({
+    //     type: "image",
+    //     name: layerName,
+    //     source: obj_data.file_path + obj_data.file_name,
+    //     draggable: true,
+    //     data: {
+    //       type: data.layer_type,
+    //       objid: data.object_id
+    //     },
+    //     fromCenter: false,
+    //     x: data.position_left,
+    //     y: data.position_top,
+    //     width: data.width,
+    //     height: data.height,
+    //     resizeFromCenter: false,
+    //     constrainProportions: true,
+    //     opacity: 1,
+    //     shadowColor: '#222',
+    //     shadowBlur: 10,
+    //     handlePlacement: "corners",
+    //     dblclick: function (layer) {
+    //       delLayer = layer;
+    //       $("#deleteModal").modal({
+    //         backdrop: "static",
+    //         keyboard: true
+    //       });
+    //     },
+    //     mouseover: function (layer) {
+    //       showHandles(layer).drawLayers();
+    //     },
+    //     mouseout: function (layer) {
+    //       hideHandles(layer).drawLayers();
+    //     }
+    //   }).drawLayers();
+
+    //   if (data.layer_type === "art") {
+    //     artworkCount++;
+    //     if (roomMode) objIndex = 1;
+    //     else {
+    //       if (colorExists && textureExists) objIndex = 2;
+    //       if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1;
+    //       if (!(colorExists) && !(textureExists)) objIndex = 0;
+    //     }
+    //     canvas.moveLayer(layerName, objIndex).drawLayers();
+    //   }
+
+    // });
+  }
 
   function checkUser() {
 
@@ -82,6 +338,8 @@ $(document).ready(function () {
         // Set the user's profile pic and name.
         // this.userPic.css("decorImage", "url(" + profilePicUrl + ")");
         $("#user-name").text("Welcome, " + data.first_name);
+
+        getShowrooms(data.user_id);
 
         // Show user's profile and sign-out button.
         $(".account-container").css('visibility', 'visible');
@@ -376,7 +634,31 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".img-base", function () {
+  $(document).on("click", ".my-showroom", function () {
+    var showroomId = $(this).data("id");
+    var userId = $(this).data("user-id");
+
+    displayShowroom(showroomId, userId);
+
+  });
+
+  $(document).on("click", ".img-base", function (e,h,w,t,l) {
+    var height;
+    var width;
+    var top;
+    var left;
+
+    if (h) height = h;
+    else height = $(this).data("height");
+
+    if (w) width = w;
+    else width = $(this).data("width");
+
+    if (t) top = t;
+    else top = $(this).data("y");
+
+    if (l) left = l;
+    else left = $(this).data("x");
 
     if (floorMode) canvas.removeLayer("floor");
     if (roomMode) canvas.removeLayer("room");
@@ -423,18 +705,35 @@ $(document).ready(function () {
         type: $(this).data("type"),
         objid: $(this).data("obj-id")
       },
+      opacity: 1,
       fromCenter: false,
       intangible: true,
       index: objIndex,
-      x: $(this).data("x"),
-      y: $(this).data("y"),
-      width: $(this).data("width"),
-      height: $(this).data("height")
+      x: left,
+      y: top,
+      width: width,
+      height: height
     }).drawLayers();
 
   });
 
-  $(document).on("click", ".img-art, .img-furn", function () {
+  $(document).on("click", ".img-art, .img-furn", function (e,h,w,t,l) {
+    var height;
+    var width;
+    var top;
+    var left;
+
+    if (h) height = h;
+    else height = this.naturalHeight / 2;
+
+    if (w) width = w;
+    else width = this.naturalWidth / 2;
+
+    if (t) top = t;
+    else top = $(this).data("y");
+
+    if (l) left = l;
+    else left = $(this).data("x");
 
     var objIndex;
     var layerName = $(this).data("name") + "_" + $(this).data("copy");
@@ -449,12 +748,13 @@ $(document).ready(function () {
         objid: $(this).data("obj-id")
       },
       fromCenter: false,
-      x: $(this).data("x"),
-      y: $(this).data("y"),
-      width: this.naturalWidth / 2,
-      height: this.naturalHeight / 2,
+      x: left,
+      y: top,
+      width: width,
+      height: height,
       resizeFromCenter: false,
       constrainProportions: true,
+      opacity: 1,
       shadowColor: '#222',
       shadowBlur: 10,
       handlePlacement: "corners",
@@ -558,7 +858,8 @@ $(document).ready(function () {
       method: type
     }).done(function (data) {
       //check for success
-      return data.status_code
+      console.log(data);
+      saveLayers(data.showroom_id);
     });
 
   }
@@ -571,34 +872,71 @@ $(document).ready(function () {
       method: "POST"
     }).done(function (data) {
       //check for success
-      return data.status_code
+      console.log(data);
     });
+
+  }
+
+  function saveLayers(showroomId) {
+    var parmLayer = {
+      name: "",
+      layer_index: 0,
+      height: 0,
+      width: 0,
+      position_top: 0,
+      position_left: 0,
+      color: "",
+      opacity: 0,
+      layer_type: "",
+      object_type: "",
+      object_id: 0,
+      showroom_id: 0
+    };
+
+    //create layers
+
+    var l = canvas.getLayers(function (layer) {
+      return (layer.name);
+    });
+
+    for (var i = 0; i < l.length; i++) {
+      parmLayer.name = l[i].name;
+      parmLayer.layer_index = l[i].index;
+      parmLayer.height = l[i].height;
+      parmLayer.width = l[i].width;
+      parmLayer.opacity = (l[i].opacity * 100);
+      parmLayer.layer_type = l[i].name;
+      parmLayer.position_top = l[i].y;
+      parmLayer.position_left = l[i].x;
+      if (l[i].name === "color") {
+        parmLayer.color = l[i].data.color;
+        parmLayer.object_type = "color";
+        parmLayer.object_id = 0;
+      } else {
+        parmLayer.object_type = l[i].data.type;
+        parmLayer.object_id = l[i].data.objid;
+        parmLayer.color = "";
+      }
+      parmLayer.showroom_id = showroomId;
+      console.log(parmLayer);
+      ajaxSaveLayer(parmLayer);
+    }
 
   }
 
   $('#save-show').on('click', function () {
     var parmShowroomName = $("#showroom-name").val().trim();
+    //reset field
+    $("#showroom-name").reset();
     var reqType;
     var parmShowroomId;
     var ajaxURL = "/showrooms/create_showroom";
-    var reqStatus;
+    var showroomReturnData;
+    var layerReturnData;
     var parmObj = {
       showroom_id: 0,
       showroom_name: "",
-      showroom_user_id: 0
-    };
-    // var parmLayers = [];
-    var parmLayer = {
-      name: "",
-      index: 0,
-      height: 0,
-      width: 0,
-      position_top: 0,
-      position_left: 0,
-      aspect_ratio: 0.0,
-      color: "",
-      obj_type: "",
-      obj_id: 0
+      user_id: 0
     };
 
     if ((currentShowroomName) && (parmShowroomName == "")) {
@@ -616,45 +954,22 @@ $(document).ready(function () {
       reqType = "POST"
     }
 
-    var data = JSON.parse(sessionStorage.userSession);
+    var sessionData = JSON.parse(sessionStorage.userSession);
 
     parmObj.showroom_id = parmShowroomId;
     parmObj.showroom_name = parmShowroomName;
-    parmObj.showroom_user_id = data.user_id;
+    parmObj.user_id = sessionData.user_id;
 
     //create showroom if necessary
     if (reqType == "POST") {
-      reqStatus = ajaxSaveShowroom(ajaxURL, parmObj, reqType);    
+      ajaxSaveShowroom(ajaxURL, parmObj, reqType);
+    } else {
+      //****************delete original layers for parmShowroomId*****************************
+      saveLayers(parmShowroomId);
     }
 
-    //create layers
-
-    var l = canvas.getLayers(function (layer) {
-      return (layer.name);
-    });
-
-    for (var i = 0; i < l.length; i++) {
-      parmLayer.name = l[i].name;
-      parmLayer.index = l[i].index;
-      parmLayer.height = l[i].height;
-      parmLayer.width = l[i].width;
-      parmLayer.position_top = l[i].y;
-      parmLayer.position_left = l[i].x;
-      parmLayer.aspect_ratio = l[i].aspectRatio;
-      if (l[i].name === "color") {
-        parmLayer.color = l[i].data.color;
-        parmLayer.obj_type = "";
-        parmLayer.obj_id = null;
-      } else {
-        parmLayer.obj_type = l[i].data.type;
-        parmLayer.obj_id = l[i].data.objid;
-        parmLayer.color = "";
-      }
-      reqStatus = ajaxSaveLayer(parmLayer);
-    }
-
-    parmObj.showroom_layers = parmLayers;
-
+    //refresh my showrooms
+    getShowrooms(sessionData.user_id);
   });
 
 
@@ -776,6 +1091,11 @@ $(document).ready(function () {
     var userN = $("#login-user-name").val();
     var pass = $("#login-password").val();
 
+    //reset fields
+    $( '.login-form' ).each(function(){
+        this.reset();
+    });
+
     var userSession = {
       user_name: userN,
       password_hash: pass
@@ -790,6 +1110,7 @@ $(document).ready(function () {
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
         $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
+        getShowrooms(data.user_id);
 
         // var profilePicUrl = data.photoURL;
 
@@ -844,6 +1165,11 @@ $(document).ready(function () {
     var email = $("#reg-email").val();
     var password = $("#reg-password").val();
 
+    //reset fields
+    $( '.registration-form' ).each(function(){
+        this.reset();
+    });
+
     var newUser = {
       username: userName,
       first_name: firstName,
@@ -870,24 +1196,7 @@ $(document).ready(function () {
         $("#sign-in").addClass("hidden");
         $("#login-modal").modal("toggle");
 
-        //retrieve saved Showrooms, if any
-        $.ajax({
-          url: "/showrooms/user/" + data.user_id,
-          method: "GET"
-        }).done(function (data) {
-          $("#my-showrooms").empty();
-          if (data.length > 0) {
-            var $h4 = $("<h4>").text("My Showrooms");
-            $("#my-showrooms").append($h4);
-          }
-          for (var i = 0; i < data.length; i++) {
-            var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
-              .attr("data-id", data[i].id).text(data[i].showroom_name);
-
-            $("#my-showrooms").append($divShowroom);
-          }
-        });
-
+        getShowrooms(data.user_id)
 
       } else {
         $(".account-container").css('visibility', 'hidden');
