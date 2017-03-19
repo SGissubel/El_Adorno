@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var methodOverride = require('method-override');
 
-var port = 3000;
+var PORT = process.env.PORT || 3000
 
 var app = express();
 
@@ -20,7 +20,7 @@ var cookieParser = require('cookie-parser');
 
 var session = require('express-session');
 //allow sessions
-app.use(session({ secret: 'app', cookie: { maxAge: 14400000 }}));
+app.use(session({ secret: '/', cookie: { maxAge: 14400000 }}));
 app.use(cookieParser());
 
 //Vinny commented out, conflicts with index.html
@@ -54,15 +54,15 @@ app.use("/showrooms", showroomsController);
 app.use("/login", signupController);
 
 
-app.listen(port, function() {
-    console.log('listening on port ' + port)
+app.listen(PORT, function() {
+    console.log('listening on port ' + PORT)
 
 });
 
 
 
 /* ===========================================================
-					SOCKET.IO SERVER
+          SOCKET.IO SERVER
 =============================================================*/
 
 var io  = require('socket.io').listen(5001),
