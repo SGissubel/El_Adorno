@@ -2,6 +2,99 @@
   box-sizing: border-box;
 }
 
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.navbar {
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+/*.logo {
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}*/
+
+.byname-sm, .byname-lg {
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+.fade-out {
+  animation-name: fadeout;
+  animation-duration: .5s;
+}
+
+.fade-in {
+  animation-name: fadein;
+  animation-duration: .5s;
+}
+
+/*.portfolio-flex-container {
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    transition: all 2s;
+}
+
+.portfolio-flex-container[data-emergence=hidden] {
+    opacity: 0;
+}
+
+.portfolio-flex-container[data-emergence=visible] {
+    opacity: 1;
+}*/
+
+.logo-lg {
+    margin: -87px 0 0px -160px;
+    /* play with these to position the image */
+    /*position:absolute;*/
+    z-index: 100;
+    width: 190px;
+    /*background-color: #fff;*/
+    padding: 5px;
+}
+
+.logo-sm {
+    margin: -64px 0 0px -160px;
+    /* play with these to position the image */
+    /*position:absolute;*/
+    z-index: 100;
+    width: 156px;
+    /*background-color: #fff;*/
+    padding: 5px;
+}
+
+.navbar-lg {
+  min-height: 150px; 
+}
+
+.navbar-sm {
+  min-height: 100px; 
+}
+
+.byname-lg {
+    position: relative;
+    top: 55px;
+    left: 0px;
+}
+
+.byname-sm {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+
 /*#logo {
   margin: -64px 0 0px -160px;*/
   /* play with these to position the image */
@@ -63,6 +156,11 @@
 h1 {
   margin-top: 0px;
 }
+
+.margin-bottom-xs {margin-bottom: 5px;}  
+.margin-bottom-sm {margin-bottom: 10px;} 
+.margin-bottom-md {margin-bottom: 15px;}
+.margin-bottom-lg {margin-bottom: 30px;}  
 
 .panel-font {
   font-family: "Roboto", "San Serif";
@@ -161,7 +259,7 @@ div#OR {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   margin-bottom: 0px;
-  min-height: 100px;
+  /*min-height: 100px;*/
 }
 
 .navbar-right {
@@ -273,11 +371,6 @@ div#OR {
   color: #222;
 }
 
-body {
-  margin: 0;
-  background-color: #f2f2f2;
-}
-
 .mod-flex {
   margin-left: 50px;
   margin-right: 50px;
@@ -385,6 +478,59 @@ font-weight: 900;
   display: none;
 }
 
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  background-color: #f2f2f2;
+  margin-bottom: 80px;
+  margin-top: 150px
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #222;
+    border-bottom: 20px solid #d9d9d9;
+}
+
+.copyright {
+    margin: 10px 0;
+    color: #d9d9d9;
+    padding-right: 20px;
+}
+
+.footer-flex-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.footer-flex-items {
+    margin: auto;
+    display: inline-flex;
+}
+
+.footer-flex-item-logo {
+    width: 41px;
+    padding: 5px;
+}
+
+.footer-flex-item {
+    display: inline-flex;
+}
 
 /*@media screen and (max-width: 2500px) {
   #room-canvas {
@@ -406,7 +552,7 @@ font-weight: 900;
 }*/
 
 /* ik code */
-#footer {
+/*#footer {
   position:fixed;
   left:0px;
   bottom:0px;
@@ -414,7 +560,7 @@ font-weight: 900;
 
   width:100%;
   background:#999;
-}
+}*/
 
 /* IE 6 */
 /** html #footer {
@@ -422,10 +568,10 @@ font-weight: 900;
   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
 }*/
 
-#footer_push {
+/*#footer_push {
        clear: both;
        height: 20px;
-     }
+     }*/
 
 .img-circle {
    border-radius: 50%;
