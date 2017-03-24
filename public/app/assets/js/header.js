@@ -3,11 +3,14 @@ $(window).scroll(function () {
     if ($('.navbar-brand').hasClass("byname-lg")) {
       $('.navbar-brand').removeClass("byname-lg").removeClass("fade-in").addClass("byname-sm").addClass("fade-out");
       $('.navbar').removeClass("navbar-lg").addClass("navbar-sm");
+      $(".mod-flex").addClass("shrink-container");
     }
-  } else {
+  } 
+  else {
     if ($('.navbar-brand').hasClass("byname-sm")) {
       $('.navbar-brand').removeClass("byname-sm").removeClass("fade-in").addClass("byname-lg").addClass("fade-out");
       $('.navbar').removeClass("navbar-sm").addClass("navbar-lg");
+       $(".mod-flex").removeClass("shrink-container");
     }
   }
 });

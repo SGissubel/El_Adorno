@@ -582,8 +582,8 @@ $(document).ready(function () {
   //load Textures
 
   var removeTexture = $("<button>").text("No Texture").addClass("btn btn-default no-texture").attr("type", "button");
-
-  $("#textures").append(removeTexture);
+  
+  $("#textures").append($("<br>")).append(removeTexture).append($("<br>"));
 
   $.ajax({
 

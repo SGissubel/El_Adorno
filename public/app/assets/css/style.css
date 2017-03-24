@@ -50,21 +50,6 @@
   animation-duration: .5s;
 }
 
-
-/*.portfolio-flex-container {
-    -webkit-transition: all 2s;
-    -moz-transition: all 2s;
-    transition: all 2s;
-}
-
-.portfolio-flex-container[data-emergence=hidden] {
-    opacity: 0;
-}
-
-.portfolio-flex-container[data-emergence=visible] {
-    opacity: 1;
-}*/
-
 .logo-lg {
   margin: -87px 0 0px -160px;
   /* play with these to position the image */
@@ -86,27 +71,32 @@
 }
 
 .navbar-lg {
-  min-height: 150px;
+  height: 150px;
 }
 
 .navbar-sm {
-  min-height: 100px;
+  height: 100px;
 }
 
 .byname-lg {
   position: relative;
-  top: 55px;
+  top: -10px;
   left: 0px;
   font-size: 35px;
 }
 
 .byname-sm {
   position: relative;
-  top: 0px;
+  top: -65px;
   left: 0px;
   font-size: 45px;
 }
 
+#login-row {
+  position: relative;
+  top: -20px;
+  font-size: 14px;
+}
 
 /*#logo {
   margin: -64px 0 0px -160px;*/
@@ -149,10 +139,6 @@
 }
 
 .user {
-  float: right;
-  position: relative;
-  top: -98px;
-  left: -5px;
   cursor: pointer;
   color: #d9d9d9;
 }
@@ -164,11 +150,8 @@
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 20px;
-  top: 50px;
-  position: relative;
   color: #666666;
-  right: 80px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .nav-links:hover {
@@ -181,10 +164,8 @@
 }
 
 .account-container {
-  /*visibility: hidden;*/
-  position: relative;
-  top: 55px;
-  left: 15px;
+  float: right;
+  margin-left: 60px;
 }
 
 h1 {
@@ -233,6 +214,7 @@ h1 {
   margin-left: 40px;
   background-color: white;
   border: 1px black solid;
+  padding-left: 0px;
 }
 
 .control-label {
@@ -303,20 +285,9 @@ div#OR {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   margin-bottom: 0px;
-  border-radius: 10px;
+  border-radius: 4px;
   /*min-height: 100px;*/
 }
-
-.navbar-right {
-  position: relative;
-  top: -36px;
-}
-
-/*.navbar-inverse .navbar-brand {
-  color: white;
-  font-family: 'Russo One', sans-serif;
-  font-size: 15px;
-}*/
 
 .navbar>.container .navbar-brand,
 .navbar>.container-fluid .navbar-brand {
@@ -345,7 +316,7 @@ div#OR {
   right: 0;
   padding-left: 10px;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 #user-container #user-pic {
@@ -361,7 +332,6 @@ div#OR {
 }
 
 #user-container #user-name {
-  font-size: 16px;
   line-height: 36px;
   padding-right: 10px;
   padding-left: 20px;
@@ -419,6 +389,10 @@ div#OR {
 .mod-flex {
   margin-left: 50px;
   margin-right: 50px;
+}
+
+.shrink-container {
+  margin-top: -50px;
 }
 
 #room-canvas {
@@ -581,31 +555,96 @@ body {
   display: inline-flex;
 }
 
-@media screen and (max-width: 2500px) {
+@media screen and (min-width: 768px) {
   .byname-lg, .byname-sm {
-    font-size: 35px;
+    font-size: 20px;
   }
 
-  .nav-links {
-    font-size: 25px;
+  /*.nav-links {
+    font-size: 10px;
+  }*/
+}
+
+@media screen and (min-width: 1300px) {
+
+.byname-lg {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  font-size: 25px;
+}
+
+.byname-sm {
+  position: relative;
+  top: -55px;
+  left: 0px;
+  font-size: 25px;
+}
+
+
+  .nav-links, #user-name {
+    font-size: 15px;
   }
 }
 
-@media screen and (max-width: 2000px) {
-  .byname-lg, .byname-sm {
-    font-size: 30px;
+@media screen and (min-width: 1550px) {
+
+.byname-lg {
+  position: relative;
+  top: 5px;
+  left: 0px;
+  font-size: 30px;
+}
+
+.byname-sm {
+  position: relative;
+  top: -50px;
+  left: 0px;
+  font-size: 30px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
   }
-  .nav-links {
+}
+
+@media screen and (min-width: 1800px) {
+.byname-lg {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  font-size: 30px;
+}
+
+.byname-sm {
+  position: relative;
+  top: -50px;
+  left: 0px;
+  font-size: 30px;
+}
+
+  .nav-links, #user-name {
     font-size: 20px;
   }
 }
 
-@media screen and (max-width: 1550px) {
-  .byname-lg, .byname-sm {
+@media screen and (min-width: 2500px) {
+.byname-lg {
+  position: relative;
+  top: -10px;
+  left: 0px;
+  font-size: 35px;
+}
+
+.byname-sm {
+  position: relative;
+  top: -60px;
+  left: 0px;
+  font-size: 35px;
+}
+
+  .nav-links, #user-name {
     font-size: 25px;
-  }
-  .nav-links {
-    font-size: 15px;
   }
 }
 
