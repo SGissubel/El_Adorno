@@ -582,8 +582,8 @@ $(document).ready(function () {
   //load Textures
 
   var removeTexture = $("<button>").text("No Texture").addClass("btn btn-default no-texture").attr("type", "button");
-
-  $("#textures").append(removeTexture);
+  
+  $("#textures").append($("<br>")).append(removeTexture).append($("<br>"));
 
   $.ajax({
 
@@ -882,6 +882,18 @@ $(document).ready(function () {
 
   }
 
+  function ajaxDelLayers(parm) {
+    //send request to delete layers
+    $.ajax({
+      url: "/showrooms/delete_layers/" + parm,
+      method: "DELETE"
+    }).done(function (data) {
+      //check for success
+      console.log(data);
+    });
+
+  }
+
   function saveLayers(showroomId) {
     var parmLayer = {
       name: "",
@@ -971,6 +983,7 @@ $(document).ready(function () {
       ajaxSaveShowroom(ajaxURL, parmObj, reqType);
     } else {
       //****************delete original layers for parmShowroomId*****************************
+      ajaxDelLayers(parmShowroomId);
       saveLayers(parmShowroomId);
     }
 
