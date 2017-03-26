@@ -74,5 +74,15 @@ router.post("/create_layer", function (req, res) {
 	});
 });
 
+router.delete("/delete_layers/:id", function (req, res) {
+
+	console.log(req.params);
+
+	layer.delete("showroom_id=" + [req.params.id], function (data) {
+		res.send(data);
+	});
+});
+
+
 // Export routes for server.js to use.
 module.exports = router;
