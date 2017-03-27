@@ -1,26 +1,26 @@
 var connections = [
     github = {
-        link: "https://github.com/VinnyV88",
+        link: "#",
         imgSrc: "assets/images/github.png"
     },
     linkedin = {
-        link: "https://www.linkedin.com/in/vinnyv88",
+        link: "#",
         imgSrc: "assets/images/LinkedIn.png"
     },
     stackFlow = {
-        link: "http://stackexchange.com/users/5347903/vincent-visconti",
+        link: "#",
         imgSrc: "assets/images/stackoverflow.png"
     },
     facebook = {
-        link: "https://www.facebook.com/VinnyV88",
+        link: "#",
         imgSrc: "assets/images/Facebook.png"
     },
     twitter = {
-        link: "https://twitter.com/VinnyV88",
+        link: "#",
         imgSrc: "assets/images/Twitter.png"
     },
     instagram = {
-        link: "https://www.instagram.com/vinny88v/",
+        link: "#",
         imgSrc: "assets/images/Intsagram.png"
     }
 ];

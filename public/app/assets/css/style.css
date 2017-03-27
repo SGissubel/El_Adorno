@@ -128,7 +128,7 @@
   margin-left: -20px;
 }
 
-.byname {
+.byname, .impulso-style {
   font-family: "Dancing Script", "Roboto", "San Serif";
   color: #666666;
 }
@@ -681,8 +681,9 @@ body {
   border-radius: 50%;
 }
 
-.team-member {
+.img-about {
   text-align: center;
+  width: 200px;
   border: 3px;
   color: #909090;
   font-family: "Dancing Script", "Roboto", "San Serif";

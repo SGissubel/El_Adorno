@@ -824,15 +824,17 @@ $(document).ready(function () {
 
   });
 
-  var button = document.getElementById('btn-download');
+  // var button = document.getElementById('btn-download');
 
-  button.addEventListener('click', function (e) {
+  // button.addEventListener('click', function (e) {
+
+  $(document).on("click", "#btn-download", function (e) {
+
     checkUser();
     if (appLoggedIn) {
       var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
-      $(this).attr("download", fileName);
       var dataURL = c.toDataURL('image/png');
-      button.href = dataURL;
+      $(this).attr("download", fileName).attr("href", dataURL);
     } else $("#login-modal").modal("toggle");
   });
 
@@ -875,6 +877,18 @@ $(document).ready(function () {
       url: "/showrooms/create_layer",
       data: parm,
       method: "POST"
+    }).done(function (data) {
+      //check for success
+      console.log(data);
+    });
+
+  }
+
+  function ajaxDelLayers(parm) {
+    //send request to delete layers
+    $.ajax({
+      url: "/showrooms/delete_layers/" + parm,
+      method: "DELETE"
     }).done(function (data) {
       //check for success
       console.log(data);
@@ -971,6 +985,7 @@ $(document).ready(function () {
       ajaxSaveShowroom(ajaxURL, parmObj, reqType);
     } else {
       //****************delete original layers for parmShowroomId*****************************
+      ajaxDelLayers(parmShowroomId);
       saveLayers(parmShowroomId);
     }
 
@@ -1243,15 +1258,22 @@ $(document).ready(function () {
     });
   })
 
+  $("#home").on("click", function () {
+    var currentURL = window.location.origin;
+
+    window.location= currentURL + "/app"
+
+  });
+
 
   $("#how-To").on("click", function () {
     $("#how-To-Modal").modal("toggle");
   });
 
-  $("#team").on("click", function () {
+  $("#about").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/app/team"
+    window.location= currentURL + "/app/about"
 
   });
 
