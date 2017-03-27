@@ -36,8 +36,8 @@ var palettesController  = require("./controllers/palettesController.js");
 var showroomsController = require("./controllers/showroomsController.js");
 var signupController    = require("./controllers/signupController.js");
 
-app.get('/app/team', function(req, res){
-  res.sendFile(path.join(__dirname, "./public/app/team.html"));
+app.get('/app/about', function(req, res){
+  res.sendFile(path.join(__dirname, "./public/app/about.html"));
 })
 
 app.get('/app/contact', function(req, res){
