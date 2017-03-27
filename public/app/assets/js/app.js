@@ -824,9 +824,12 @@ $(document).ready(function () {
 
   });
 
-  var button = document.getElementById('btn-download');
+  // var button = document.getElementById('btn-download');
 
-  button.addEventListener('click', function (e) {
+  // button.addEventListener('click', function (e) {
+
+  $(document).on("click", "#btn-download", function (e) {
+
     checkUser();
     if (appLoggedIn) {
       var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
@@ -1256,15 +1259,22 @@ $(document).ready(function () {
     });
   })
 
+  $("#home").on("click", function () {
+    var currentURL = window.location.origin;
+
+    window.location= currentURL + "/app"
+
+  });
+
 
   $("#how-To").on("click", function () {
     $("#how-To-Modal").modal("toggle");
   });
 
-  $("#team").on("click", function () {
+  $("#about").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/app/team"
+    window.location= currentURL + "/app/about"
 
   });
 
