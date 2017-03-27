@@ -1265,7 +1265,6 @@ $(document).ready(function () {
 
   });
 
-
   $("#how-To").on("click", function () {
     $("#how-To-Modal").modal("toggle");
   });
