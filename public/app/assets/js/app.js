@@ -833,9 +833,8 @@ $(document).ready(function () {
     checkUser();
     if (appLoggedIn) {
       var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
-      $(this).attr("download", fileName);
       var dataURL = c.toDataURL('image/png');
-      button.href = dataURL;
+      $(this).attr("download", fileName).attr("href", dataURL);
     } else $("#login-modal").modal("toggle");
   });
 
