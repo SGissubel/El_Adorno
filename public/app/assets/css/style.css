@@ -143,6 +143,15 @@
   color: #d9d9d9;
 }
 
+#home {
+  cursor: pointer;
+  
+}
+
+.byname:hover {
+  color: #222222;
+}
+
 .nav-links {
   /*font-family: 'Russo One', sans-serif;*/
   cursor: pointer;
@@ -166,6 +175,7 @@
 .account-container {
   float: right;
   margin-left: 60px;
+  min-width: 300px;
 }
 
 h1 {
@@ -556,14 +566,30 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-  .byname-lg, .byname-sm {
-    font-size: 20px;
-  }
 
-  /*.nav-links {
-    font-size: 10px;
-  }*/
+.byname-lg {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  font-size: 20px;
 }
+
+.byname-sm {
+  position: relative;
+  top: -55px;
+  left: 0px;
+  font-size: 20px;
+}
+
+.account-container {
+  min-width: 200px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
+  }
+}
+
 
 @media screen and (min-width: 1300px) {
 
@@ -581,6 +607,9 @@ body {
   font-size: 25px;
 }
 
+.account-container {
+  min-width: 200px;
+}
 
   .nav-links, #user-name {
     font-size: 15px;
@@ -601,6 +630,10 @@ body {
   top: -50px;
   left: 0px;
   font-size: 30px;
+}
+
+.account-container {
+  min-width: 200px;
 }
 
   .nav-links, #user-name {

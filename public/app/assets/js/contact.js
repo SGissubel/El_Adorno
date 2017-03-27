@@ -278,6 +278,13 @@ $(document).ready(function () {
     // $("#how-To-Modal").modal("toggle");
   });
 
+  $("#home").on("click", function () {
+    var currentURL = window.location.origin;
+
+    window.location= currentURL + "/app"
+
+  });
+
   $("#about").on("click", function () {
     var currentURL = window.location.origin;
 
