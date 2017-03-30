@@ -1,16 +1,16 @@
 var connections = [
-    github = {
-        link: "#",
-        imgSrc: "assets/images/github.png"
-    },
-    linkedin = {
-        link: "#",
-        imgSrc: "assets/images/LinkedIn.png"
-    },
-    stackFlow = {
-        link: "#",
-        imgSrc: "assets/images/stackoverflow.png"
-    },
+    // github = {
+    //     link: "#",
+    //     imgSrc: "assets/images/github.png"
+    // },
+    // linkedin = {
+    //     link: "#",
+    //     imgSrc: "assets/images/LinkedIn.png"
+    // },
+    // stackFlow = {
+    //     link: "#",
+    //     imgSrc: "assets/images/stackoverflow.png"
+    // },
     facebook = {
         link: "#",
         imgSrc: "assets/images/Facebook.png"

@@ -412,6 +412,7 @@ div#OR {
 
 .img-thumbnail {
   margin: 10px;
+  cursor: pointer;
 }
 
 .sideways>li {
