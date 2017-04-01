@@ -885,6 +885,7 @@ $(document).ready(function () {
       user_id: 0
     };
 
+
     if ((currentShowroom.showroom_name) && ((parmShowroomName == "") || (parmShowroomName == currentShowroom.showroom_name))) {
       //we are updating a current showroom
       parmShowroomId = currentShowroom.id;
