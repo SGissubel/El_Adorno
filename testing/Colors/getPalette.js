@@ -1,5 +1,6 @@
 var express = require("express");
 var ase = require('ase-utils');
+var cmykRgb = require('cmyk-rgb'); 
 var fs = require('fs');
 var convert = require('color-convert');
 
@@ -34,10 +35,18 @@ function getPalette(colorTable, format){
 		    console.log('Type   = ' + colorType); 
 
 		    var colorArray = [];
+		    var tempArray  = [];
 		    var colorHex; 
-		    // Parse RGB color array 
-		    colorArray = colorsObj.color;
-		    console.log('BArray = ' + colorArray); 
+		    // Parse color array 
+		    tempArray = colorsObj.color;
+		    console.log('BArray = ' + tempArray); 
+
+		    // CMYK convert to RGB
+		    if (colorModel == 'CMYK')
+		    	colorArray = cmykRgb(tempArray);
+		    else
+		    	colorArray = tempArray; 
+
 		    for (var j=0; j<colorArray.length; j++){
 		        var value = colorArray[j];
 		        // if color is a shade < 1 multiply by 255  
@@ -76,7 +85,8 @@ function getPalette(colorTable, format){
 	return clrPalette;	
 }
 
-var colorPalette = './BenjaminMoore_ColorPreview_en-us.ase';
+//var colorPalette = './BenjaminMoore_ColorPreview_en-us.ase';
+var colorPalette = './behr-pplus2003-colors.ase';
 var format = 'object';
 var clrPalette = getPalette(colorPalette,format); 
 

@@ -11,6 +11,7 @@ function getPalette(colorTable, format){
 
 	// Requires for getPalette function
 	var ase = require('ase-utils');
+	var cmykRgb = require('cmyk-rgb');
 	var fs = require('fs');
 	var convert = require('color-convert');
 
@@ -34,10 +35,17 @@ function getPalette(colorTable, format){
 	    var colorModel = colorsObj.model;
 	    var colorType  = colorsObj.type;
 
+	    var tempArray  = [];
 	    var colorArray = [];
-	    var colorHex; 
-	    // Parse RGB color array 
-	    colorArray = colorsObj.color; 
+	    var colorHex;
+
+	    // Parse color array 
+	    tempArray = colorsObj.color; 
+	    if (colorModel == 'CMYK')
+	    	colorArray = cmykRgb(tempArray);
+	    if (colorModel == 'RGB')
+	    	colorArray = tempArray; 
+
 	    for (var j=0; j<colorArray.length; j++){
 	        var value = colorArray[j];
 	        // if color is a shade < 1 multiply by 255  
