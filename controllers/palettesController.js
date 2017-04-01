@@ -75,7 +75,6 @@ function getPalette(colorTable, format){
 router.get("/", function(req, res) {
 	palette.all(function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
@@ -88,7 +87,7 @@ router.get("/palette/:id/:format", function(req, res) {
 	});	
 });
 
-router.post("/crt_palette", function(req, res){
+router.post("/create_palette", function(req, res){
 	var cols = ['palette_name','file_name','file_path'];
 	var vals = [req.body.palette_name,req.body.file_name,req.body.file_path];
 
