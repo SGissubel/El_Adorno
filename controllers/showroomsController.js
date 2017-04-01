@@ -68,7 +68,7 @@ router.post("/create_layer", function (req, res) {
 	var vals = [parseInt(req.body.layer_index), 
 				parseInt(req.body.height), parseInt(req.body.width),
 				parseInt(req.body.position_top), parseInt(req.body.position_left),
-				req.body.color, parseInt(req.body.opacity), req.layer_type,
+				req.body.color, parseInt(req.body.opacity), req.body.object_type,
 				parseInt(req.body.object_id), parseInt(req.body.showroom_id)];
 
 	layer.create(cols, vals, function (response) {
