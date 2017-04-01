@@ -110,7 +110,7 @@ $(document).ready(function () {
       
       clearCanvas();
 
-      currentShowroom.id = data[0].id;
+      currentShowroom.id = data[0].showroom_id;
       currentShowroom.showroom_height = data[0].showroom_height;
       currentShowroom.showroom_width = data[0].showroom_width;
       currentShowroom.showroom_name = data[0].showroom_name;
@@ -876,6 +876,7 @@ $(document).ready(function () {
     var showroomReturnData;
     var layerReturnData;
     var parmObj = {
+      showroom_id:0,
       showroom_height: 0,
       showroom_width: 0,
       showroom_name: "",
@@ -903,7 +904,7 @@ $(document).ready(function () {
 
     var sessionData = JSON.parse(sessionStorage.userSession);
 
-    // parmObj.showroom_id = parmShowroomId;
+    parmObj.showroom_id = parmShowroomId;
     parmObj.showroom_height = vCanvas.height;
     parmObj.showroom_width = vCanvas.width;
     parmObj.showroom_name = parmShowroomName;
