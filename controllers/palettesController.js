@@ -41,9 +41,9 @@ function getPalette(colorTable, format){
 	    for (var j=0; j<colorArray.length; j++){
 	        var value = colorArray[j];
 	        // if color is a shade < 1 multiply by 255  
-	        if (value<1){
+	        if (value<=1){
 	            value*=255;
-	            colorArray[j]=Math.floor(value);
+	            colorArray[j]=Math.ceil(value);
 	        }
 	    }
 
