@@ -700,11 +700,11 @@ $(document).ready(function () {
 
     if ($(this).data("type") === "art") {
       artworkCount++;
-      if (roomMode) objIndex = 1;
+      if (roomMode) objIndex = artworkCount;
       else {
-        if (colorExists && textureExists) objIndex = 2;
-        if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1;
-        if (!(colorExists) && !(textureExists)) objIndex = 0;
+        if (colorExists && textureExists) objIndex = 1 + artworkCount;
+        if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = artworkCount;
+        if (!(colorExists) && !(textureExists)) objIndex = artworkCount;
       }
       $canvas.moveLayer(layerName, objIndex).drawLayers();
     }
@@ -741,6 +741,7 @@ $(document).ready(function () {
   $(document).on("click", "#delete-obj", function () {
 
     $canvas.removeLayer(delLayer).drawLayers();
+    if (delLayer.data.type === "art") artworkCount--;
 
   });
 
