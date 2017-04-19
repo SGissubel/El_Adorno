@@ -3,6 +3,8 @@ $(document).ready(function () {
   var $canvas;
   var $canvasWidth;
   var $canvasHeight;
+  var $canvasWidthRatio;
+  var $canvasHeightRatio;
   var vCanvas;
   var appLoggedIn = false;
 
@@ -119,7 +121,9 @@ $(document).ready(function () {
       currentShowroom.file_name = data[0].file_name;
       currentShowroom.user_id = data[0].user_id;
 
-
+      $canvasWidthRatio = currentShowroom.showroom_width / $canvasWidth;
+      $canvasHeightRatio = currentShowroom.showroom_height / $canvasHeight;
+      
       for (var i = 0; i < data.length; i++) {
         switch (data[i].layer_type) {
           case "texture":
@@ -648,16 +652,16 @@ $(document).ready(function () {
     var top;
     var left;
 
-    if (h) height = h;
+    if (h) height = h / $canvasHeightRatio;
     else height = this.naturalHeight / 2;
 
-    if (w) width = w;
+    if (w) width = w / $canvasWidthRatio;
     else width = this.naturalWidth / 2;
 
-    if (t) top = t;
+    if (t) top = t / $canvasHeightRatio;
     else top = $(this).data("y");
 
-    if (l) left = l;
+    if (l) left = l / $canvasWidthRatio;
     else left = $(this).data("x");
 
     var objIndex;
@@ -794,6 +798,19 @@ $(document).ready(function () {
 
   }
 
+  function updateShowroom(url, parm, type) {
+    //send request to update showroom
+    $.ajax({
+      url: url,
+      data: parm,
+      method: type
+    }).done(function (data) {
+      //check for success
+      console.log(data);
+    });
+
+  }
+
   function ajaxSaveLayer(parm) {
     //send request to save showroom
     $.ajax({
@@ -873,7 +890,7 @@ $(document).ready(function () {
     $("#showroom-name").trigger("reset");  // new trigger function to reset
     var reqType;
     var parmShowroomId;
-    var ajaxURL = "/showrooms/create_showroom";
+    var ajaxURL;
     var showroomReturnData;
     var layerReturnData;
     var parmObj = {
@@ -916,11 +933,14 @@ $(document).ready(function () {
 
     //create showroom if necessary
     if (reqType == "POST") {
+      ajaxURL = "/showrooms/create_showroom";
       ajaxSaveShowroom(ajaxURL, parmObj, reqType);
     } else {
       //delete original layers and save the new ones
       ajaxDelLayers(parmShowroomId);
       saveLayers(parmShowroomId);
+      ajaxURL = "/showrooms/update_showroom";
+      updateShowroom(ajaxURL, parmObj, reqType);
     }
 
     //refresh my showrooms

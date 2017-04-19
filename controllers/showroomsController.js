@@ -83,6 +83,24 @@ router.post("/create_layer", function (req, res) {
 	});
 });
 
+router.put("/update_showroom", function (req, res) {
+	var table = "showrooms";
+	var colsVals =  {showroom_height: parseInt(req.body.showroom_height), showroom_width: parseInt(req.body.showroom_width)};
+	var condition = "id = " + parseInt(req.body.showroom_id);
+	var data = {
+		status_code: "",
+		showroom_id: parseInt(req.body.showroom_id)
+	};
+	showroom.update(colsVals, condition, function (response) {
+		if (response) {
+			data.status_code = "OK"
+		} else data.status_code = "ERROR"
+
+		res.send(data)
+
+	});
+});
+
 router.delete("/delete_layers/:id", function (req, res) {
 
 	console.log(req.params);
