@@ -86,6 +86,7 @@ $(document).ready(function () {
 
     $("#my-showrooms").css('width', $canvasWidth);
     $(".tab-pane-mod").css('height', $canvasHeight);
+    $("#canvas-toolbar").css('width', $canvasWidth);
 
   };
 
