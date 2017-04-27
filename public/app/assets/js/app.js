@@ -1100,7 +1100,7 @@ $(document).ready(function () {
 
     //reset fields
     $('.login-form').each(function () {
-      this.val("");
+      $(this).val("");
     });
 
     var userSession = {
@@ -1174,7 +1174,7 @@ $(document).ready(function () {
 
     //reset fields
     $('.registration-form').each(function () {
-      this.val("");
+      $(this).val("");
     });
 
     var newUser = {
