@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var Jimp = require("jimp");
 var path = require("path");
 
 var router = express.Router();
@@ -45,6 +46,14 @@ console.log(req.body.showroom_name);
 console.log(req.body.user_id);
 	showroom.create(cols, vals, function (response) {
 		data.showroom_id = response.insertId; //only way to get id of an insert for the mysql npm package
+		//create showroom thumbnail, resize, save 
+		var tn_filename = "tn_" + response.insertId +".png";
+		Jimp.read(req.body.blob, function (err, img) {
+			if (err) console.log("err: " + err);
+			img.resize(150, Jimp.AUTO)            // resize 
+				 .write(tn_filename); // save 
+		});
+
 		if (response) {
 			data.status_code = "OK"
 		} else data.status_code = "ERROR"

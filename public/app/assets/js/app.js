@@ -308,7 +308,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
           .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
-          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#rooms").append($imgThumbnail);
 
@@ -324,7 +324,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
           .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
-          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#floors").append($imgThumbnail);
 
@@ -356,7 +356,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
           .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "decor").attr("data-type", "decor")
-          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#decors").append($imgThumbnail);
 
@@ -377,7 +377,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
           .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
-          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#textures").append($imgThumbnail);
 
@@ -393,7 +393,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
           .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-          .attr("data-type", "art").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-type", "art").attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#artwork").append($imgThumbnail);
 
@@ -409,7 +409,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
           .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-          .attr("data-type", "furn").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-type", "furn").attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#furniture").append($imgThumbnail);
 
@@ -640,10 +640,10 @@ $(document).ready(function () {
     var left;
 
     if (h) height = h / $canvasHeightRatio;
-    else height = this.naturalHeight / 2;
+    else height = $(this).data("height");
 
     if (w) width = w / $canvasWidthRatio;
-    else width = this.naturalWidth / 2;
+    else width = $(this).data("width");
 
     if (t) top = t / $canvasHeightRatio;
     else top = $(this).data("y");
@@ -940,7 +940,8 @@ $(document).ready(function () {
       canvas_id:0,
       file_path: "",
       file_name: "", 
-      user_id: 0
+      user_id: 0,
+      blob: null
     };
 
 
@@ -970,20 +971,24 @@ $(document).ready(function () {
     parmObj.file_name = "";
     parmObj.user_id = sessionData.user_id;
 
-    //create showroom if necessary
-    if (reqType == "POST") {
-      ajaxURL = "/showrooms/create_showroom";
-      ajaxSaveShowroom(ajaxURL, parmObj, reqType);
-    } else {
-      //delete original layers and save the new ones
-      ajaxDelLayers(parmShowroomId);
-      saveLayers(parmShowroomId);
-      ajaxURL = "/showrooms/update_showroom";
-      updateShowroom(ajaxURL, parmObj, reqType);
-    }
+    $canvas.get(0).toBlob(function(blob){
+      parmObj.blob = blob;
+     
+      //create showroom if necessary
+      if (reqType == "POST") {
+        ajaxURL = "/showrooms/create_showroom";
+        ajaxSaveShowroom(ajaxURL, parmObj, reqType);
+      } else {
+        //delete original layers and save the new ones
+        ajaxDelLayers(parmShowroomId);
+        saveLayers(parmShowroomId);
+        ajaxURL = "/showrooms/update_showroom";
+        updateShowroom(ajaxURL, parmObj, reqType);
+      }
 
-    //refresh my showrooms
-    getShowrooms(sessionData.user_id);
+      //refresh my showrooms
+      getShowrooms(sessionData.user_id);
+    });
   });
 
 
