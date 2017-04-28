@@ -833,11 +833,23 @@ $(document).ready(function () {
       data: parm,
       method: type
     }).done(function (data) {
-      //check for success
-      console.log(data);
-      saveLayers(data.showroom_id);
+      
+      $canvas.get(0).toBlob(function(blob){
+        var formdata = new FormData();
+        formdata.append("blob", blob);
+        $.ajax({
+          url: "/showrooms/save_tn/" + data.showroom_id,
+          method: "POST",
+          data: formdata,
+          processData: false,
+          contentType: false,
+        }).done(function(response){
+          console.log(response);
+        });
+        console.log(data);
+        saveLayers(data.showroom_id);
+      });
     });
-
   }
 
   function updateShowroom(url, parm, type) {
@@ -845,10 +857,22 @@ $(document).ready(function () {
     $.ajax({
       url: url,
       data: parm,
-      method: type
+      method: type,
     }).done(function (data) {
-      //check for success
-      console.log(data);
+      $canvas.get(0).toBlob(function(blob){
+        var formdata = new FormData();
+        formdata.append("blob", blob);
+        $.ajax({
+          url: "/showrooms/save_tn/" + data.showroom_id,
+          method: "POST",
+          data: formdata,
+          processData: false,
+          contentType: false,
+        }).done(function(response){
+          console.log(response);
+        });
+        console.log(data);
+      });
     });
 
   }
@@ -940,8 +964,7 @@ $(document).ready(function () {
       canvas_id:0,
       file_path: "",
       file_name: "", 
-      user_id: 0,
-      blob: null
+      user_id: 0
     };
 
 
@@ -971,24 +994,20 @@ $(document).ready(function () {
     parmObj.file_name = "";
     parmObj.user_id = sessionData.user_id;
 
-    $canvas.get(0).toBlob(function(blob){
-      parmObj.blob = blob;
-     
-      //create showroom if necessary
-      if (reqType == "POST") {
-        ajaxURL = "/showrooms/create_showroom";
-        ajaxSaveShowroom(ajaxURL, parmObj, reqType);
-      } else {
-        //delete original layers and save the new ones
-        ajaxDelLayers(parmShowroomId);
-        saveLayers(parmShowroomId);
-        ajaxURL = "/showrooms/update_showroom";
-        updateShowroom(ajaxURL, parmObj, reqType);
-      }
+    //create showroom if necessary
+    if (reqType == "POST") {
+      ajaxURL = "/showrooms/create_showroom";
+      ajaxSaveShowroom(ajaxURL, parmObj, reqType);
+    } else {
+      //delete original layers and save the new ones
+      ajaxDelLayers(parmShowroomId);
+      saveLayers(parmShowroomId);
+      ajaxURL = "/showrooms/update_showroom";
+      updateShowroom(ajaxURL, parmObj, reqType);
+    }
 
-      //refresh my showrooms
-      getShowrooms(sessionData.user_id);
-    });
+    //refresh my showrooms
+    getShowrooms(sessionData.user_id);
   });
 
 
