@@ -145,6 +145,10 @@
   
 }
 
+#home:hover {
+  color: white;
+}
+
 /*.byname:hover {
   color: #222222;
 }*/
