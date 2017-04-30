@@ -795,6 +795,20 @@ $(document).ready(function () {
 
   });
 
+  $('#btn-flip').on('click', function () {
+    var activeObject = fabCanvas.getActiveObject()
+    activeObject.flipX = !(activeObject.flipX);
+    // var activeGroup = fabCanvas.getActiveGroup();
+    // var objectsInGroup = activeGroup.getObjects();
+    fabCanvas.discardActiveObject();
+    // objectsInGroup.forEach(function(object) {
+    //   fabCanvas.flipX(object);
+    // });
+
+    fabCanvas.renderAll();
+
+  });
+     
   $(document).on("click", "#btn-download", function (e) {
 
     checkUser();
