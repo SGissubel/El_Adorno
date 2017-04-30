@@ -2,7 +2,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 var createHash = require("hash-generator");
-var then = require("bluebird");
 var bcrypt = require('bcryptjs');
 var router = express.Router();
 
@@ -28,14 +27,14 @@ router.post("/", function(req, res) {
 
 router.use(express.static(process.cwd() + "./public"));
 
-//checks hash, resets password.
+//checks hash, serves reset pass form
 router.get('/36bledv3asa5yw96hnlv/:hash/', function(req, res) {
   var hash = req.params.hash;
   var isNew = req.params.new;
     verifyHash(hash, res);  
     console.log("this is the hash", hash)
 });
-
+//checks hash, resets password.
 router.put('/36bledv3asa5yw96hnlv/:hash/reset', function(req, res){
   var newPass = req.body.pass
   var hash = req.params.hash;
