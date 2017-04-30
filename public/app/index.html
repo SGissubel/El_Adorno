@@ -17,7 +17,7 @@
 
 <body>
 
-  <nav class="navbar navbar-lg navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-sm navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="row" id="login-row">
         <div class="col-md-12 text-right">
@@ -26,18 +26,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-md-offset-6">
+        <div class="col-md-7 text-right">
+          <span class="byname">Dream... Create... Design... your inspirations with impulso</span>
+        </div>
+        <div class="col-md-5">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <!-- <div id="how-to" class="nav-links"> How to</div> -->
               <div id='how-To' class="nav-links">How to <span class="glyphicon glyphicon-question-sign"></span></div>
             </li>
             <li>
               <div id="about" class="nav-links"> About</div>
             </li>
-            <!--<li>
-              <div id="team" class="nav-links"> Team</div>
-            </li>-->
             <li>
               <div id="contact" class="nav-links"> Contact</div>
             </li>
@@ -54,7 +53,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 text-left">
-          <div class="navbar-brand byname-lg fade-in" id="home"><span class="byname"> Dream... Create... Design... your inspirations with <span class="logo-font">MIΛ VETRINΛ</span> by impulso</span></div>
+          <div class="navbar-brand byname-sm" id="home"><span class="logo-font">MIΛ VETRINΛ</span></div>
         </div>
       </div>
     </div>
@@ -116,10 +115,19 @@
 
         </ul>
       </div>
-
     </div>
 
     <div class="row">
+      <div class="col-md-9">
+        <div id="canvas-toolbar">
+          <div class="left-tool tool-dl tool" id="btn-download"><span class="fa fa-download" style="font-size:24px"></span> Download</div>
+          <div class="left-tool tool-sv tool" id="btn-save"><span class="fa fa-database" style="font-size:24px"></span> Save</div>
+          <div class="left-tool tool-clr tool" id="btn-clear"><span class="fa fa-eraser" style="font-size:24px"></span> Clear</div>
+        </div> 
+      </div>
+    </div>
+
+    <!--<div class="row">
       <div class="col-md-8 col-md-offset-1">
         <div class="canvas-btns-container">
           <a class="button btn btn-default" id="btn-download">Download Showroom</a>
@@ -127,7 +135,7 @@
           <button class="button btn btn-default" id="btn-clear">Clear Canvas</button>
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="row">
       <div class="col-md-9">
         <div class="showrooms-container">
@@ -470,10 +478,13 @@
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="assets/js/jcanvas.min.js"></script>
-  <script src="assets/js/jcanvas-handles.min.js"></script>
+  <!--<script src="assets/js/jcanvas.min.js"></script>-->
+  <!--<script src="assets/js/jcanvas-handles.min.js"></script>-->
+  <script src="assets/js/fabric.min.js"></script>
+  <script src="assets/js/fabric.canvasex.js"></script>
+  <script src="assets/js/FileSaver.min.js"></script>
   <script src="assets/js/footer.js"></script>
-  <script src="assets/js/header.js"></script>
+  <!--<script src="assets/js/header.js"></script>-->
   <script src="assets/js/validator.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/spectrum.js"></script>

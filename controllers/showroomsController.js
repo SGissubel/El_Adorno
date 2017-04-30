@@ -1,5 +1,9 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var Jimp = require("jimp");
+var multer  = require('multer');
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
 var path = require("path");
 
 var router = express.Router();
@@ -40,9 +44,6 @@ router.post("/create_showroom", function (req, res) {
 		status_code: "",
 		showroom_id: 0
 	};
-console.log(req.body);
-console.log(req.body.showroom_name);
-console.log(req.body.user_id);
 	showroom.create(cols, vals, function (response) {
 		data.showroom_id = response.insertId; //only way to get id of an insert for the mysql npm package
 		if (response) {
@@ -54,13 +55,39 @@ console.log(req.body.user_id);
 	});
 });
 
+router.post("/save_tn/:id", upload.single("blob"),  function (req, res, next) {
+	var data = {
+		status_code: "",
+		tn_name: ""
+	};
+	var showroom_id = req.params.id;
+	var blob;
+	var savePath = "./public/app/userShowrooms/";
+
+	var tn_filename = "tn_" + showroom_id +".png";
+	savePath += tn_filename;
+	data.tn_name = tn_filename
+	console.log("path: " + savePath);
+	Jimp.read(req.file.buffer, function (err, img) {
+		console.log("Success Jimp Read ");
+		if (err) console.log("err: " + err);
+		img.resize(150, Jimp.AUTO)            // resize 
+			.write(savePath); // save 
+	});
+
+	if (res) {
+		data.status_code = "OK"
+	} else data.status_code = "ERROR"
+
+	res.send(data)
+
+});
+
 router.post("/create_layer", function (req, res) {
 	var data = {
 		status_code: "",
 		layer_id: 0
 	};
-
-	console.log(req.body);
 
 	var cols = ['layer_index', 'height', 'width', 'position_top',
 				'position_left', 'color', 'opacity', 'layer_type', 
@@ -102,8 +129,6 @@ router.put("/update_showroom", function (req, res) {
 });
 
 router.delete("/delete_layers/:id", function (req, res) {
-
-	console.log(req.params);
 
 	layer.delete("showroom_id=" + [req.params.id], function (data) {
 		res.send(data);

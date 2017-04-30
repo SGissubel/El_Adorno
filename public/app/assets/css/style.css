@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-@keyframes fadein {
+/*@keyframes fadein {
   from {
     opacity: 0;
   }
@@ -20,11 +20,11 @@
   }
 }
 
-.navbar {
+.navbar, .navbar-lg, .navbar-sm {
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   transition: all .5s;
-}
+}*/
 
 
 /*.logo {
@@ -32,7 +32,7 @@
     -moz-transition: all .5s;
     transition: all .5s;
 }*/
-
+/*
 .byname-sm,
 .byname-lg {
   -webkit-transition: all .5s;
@@ -42,23 +42,20 @@
 
 .fade-out {
   animation-name: fadeout;
-  animation-duration: .5s;
+  animation-duration: .1s;
 }
 
 .fade-in {
   animation-name: fadein;
   animation-duration: .5s;
 }
-
-.logo-lg {
+*/
+/*.logo-lg {
   margin: -87px 0 0px -160px;
-  /* play with these to position the image */
-  /*position:absolute;*/
   z-index: 100;
   width: 190px;
-  /*background-color: #fff;*/
   padding: 5px;
-}
+}*/
 
 .logo-sm {
   margin: -64px 0 0px -160px;
@@ -70,20 +67,20 @@
   padding: 5px;
 }
 
-.navbar-lg {
+/*.navbar-lg {
   height: 150px;
-}
+}*/
 
 .navbar-sm {
   height: 100px;
 }
 
-.byname-lg {
+/*.byname-lg {
   position: relative;
   top: -10px;
   left: 0px;
   font-size: 35px;
-}
+}*/
 
 .byname-sm {
   position: relative;
@@ -135,7 +132,7 @@
 
 .logo-font {
   font-family: "Roboto", "San Serif";
-  font-weight: 100;
+  font-weight: 900;
 }
 
 .user {
@@ -148,9 +145,13 @@
   
 }
 
-.byname:hover {
-  color: #222222;
+#home:hover {
+  color: white;
 }
+
+/*.byname:hover {
+  color: #222222;
+}*/
 
 .nav-links {
   /*font-family: 'Russo One', sans-serif;*/
@@ -444,8 +445,8 @@ div#OR {
   border: 1px black solid;
   padding: 20px;
   display: block;
-  margin-right: auto;
-  margin-left: auto;
+  /*margin-right: auto;
+  margin-left: auto;*/
   margin-top: 40px;
   margin-bottom: 40px;
   font-family: "Roboto", "San Serif";
@@ -511,7 +512,27 @@ h4 {
   display: none;
 }
 
+#canvas-toolbar {
+  height: 50px;
+  background-color: rgba(0, 0, 0, 1)
+}
 
+.left-tool {
+float: left;
+}
+
+.right-tool {
+float: right;
+}
+
+.tool {
+height: 50px;
+color:white;
+font-weight: 100;
+padding: 13px 0px 7px 0px;
+margin: 0px 5px 0px 10px;
+cursor: pointer;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 
@@ -524,7 +545,7 @@ body {
   /* Margin bottom by footer height */
   background-color: #f2f2f2;
   margin-bottom: 80px;
-  margin-top: 150px
+  margin-top: 100px
 }
 
 .footer {
@@ -591,126 +612,6 @@ body {
   }
 }
 
-
-@media screen and (min-width: 1300px) {
-
-.byname-lg {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  font-size: 25px;
-}
-
-.byname-sm {
-  position: relative;
-  top: -55px;
-  left: 0px;
-  font-size: 25px;
-}
-
-.account-container {
-  min-width: 200px;
-}
-
-  .nav-links, #user-name {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 1550px) {
-
-.byname-lg {
-  position: relative;
-  top: 5px;
-  left: 0px;
-  font-size: 30px;
-}
-
-.byname-sm {
-  position: relative;
-  top: -50px;
-  left: 0px;
-  font-size: 30px;
-}
-
-.account-container {
-  min-width: 200px;
-}
-
-  .nav-links, #user-name {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 1800px) {
-.byname-lg {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  font-size: 30px;
-}
-
-.byname-sm {
-  position: relative;
-  top: -50px;
-  left: 0px;
-  font-size: 30px;
-}
-
-  .nav-links, #user-name {
-    font-size: 20px;
-  }
-}
-
-@media screen and (min-width: 2500px) {
-.byname-lg {
-  position: relative;
-  top: -10px;
-  left: 0px;
-  font-size: 35px;
-}
-
-.byname-sm {
-  position: relative;
-  top: -60px;
-  left: 0px;
-  font-size: 35px;
-}
-
-  .nav-links, #user-name {
-    font-size: 25px;
-  }
-}
-
-
-/* ik code */
-
-
-/*#footer {
-  position:fixed;
-  left:0px;
-  bottom:0px;
-  height:20px;
-
-  width:100%;
-  background:#999;
-}*/
-
-
-/* IE 6 */
-
-
-/** html #footer {
-  position:absolute;
-  top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
-}*/
-
-
-/*#footer_push {
-       clear: both;
-       height: 20px;
-     }*/
-
 .img-circle {
   border-radius: 50%;
 }
@@ -773,4 +674,110 @@ body {
 
 .other-nav-links a {
   color: #666666;
+}
+
+@media screen and (min-width: 1300px) {
+
+/*.byname-lg {
+  position: relative;
+  top: -75px;
+  left: 0px;
+  font-size: 25px;
+}*/
+
+.byname-sm {
+  position: relative;
+  top: -55px;
+  left: 0px;
+  font-size: 25px;
+}
+
+.byname {
+  font-size: 25px;
+}
+
+.account-container {
+  min-width: 200px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1550px) {
+
+/*.byname-lg {
+  position: relative;
+  top: -70px;
+  left: 0px;
+  font-size: 30px;
+}*/
+
+.byname-sm {
+  position: relative;
+  top: -57px;
+  left: 0px;
+  font-size: 30px;
+}
+
+.byname {
+  font-size: 30px;
+}
+
+.account-container {
+  min-width: 200px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+/*.byname-lg {
+  position: relative;
+  top: -70x;
+  left: 0px;
+  font-size: 30px;
+}*/
+
+.byname-sm {
+  position: relative;
+  top: -50px;
+  left: 0px;
+  font-size: 30px;
+}
+
+.byname {
+  font-size: 30px;
+}
+
+  .nav-links, #user-name {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+/*.byname-lg {
+  position: relative;
+  top: -85px;
+  left: 0px;
+  font-size: 35px;
+}*/
+
+.byname-sm {
+  position: relative;
+  top: -60px;
+  left: 0px;
+  font-size: 35px;
+}
+
+.byname {
+  font-size: 35px;
+}
+
+  .nav-links, #user-name {
+    font-size: 25px;
+  }
 }
