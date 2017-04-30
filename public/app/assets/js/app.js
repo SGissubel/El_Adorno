@@ -253,6 +253,18 @@ $(document).ready(function () {
       $(".showrooms-container").addClass("hidden");
     }
   };
+  // delete this
+      $("#passr").on("click", function(){
+      var email = { email: $("#reg-email").val() };
+      console.log(email)
+      $.ajax({
+      url: "/passreset",
+      data: email,
+      method: "POST"
+      }).done(function(data) {
+
+      });
+    }); 
 
   function showHandles(layer) {
     return $canvas.setLayer(layer, {
