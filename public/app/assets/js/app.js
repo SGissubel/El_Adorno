@@ -117,15 +117,15 @@ $(document).ready(function () {
       // } else $(".showrooms-container").addClass("hidden");
 
       for (var i = 0; i < data.length; i++) {
-        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail")
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail tn-showroom")
           .attr("src", './userShowrooms' + "/tn_" + data[i].id + ".png").attr("width", "150px");
-
-        var $divText =  $("<div>").text(data[i].showroom_name);
+        var $Delete = $("<div>").html("<span class=\"fa fa-trash\" style=\"font-size:24px\"></span>").attr("data-id", data[i].id).addClass("del-showroom");
+        var $divText =  $("<div>").text(data[i].showroom_name + " ").addClass("del-showroom-text");
         var $divShowroom = $("<div>").addClass("my-showroom text-center").attr("data-user-id", data[i].user_id)
           .attr("data-id", data[i].id).attr("data-canvas-id", data[i].canvas_id)
           .attr("data-height", data[i].showroom_height).attr("data-width", data[i].showroom_width);
 
-        $divShowroom.append($imgThumbnail).append($divText);
+        $divShowroom.append($Delete).append($imgThumbnail).append($divText);
 
 
           //*******load and display showroom using data[i].file_path and data[i].file_name
@@ -558,6 +558,15 @@ $(document).ready(function () {
 
   });
 
+   $(document).on("click", ".del-showroom", function () {
+       var showroomId = $(this).data("id");
+       var sessionData = JSON.parse(sessionStorage.userSession);
+
+
+       ajaxDelLayersAndShowroom(showroomId, sessionData.user_id);
+
+   });
+
   // $(document).on("click", ".img-base", function (e, h, w, t, l) {
   $(document).on("click", ".img-base", function () {
     var height;
@@ -916,6 +925,25 @@ $(document).ready(function () {
     }).done(function (data) {
       //check for success
       console.log(data);
+    });
+
+  }
+
+  function ajaxDelLayersAndShowroom(parm, user_id) {
+    //send request to delete showrooms
+
+    $.ajax({
+      url: "/showrooms/delete_layers/" + parm,
+      method: "DELETE"
+    }).done(function (data) {
+      $.ajax({
+        url: "/showrooms/delete_showroom/" + parm,
+        method: "DELETE"
+      }).done(function (data) {
+        console.log(data);
+        //refresh my showrooms
+        getShowrooms(user_id);
+      });
     });
 
   }

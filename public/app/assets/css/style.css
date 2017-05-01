@@ -339,6 +339,10 @@ div#OR {
   padding: 5px 15px;
 }
 
+.del-showroom, .del-showroom-text {
+  display: inline-block;
+}
+
 #user-container {
   display: flex;
   flex-direction: row;
@@ -433,6 +437,12 @@ div#OR {
 .img-thumbnail {
   margin: 10px;
   cursor: pointer;
+}
+
+.tn-showroom {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sideways>li {

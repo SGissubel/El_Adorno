@@ -135,6 +135,12 @@ router.delete("/delete_layers/:id", function (req, res) {
 	});
 });
 
+router.delete("/delete_showroom/:id", function (req, res) {
+
+	showroom.delete("id=" + [req.params.id], function (data) {
+		res.send(data);
+	});
+});
 
 // Export routes for server.js to use.
 module.exports = router;
