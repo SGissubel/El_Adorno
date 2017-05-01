@@ -5,12 +5,15 @@ $(document).ready(function () {
   var $canvasHeight;
   var $canvasWidthRatio;
   var $canvasHeightRatio;
-  var fabCanvas;
+  var vCanvas;
   var appLoggedIn = false;
 
 
 
   var delLayer;
+  var patt;
+  var patt_obj_id;
+  var patt_type;
   var palArray = [];
   var palObj = [];
   var currentShowroom = {
@@ -30,25 +33,6 @@ $(document).ready(function () {
   var decorMode = false;
   var roomMode = false;
   var artworkCount = 0;
-
-//extends fabric.js by adding a property called name to fabric objects which can be used to 
-//assign a name to object layers and reference them later on via their name
-  fabric.Object.prototype.name = null;
-  fabric.Object.prototype.data = {};
-
-  fabric.Canvas.prototype.getItemByName = function(name) {
-    var object = null,
-        objects = this.getObjects();
-
-    for (var i = 0, len = this.size(); i < len; i++) {
-      if (objects[i].name && objects[i].name === name) {
-        object = objects[i];
-        break;
-      }
-    }
-
-    return object;
-  };
 
   function setCanvas() {
     if ($(window).width() > 1900 && $(window).width() <= 2500) {
@@ -71,28 +55,18 @@ $(document).ready(function () {
 
     var newCanvas = $("<canvas>").attr("id", "room-canvas").attr("width", $canvasWidth).attr("height", $canvasHeight);
 
-    // Do some initializing stuff
-    fabric.Object.prototype.set({
-        transparentCorners: false,
-        cornerColor: 'rgba(102,153,255,0.5)',
-        cornerSize: 12,
-        padding: 5
-    });
-
     $("#canvas").append(newCanvas);
     $canvas = $("#room-canvas");
-    fabCanvas = new fabric.CanvasEx("room-canvas");
-    fabCanvas.preserveObjectStacking = true;
+    vCanvas = document.getElementById('room-canvas');
 
     // $("#my-showrooms").css('width', $canvasWidth);
     $(".tab-pane-mod").css('height', $canvasHeight);
-    $("#canvas-toolbar").css('width', $canvasWidth);
 
   };
 
   function clearCanvas() {
 
-    fabCanvas.clear();
+    $canvas.removeLayers().drawLayers();
     floorMode = false;
     decorMode = false;
     roomMode = false;
@@ -111,22 +85,16 @@ $(document).ready(function () {
     }).done(function (data) {
       $("#my-showrooms").empty();
       // if (data.length > 0) {
-      //   $(".showrooms-container").removeClass("hidden");
-      //   var $h3 = $("<h3>").text("My Showrooms");
-      //   $("#my-showrooms").append($h3).append("<hr>");
+        // $(".showrooms-container").removeClass("hidden");
+        // var $h3 = $("<h3>").text("My Showrooms");
+        // $("#my-showrooms").append($h3).append("<hr>");
       // } else $(".showrooms-container").addClass("hidden");
 
       for (var i = 0; i < data.length; i++) {
-        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail")
-          .attr("src", './userShowrooms' + "/tn_" + data[i].id + ".png").attr("width", "150px");
-
-        var $divText =  $("<div>").text(data[i].showroom_name);
-        var $divShowroom = $("<div>").addClass("my-showroom text-center").attr("data-user-id", data[i].user_id)
+        var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
           .attr("data-id", data[i].id).attr("data-canvas-id", data[i].canvas_id)
-          .attr("data-height", data[i].showroom_height).attr("data-width", data[i].showroom_width);
-
-        $divShowroom.append($imgThumbnail).append($divText);
-
+          .attr("data-height", data[i].showroom_height).attr("data-width", data[i].showroom_width)
+          .text(data[i].showroom_name);
 
           //*******load and display showroom using data[i].file_path and data[i].file_name
 
@@ -156,48 +124,27 @@ $(document).ready(function () {
       $canvasWidthRatio = currentShowroom.showroom_width / $canvasWidth;
       $canvasHeightRatio = currentShowroom.showroom_height / $canvasHeight;
       
-      data.forEach(function(data) {
-         switch (data.layer_type) {
+      for (var i = 0; i < data.length; i++) {
+        switch (data[i].layer_type) {
           case "texture":
-            addTexture(data)
+            addTexture(data[i])
             break;
           case "color":
-            addColor(data)
+            addColor(data[i])
             break;
           case "room":
-            addBaseImg(data);
+            addBaseImg(data[i]);
             break;
           case "decor":
-            addBaseImg(data);
+            addBaseImg(data[i]);
             break;
           case "floor":
-            addBaseImg(data);
+            addBaseImg(data[i]);
             break;
           default: //art, furniture
-            addOtherObjects(data);
+            addOtherObjects(data[i]);
         }
-      });
-      // for (var i = 0; i < data.length; i++) {
-      //   switch (data[i].layer_type) {
-      //     case "texture":
-      //       addTexture(data[i])
-      //       break;
-      //     case "color":
-      //       addColor(data[i])
-      //       break;
-      //     case "room":
-      //       addBaseImg(data[i]);
-      //       break;
-      //     case "decor":
-      //       addBaseImg(data[i]);
-      //       break;
-      //     case "floor":
-      //       addBaseImg(data[i]);
-      //       break;
-      //     default: //art, furniture
-      //       addOtherObjects(data[i]);
-      //   }
-      // }
+      }
     });
   };
 
@@ -213,11 +160,12 @@ $(document).ready(function () {
     // var colorName = palObj[(palArray.indexOf(data.color.toUpperCase()))].name;
     $("#color-name").html("");
 
+    $canvas.removeLayer("color");
 
     if (textureExists) {
-      var texObj = fabCanvas.getItemByName("texture");
-      texObj.visible = true;
-
+      $canvas.setLayer("texture", {
+        opacity: 1
+      });
       colorIndex = 1;
       colorOpacity = .9;
     } else {
@@ -225,24 +173,25 @@ $(document).ready(function () {
       colorOpacity = 1;
     }
 
-    var colorObj = new fabric.Rect({
+
+    $canvas.addLayer({
       name: "color",
-      fill: data.color,            
+      type: "rectangle",
+      fillStyle: data.color,
       opacity: colorOpacity,
-      selectable: false,
+      draggable: false,
       data: {
         color: data.color
       },
-      left: 0,
-      top: 0,
-      width: fabCanvas.width,
-      height: fabCanvas.height
-    });
-    fabCanvas.add(colorObj);
-    colorObj.moveTo(colorIndex);
-    fabCanvas.renderAll();
-    colorExists = true;
+      fromCenter: false,
+      index: colorIndex,
+      x: 0,
+      y: 0,
+      width: vCanvas.width,
+      height: vCanvas.height
+    }).drawLayers();
 
+    colorExists = true;
   }
 
   function addBaseImg(data) {
@@ -252,7 +201,7 @@ $(document).ready(function () {
   }
 
   function addOtherObjects(data) {
-    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left, data.flipped]);
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left]);
 
   }
 
@@ -270,16 +219,18 @@ $(document).ready(function () {
         //cookie expired
         appLoggedIn = false;
         sessionStorage.removeItem("userSession");
+        $("#btn-download").removeAttr("download").removeAttr("href");
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
 
         // Hide sign-in button.
         $("#sign-in").removeClass("hidden");
-        $(".showrooms-container").addClass("hidden");
+        // $(".showrooms-container").addClass("hidden");
 
       } else {
         //user session is in sessionStorage and has not expired
         appLoggedIn = true;
+        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
         // Set the user's profile pic and name.
         // this.userPic.css("decorImage", "url(" + profilePicUrl + ")");
         $("#user-name").text("Welcome, " + data.first_name);
@@ -296,27 +247,76 @@ $(document).ready(function () {
     } else {
       appLoggedIn = false;
       sessionStorage.removeItem("userSession");
+      $("#btn-download").removeAttr("download").removeAttr("href");
 
       $(".account-container").css('visibility', 'hidden');
       $("#sign-out").addClass("hidden");
 
       // Hide sign-in button.
       $("#sign-in").removeClass("hidden");
-      $(".showrooms-container").addClass("hidden");
+      // $(".showrooms-container").addClass("hidden");
     }
   };
-  // delete this
-      $("#passr").on("click", function(){
-      var email = { email: $("#reg-email").val() };
-      console.log(email)
-      $.ajax({
-      url: "/passreset",
-      data: email,
-      method: "POST"
-      }).done(function(data) {
 
-      });
-    }); 
+  function showHandles(layer) {
+    return $canvas.setLayer(layer, {
+      handle: {
+        type: "rectangle",
+        visible: true,
+        strokeWidth: 1,
+        fillStyle: "#00ffff",
+        width: 20,
+        height: 20,
+      }
+    });
+  };
+
+  function hideHandles(layer) {
+    return $canvas.setLayer(layer, {
+      handle: {
+        type: "rectangle",
+        visible: false,
+        strokeWidth: 5,
+        fillStyle: "#00ffff",
+        width: 10,
+        height: 10,
+      }
+    });
+  };
+
+  function draw(patt, _this) {
+    var objOpacity;
+
+    if (colorExists) objOpacity = 1;
+    else objOpacity = 0;
+
+    textureExists = true;
+    $canvas.removeLayer("texture");
+
+    $canvas.addLayer({
+      name: "texture",
+      type: "rectangle",
+      fillStyle: patt,
+      opacity: objOpacity,
+      draggable: false,
+      data: {
+        type: patt_type,
+        objid: patt_obj_id
+      },
+      fromCenter: false,
+      x: 0,
+      y: 0,
+      width: vCanvas.width,
+      height: vCanvas.height
+    });
+
+    $canvas.setLayer("color", {
+      opacity: .9
+    });
+
+    $canvas.moveLayer("texture", 0).drawLayers();
+
+  };
 
   function loadRooms() {
     $.ajax({
@@ -325,8 +325,8 @@ $(document).ready(function () {
     }).done(function (data) {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-          .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
-          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "room").attr("data-type", "room")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#rooms").append($imgThumbnail);
 
@@ -341,8 +341,8 @@ $(document).ready(function () {
     }).done(function (data) {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-          .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
-          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "floor").attr("data-type", "floor")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#floors").append($imgThumbnail);
 
@@ -373,8 +373,8 @@ $(document).ready(function () {
     }).done(function (data) {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-base").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-          .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "decor").attr("data-type", "decor")
-          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "decor").attr("data-type", "decor")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#decors").append($imgThumbnail);
 
@@ -394,8 +394,8 @@ $(document).ready(function () {
     }).done(function (data) {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-patt").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", false)
-          .attr("data-width", fabCanvas.width).attr("data-height", fabCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
-          .attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-width", vCanvas.width).attr("data-height", vCanvas.height).attr("data-x", 0).attr("data-y", 0).attr("data-name", "texture").attr("data-type", "texture")
+          .attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#textures").append($imgThumbnail);
 
@@ -411,7 +411,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
           .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-          .attr("data-type", "art").attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-type", "art").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#artwork").append($imgThumbnail);
 
@@ -427,7 +427,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
           .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
-          .attr("data-type", "furn").attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
+          .attr("data-type", "furn").attr("src", data[i].file_path + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#furniture").append($imgThumbnail);
 
@@ -454,6 +454,9 @@ $(document).ready(function () {
   loadArtwork();
 
   loadFurniture();
+
+// $canvas.detectPixelRatio();
+  // $canvas.restoreCanvas();
 
   //*********************Event Listeners**********************************
 
@@ -506,12 +509,12 @@ $(document).ready(function () {
           var colorName = palObj[(palArray.indexOf(color.toHexString().toUpperCase()))].name;
           $("#color-name").html(colorName);
 
-
-          fabCanvas.remove(fabCanvas.getItemByName("color"));
+          $canvas.removeLayer("color");
 
           if (textureExists) {
-            var texObj = fabCanvas.getItemByName("texture");
-            texObj.visible = true;
+            $canvas.setLayer("texture", {
+              opacity: 1
+            });
             colorIndex = 1;
             colorOpacity = .9;
           } else {
@@ -519,24 +522,25 @@ $(document).ready(function () {
             colorOpacity = 1;
           }
 
-          var colorObj = new fabric.Rect({
+
+          $canvas.addLayer({
             name: "color",
-            fill: color.toHexString(),            
+            type: "rectangle",
+            fillStyle: color.toHexString(),
             opacity: colorOpacity,
-            selectable: false,
+            draggable: false,
             data: {
               color: color.toHexString()
             },
-            left: 0,
-            top: 0,
-            width: fabCanvas.width,
-            height: fabCanvas.height
-          });
-          fabCanvas.add(colorObj);
-          colorObj.moveTo(colorIndex);
-          fabCanvas.renderAll();
-          colorExists = true;
+            fromCenter: false,
+            index: colorIndex,
+            x: 0,
+            y: 0,
+            width: vCanvas.width,
+            height: vCanvas.height
+          }).drawLayers();
 
+          colorExists = true;
         },
         palette: [palArray]
       });
@@ -585,13 +589,29 @@ $(document).ready(function () {
     top = $(this).data("y");
     left = $(this).data("x");
 
-    if (floorMode) fabCanvas.remove(fabCanvas.getItemByName("floor"));
-    if (roomMode) fabCanvas.remove(fabCanvas.getItemByName("room"));
-    if (decorMode) fabCanvas.remove(fabCanvas.getItemByName("decor"));
+    if (floorMode) $canvas.removeLayer("floor");
+    if (roomMode) $canvas.removeLayer("room");
+    if (decorMode) $canvas.removeLayer("decor");
 
     floorMode = false;
     decorMode = false;
     roomMode = false;
+
+    var objIndex;
+
+    if ($(this).data("type") === "room") {
+      if (colorExists) $canvas.removeLayer("color");
+      if (textureExists) $canvas.removeLayer("texture");
+      colorExists = false;
+      textureExists = false;
+      objIndex = 0;
+      $("#full").spectrum("disable");
+    } else {
+      $("#full").spectrum("enable");
+      if (colorExists && textureExists) objIndex = 2 + artworkCount;
+      if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1 + artworkCount;
+      if (!(colorExists) && !(textureExists)) objIndex = 0 + artworkCount;
+    }
 
     switch ($(this).data("type")) {
       case "floor":
@@ -605,64 +625,38 @@ $(document).ready(function () {
         break;
     }
 
-    var _this = this;
-
-    var imgURL = $(_this).data("src");
-
-    fabric.Image.fromURL(imgURL, function(img) {
-      // var imgObj = new fabric.Image(img);
-      var imgObj = img;
-      imgObj.set({
-      name: $(_this).data("name"),
-      selectable: $(_this).data("drag"),
+    $canvas.addLayer({
+      type: "image",
+      name: $(this).data("name"),
+      source: $(this).data("src"),
+      draggable: $(this).data("drag"),
       data: {
-        type: $(_this).data("type"),
-        objid: $(_this).data("obj-id")
+        type: $(this).data("type"),
+        objid: $(this).data("obj-id")
       },
       opacity: 1,
-      centeredScaling: false,
-      left: left,
-      top: top,
+      fromCenter: false,
+      intangible: true,
+      index: objIndex,
+      x: left,
+      y: top,
       width: width,
-      height: height,
-      evented: false
-    })
-    
-    var objIndex;
-
-    if ($(this).data("type") === "room") {
-      if (colorExists) fabCanvas.remove(fabCanvas.getItemByName("color"));
-      if (textureExists) fabCanvas.remove(fabCanvas.getItemByName("texture"));
-      colorExists = false;
-      textureExists = false;
-      objIndex = 0;
-      $("#full").spectrum("disable");
-    } else {
-        $("#full").spectrum("enable");
-        if (colorExists && textureExists) objIndex = 2 + artworkCount;
-        if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = 1 + artworkCount;
-        if (!(colorExists) && !(textureExists)) objIndex = 0 + artworkCount;
-    }
-
-    fabCanvas.add(imgObj);
-    imgObj.moveTo(objIndex);
-    fabCanvas.renderAll();
-    });
+      height: height
+    }).drawLayers();
 
   });
 
-  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l, f) {
+  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l) {
     var height;
     var width;
     var top;
     var left;
-    var flipped;
 
     if (h) height = h / $canvasHeightRatio;
-    else height = $(this).data("height");
+    else height = this.naturalHeight / 2;
 
     if (w) width = w / $canvasWidthRatio;
-    else width = $(this).data("width");
+    else width = this.naturalWidth / 2;
 
     if (t) top = t / $canvasHeightRatio;
     else top = $(this).data("y");
@@ -670,68 +664,54 @@ $(document).ready(function () {
     if (l) left = l / $canvasWidthRatio;
     else left = $(this).data("x");
 
-    if (f) {
-      if (f == 0) flipped = false;
-      else flipped = true;
-    } 
-    else flipped = false;
-
+    var objIndex;
     var layerName = $(this).data("name") + "_" + $(this).data("copy");
 
-    var _this = this;
-
-    var imgURL = $(_this).data("src");
-
-    fabric.Image.fromURL(imgURL, function(img) {
-      var imgObj = img;
-      imgObj.set({
+    $canvas.addLayer({
+      type: "image",
       name: layerName,
-      selectable: $(_this).data("drag"),
+      source: $(this).data("src"),
+      draggable: $(this).data("drag"),
       data: {
-        type: $(_this).data("type"),
-        objid: $(_this).data("obj-id")
+        type: $(this).data("type"),
+        objid: $(this).data("obj-id")
       },
-      flipX: flipped,
-      opacity: 1,
-      centeredScaling: false,
-      lockUniScaling: true,
-      left: left,
-      top: top,
+      fromCenter: false,
+      x: left,
+      y: top,
       width: width,
-      height: height
-    });
-    imgObj.setShadow({
-        blur: 5,
-        color: 'rgba(0,0,0,0.5)',
-        offsetX: 5,
-        offsetY: 5
-    });
-    fabCanvas.add(imgObj);
-    imgObj.on({
-      'object:dblclick': function() {
-        delLayer = imgObj;
+      height: height,
+      resizeFromCenter: false,
+      constrainProportions: true,
+      opacity: 1,
+      shadowColor: '#222',
+      shadowBlur: 10,
+      handlePlacement: "corners",
+      dblclick: function (layer) {
+        delLayer = layer;
         $("#deleteModal").modal({
           backdrop: "static",
           keyboard: true
         });
+      },
+      mouseover: function (layer) {
+        showHandles(layer).drawLayers();
+      },
+      mouseout: function (layer) {
+        hideHandles(layer).drawLayers();
       }
-    });
+    }).drawLayers();
 
-    var objIndex;
-
-    if ($(_this).data("type") === "art") {
+    if ($(this).data("type") === "art") {
       artworkCount++;
       if (roomMode) objIndex = artworkCount;
       else {
         if (colorExists && textureExists) objIndex = 1 + artworkCount;
         if ((colorExists && !(textureExists)) || (!(colorExists) && textureExists)) objIndex = artworkCount;
-        if (!(colorExists) && !(textureExists)) objIndex = artworkCount - 1;
+        if (!(colorExists) && !(textureExists)) objIndex = artworkCount;
       }
-      imgObj.moveTo(objIndex);
+      $canvas.moveLayer(layerName, objIndex).drawLayers();
     }
-
-    fabCanvas.renderAll();
-    });
 
     //increment copy number so if the same image is added to canvas, it will take on the next copy number
     var num = $(this).data("copy") + 1;
@@ -741,112 +721,47 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".img-patt", function () {
+    patt_type = $(this).data("type");
+    patt_obj_id = $(this).data("obj-id");
 
-    var objVisible;
-
-    if (colorExists) objVisible = true;
-    else objVisible = false;
-
-    var texObj = fabCanvas.getItemByName("texture");
-    if (texObj) fabCanvas.remove(texObj);
-
-    var imgURL = $(this).data("src");
-
-    var _this = this;
-
-    fabric.util.loadImage(imgURL, function (img) {
-    
-      var rect = new fabric.Rect({
-        name: "texture",
-        visible: true,
-        selectable: false,
-        data: {
-          type: $(_this).data("type"),
-          objid: $(_this).data("obj-id")
-        },
-        top: 0,
-        left: 0,
-        width: fabCanvas.width,
-        height: fabCanvas.height
-      });
-
-      rect.setPatternFill({
-          source: img,
-          repeat: 'repeat'
-      });
-      fabCanvas.add(rect);
-      console.log("fabCanvas.add(rect)");
-      rect.moveTo(0);
-      // fabCanvas.renderAll();
-      var colorObj = fabCanvas.getItemByName("color");
-
-      if (colorObj) {
-        colorObj.set({
-        opacity: .9
-      });
-      };
-
-      textureExists = true;
-      fabCanvas.renderAll();
+    patt = $canvas.createPattern({
+      source: $(this).data("src"),
+      repeat: "repeat",
+      load: draw
     });
-
 
   });
 
   $(document).on("click", ".no-texture", function () {
     textureExists = false;
 
-    var colorObj = fabCanvas.getItemByName("color");
-
-    colorObj.set({
+    $canvas.setLayer("color", {
       opacity: 1
     });
 
-    fabCanvas.remove(fabCanvas.getItemByName("texture"));
-    fabCanvas.renderAll();
-
+    $canvas.removeLayer("texture").drawLayers();
   });
 
   $(document).on("click", "#delete-obj", function () {
 
-    fabCanvas.remove(delLayer);
-    fabCanvas.renderAll();
+    $canvas.removeLayer(delLayer).drawLayers();
     if (delLayer.data.type === "art") artworkCount--;
 
   });
 
   $('#btn-clear').on('click', function () {
 
-   clearCanvas();
+    clearCanvas();
 
   });
 
-  $('#btn-flip').on('click', function () {
-    var activeObject = fabCanvas.getActiveObject()
-    if (activeObject) activeObject.flipX = !(activeObject.flipX);
-    //Deselect object
-    // fabCanvas.discardActiveObject();
-
-    //***to process a group of selected objects */
-    // var activeGroup = fabCanvas.getActiveGroup();
-    // var objectsInGroup = activeGroup.getObjects();
-    // objectsInGroup.forEach(function(object) {
-    //   fabCanvas.flipX(object);
-    // });
-
-    fabCanvas.renderAll();
-
-  });
-     
   $(document).on("click", "#btn-download", function (e) {
 
     checkUser();
     if (appLoggedIn) {
-      var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss") + ".png";
-      // $("#room-canvas").get(0).toBlob(function(blob){
-      $canvas.get(0).toBlob(function(blob){
-        saveAs(blob, fileName);
-      });
+      var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss");
+      var dataURL = vCanvas.toDataURL('image/png');
+      $(this).attr("download", fileName).attr("href", dataURL);
     } else $("#login-modal").modal("toggle");
   });
 
@@ -876,23 +791,11 @@ $(document).ready(function () {
       data: parm,
       method: type
     }).done(function (data) {
-      
-      $canvas.get(0).toBlob(function(blob){
-        var formdata = new FormData();
-        formdata.append("blob", blob);
-        $.ajax({
-          url: "/showrooms/save_tn/" + data.showroom_id,
-          method: "POST",
-          data: formdata,
-          processData: false,
-          contentType: false,
-        }).done(function(response){
-          console.log(response);
-        });
-        console.log(data);
-        saveLayers(data.showroom_id);
-      });
+      //check for success
+      console.log(data);
+      saveLayers(data.showroom_id);
     });
+
   }
 
   function updateShowroom(url, parm, type) {
@@ -900,22 +803,10 @@ $(document).ready(function () {
     $.ajax({
       url: url,
       data: parm,
-      method: type,
+      method: type
     }).done(function (data) {
-      $canvas.get(0).toBlob(function(blob){
-        var formdata = new FormData();
-        formdata.append("blob", blob);
-        $.ajax({
-          url: "/showrooms/save_tn/" + data.showroom_id,
-          method: "POST",
-          data: formdata,
-          processData: false,
-          contentType: false,
-        }).done(function(response){
-          console.log(response);
-        });
-        console.log(data);
-      });
+      //check for success
+      console.log(data);
     });
 
   }
@@ -958,23 +849,24 @@ $(document).ready(function () {
       layer_type: "",
       object_type: "",
       object_id: 0,
-      flipped: false,
       showroom_id: 0
     };
 
     //create layers
 
-    var l = fabCanvas.getObjects();
+    var l = $canvas.getLayers(function (layer) {
+      return (layer.name);
+    });
 
     for (var i = 0; i < l.length; i++) {
       parmLayer.name = l[i].name;
-      parmLayer.layer_index = i;
-      parmLayer.height = (l[i].scaleY) ? (l[i].height * l[i].scaleY) : l[i].height;
-      parmLayer.width = (l[i].scaleX) ? (l[i].width * l[i].scaleX) : l[i].width;
+      parmLayer.layer_index = l[i].index;
+      parmLayer.height = l[i].height;
+      parmLayer.width = l[i].width;
       parmLayer.opacity = (l[i].opacity * 100);
       parmLayer.layer_type = l[i].name;
-      parmLayer.position_top = l[i].top;
-      parmLayer.position_left = l[i].left;
+      parmLayer.position_top = l[i].y;
+      parmLayer.position_left = l[i].x;
       if (l[i].name === "color") {
         parmLayer.color = l[i].data.color;
         parmLayer.object_type = "color";
@@ -984,7 +876,6 @@ $(document).ready(function () {
         parmLayer.object_id = l[i].data.objid;
         parmLayer.color = "";
       }
-      parmLayer.flipped = l[i].flipX
       parmLayer.showroom_id = showroomId;
       console.log(parmLayer);
       ajaxSaveLayer(parmLayer);
@@ -995,7 +886,8 @@ $(document).ready(function () {
   $('#save-show').on('click', function () {
     var parmShowroomName = $("#showroom-name").val().trim();
     //reset field
-    $("#showroom-name").val("");
+    //$("#showroom-name").reset();  Vinny's old code
+    $("#showroom-name").trigger("reset");  // new trigger function to reset
     var reqType;
     var parmShowroomId;
     var ajaxURL;
@@ -1031,8 +923,8 @@ $(document).ready(function () {
     var sessionData = JSON.parse(sessionStorage.userSession);
 
     parmObj.showroom_id = parmShowroomId;
-    parmObj.showroom_height = fabCanvas.height;
-    parmObj.showroom_width = fabCanvas.width;
+    parmObj.showroom_height = vCanvas.height;
+    parmObj.showroom_width = vCanvas.width;
     parmObj.showroom_name = parmShowroomName;
     parmObj.canvas_id = 1;
     parmObj.file_path = "";
@@ -1089,12 +981,12 @@ $(document).ready(function () {
       var colorIndex;
       var colorOpacity;
 
-      fabCanvas.remove(fabCanvas.getItemByName("color"));
+      $canvas.removeLayer("color");
 
       if (textureExists) {
-        var texObj = fabCanvas.getItemByName("texture");
-        texObj.visible = true;
-
+        $canvas.setLayer("texture", {
+          opacity: 1
+        });
         colorIndex = 1;
         colorOpacity = .9;
       } else {
@@ -1102,24 +994,25 @@ $(document).ready(function () {
         colorOpacity = 1;
       }
 
-    var colorObj = new fabric.Rect({
-      name: "color",
-      fill: color.toHexString(),            
-      opacity: colorOpacity,
-      selectable: false,
-      data: {
-        color: color.toHexString()
-      },
-      left: 0,
-      top: 0,
-      width: fabCanvas.width,
-      height: fabCanvas.height
-    });
-    fabCanvas.add(colorObj);
-    colorObj.moveTo(colorIndex);
-    fabCanvas.renderAll();
-    colorExists = true;
 
+      $canvas.addLayer({
+        name: "color",
+        type: "rectangle",
+        fillStyle: color.toHexString(),
+        opacity: colorOpacity,
+        draggable: false,
+        data: {
+          color: color.toHexString()
+        },
+        fromCenter: false,
+        index: colorIndex,
+        x: 0,
+        y: 0,
+        width: vCanvas.width,
+        height: vCanvas.height
+      }).drawLayers();
+
+      colorExists = true;
     },
     palette: [
       ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
@@ -1140,7 +1033,13 @@ $(document).ready(function () {
     ]
   });
 
-  // User register/login
+  // $(document).on("resize", $canvas, function () {
+
+  //   $canvas.drawLayers();
+
+  // });
+
+
   // User showrooms
   $("#btn-my-showrooms").on("click", function () {
     $("#my-showrooms-modal").modal("toggle");
@@ -1155,13 +1054,14 @@ $(document).ready(function () {
 
     appLoggedIn = false;
     sessionStorage.removeItem("userSession");
+    $("#btn-download").removeAttr("download").removeAttr("href");
 
     $(".account-container").css('visibility', 'hidden');
     $("#sign-out").addClass("hidden");
 
     // Hide sign-in button.
     $("#sign-in").removeClass("hidden");
-    $(".showrooms-container").addClass("hidden");
+    // $(".showrooms-container").addClass("hidden");
 
   });
 
@@ -1174,7 +1074,7 @@ $(document).ready(function () {
 
     //reset fields
     $('.login-form').each(function () {
-      $(this).val("");
+      this.reset();
     });
 
     var userSession = {
@@ -1190,6 +1090,7 @@ $(document).ready(function () {
       if (data.logged_in == true) {
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
+        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
         getShowrooms(data.user_id);
 
         // var profilePicUrl = data.photoURL;
@@ -1209,11 +1110,12 @@ $(document).ready(function () {
       } else {
         appLoggedIn = false;
         sessionStorage.removeItem("userSession");
+        $("#btn-download").removeAttr("download").removeAttr("href");
 
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
         $("#sign-in").removeClass("hidden");
-        $(".showrooms-container").addClass("hidden");
+        // $(".showrooms-container").addClass("hidden");
 
 
         //display error message
@@ -1248,7 +1150,7 @@ $(document).ready(function () {
 
     //reset fields
     $('.registration-form').each(function () {
-      $(this).val("");
+      this.reset();
     });
 
     var newUser = {
@@ -1265,6 +1167,7 @@ $(document).ready(function () {
 
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
+        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
 
         $("#user-name").text("Welcome, " + data.first_name);
 
