@@ -252,7 +252,7 @@ $(document).ready(function () {
   }
 
   function addOtherObjects(data) {
-    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left]);
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left, data.flipped]);
 
   }
 
@@ -660,11 +660,12 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l) {
+  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l, f) {
     var height;
     var width;
     var top;
     var left;
+    var flipped;
 
     if (h) height = h / $canvasHeightRatio;
     else height = $(this).data("height");
@@ -677,6 +678,12 @@ $(document).ready(function () {
 
     if (l) left = l / $canvasWidthRatio;
     else left = $(this).data("x");
+
+    if (f) {
+      if (f == 0) flipped = false;
+      else flipped = true;
+    } 
+    else flipped = false;
 
     var layerName = $(this).data("name") + "_" + $(this).data("copy");
 
@@ -693,6 +700,7 @@ $(document).ready(function () {
         type: $(_this).data("type"),
         objid: $(_this).data("obj-id")
       },
+      flipX: flipped,
       opacity: 1,
       centeredScaling: false,
       lockUniScaling: true,
@@ -822,6 +830,23 @@ $(document).ready(function () {
 
   });
 
+  $('#btn-flip').on('click', function () {
+    var activeObject = fabCanvas.getActiveObject()
+    if (activeObject) activeObject.flipX = !(activeObject.flipX);
+    //Deselect object
+    // fabCanvas.discardActiveObject();
+
+    //***to process a group of selected objects */
+    // var activeGroup = fabCanvas.getActiveGroup();
+    // var objectsInGroup = activeGroup.getObjects();
+    // objectsInGroup.forEach(function(object) {
+    //   fabCanvas.flipX(object);
+    // });
+
+    fabCanvas.renderAll();
+
+  });
+     
   $(document).on("click", "#btn-download", function (e) {
 
     checkUser();
@@ -961,6 +986,7 @@ $(document).ready(function () {
       layer_type: "",
       object_type: "",
       object_id: 0,
+      flipped: false,
       showroom_id: 0
     };
 
@@ -986,6 +1012,7 @@ $(document).ready(function () {
         parmLayer.object_id = l[i].data.objid;
         parmLayer.color = "";
       }
+      parmLayer.flipped = l[i].flipX
       parmLayer.showroom_id = showroomId;
       console.log(parmLayer);
       ajaxSaveLayer(parmLayer);

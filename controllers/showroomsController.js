@@ -89,14 +89,20 @@ router.post("/create_layer", function (req, res) {
 		layer_id: 0
 	};
 
+	var flipped;
+
+	if (req.body.flipped == "false") flipped = 0;
+	else flipped = 1;
+
 	var cols = ['layer_index', 'height', 'width', 'position_top',
 				'position_left', 'color', 'opacity', 'layer_type', 
-				'object_id', 'showroom_id'];
+				'object_id', 'flipped', 'showroom_id'];
 	var vals = [parseInt(req.body.layer_index), 
 				parseInt(req.body.height), parseInt(req.body.width),
 				parseInt(req.body.position_top), parseInt(req.body.position_left),
 				req.body.color, parseInt(req.body.opacity), req.body.object_type,
-				parseInt(req.body.object_id), parseInt(req.body.showroom_id)];
+				parseInt(req.body.object_id), flipped, 
+				parseInt(req.body.showroom_id)];
 
 	layer.create(cols, vals, function (response) {
 		data.layer_id = response.insertId; //only way to get id of an insert for the mysql npm package
