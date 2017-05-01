@@ -418,7 +418,12 @@ div#OR {
 
 .sideways>li {
   height: 0px;
-  width: 100px;
+  width: 85px;
+  margin-bottom: 85px;
+}
+
+.tabs-right>li {
+    margin-left: 0px;
 }
 
 .full-spectrum .sp-palette {
@@ -589,22 +594,22 @@ body {
 
 @media screen and (min-width: 768px) {
 
-.byname-lg {
+.byname-sm {
   position: relative;
-  top: 0px;
+  top: -57px;
   left: 0px;
   font-size: 20px;
 }
 
-.byname-sm {
-  position: relative;
-  top: -55px;
-  left: 0px;
+.byname {
   font-size: 20px;
+  position: relative;
+  top: 5px;
 }
 
 .account-container {
   min-width: 200px;
+  margin-left: 50px;
 }
 
   .nav-links, #user-name {
@@ -675,8 +680,15 @@ body {
 .other-nav-links a {
   color: #666666;
 }
+@media screen and (min-width: 1275px) and (max-width: 1350px) {
 
-@media screen and (min-width: 1300px) {
+.col-custom-1350 {
+  width: 50%;
+}
+
+}
+
+@media screen and (min-width: 1550px) {
 
 /*.byname-lg {
   position: relative;
@@ -694,6 +706,9 @@ body {
 
 .byname {
   font-size: 25px;
+  position: relative;
+  top: 0;
+  
 }
 
 .account-container {
@@ -744,7 +759,7 @@ body {
 
 .byname-sm {
   position: relative;
-  top: -50px;
+  top: -61px;
   left: 0px;
   font-size: 30px;
 }
@@ -768,7 +783,7 @@ body {
 
 .byname-sm {
   position: relative;
-  top: -60px;
+  top: -65px;
   left: 0px;
   font-size: 35px;
 }
