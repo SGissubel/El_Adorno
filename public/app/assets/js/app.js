@@ -118,7 +118,7 @@ $(document).ready(function () {
 
       for (var i = 0; i < data.length; i++) {
         var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail tn-showroom")
-          .attr("src", './userShowrooms' + "/tn_" + data[i].id + ".png").attr("width", "150px");
+          .attr("src", './app/userShowrooms' + "/tn_" + data[i].id + ".png?" + Math.random()).attr("width", "150px");
         var $Delete = $("<div>").html("<span class=\"fa fa-trash\" style=\"font-size:24px\"></span>").attr("data-id", data[i].id).addClass("del-showroom");
         var $divText =  $("<div>").text(data[i].showroom_name + " ").addClass("del-showroom-text");
         var $divShowroom = $("<div>").addClass("my-showroom text-center").attr("data-user-id", data[i].user_id)
@@ -284,8 +284,6 @@ $(document).ready(function () {
         // this.userPic.css("decorImage", "url(" + profilePicUrl + ")");
         $("#user-name").text("Welcome, " + data.first_name);
 
-        getShowrooms(data.user_id);
-
         // Show user's profile and sign-out button.
         $(".account-container").css('visibility', 'visible');
         $("#sign-out").removeClass("hidden");
@@ -293,6 +291,7 @@ $(document).ready(function () {
         // Hide sign-in button.
         $("#sign-in").addClass("hidden");
       }
+      return data;
     } else {
       appLoggedIn = false;
       sessionStorage.removeItem("userSession");
@@ -303,20 +302,23 @@ $(document).ready(function () {
       // Hide sign-in button.
       $("#sign-in").removeClass("hidden");
       $(".showrooms-container").addClass("hidden");
+      return null;
     }
-  };
-  // delete this
-      $("#passr").on("click", function(){
-      var email = { email: $("#reg-email").val() };
-      console.log(email)
-      $.ajax({
-      url: "/passreset",
-      data: email,
-      method: "POST"
-      }).done(function(data) {
 
-      });
-    }); 
+  };
+
+// delete this
+    $("#passr").on("click", function(){
+    var email = { email: $("#reg-email").val() };
+    console.log(email)
+    $.ajax({
+    url: "/passreset",
+    data: email,
+    method: "POST"
+    }).done(function(data) {
+
+    });
+  }); 
 
   function loadRooms() {
     $.ajax({
@@ -439,7 +441,7 @@ $(document).ready(function () {
 
   setCanvas();
 
-  checkUser();
+  var sessionData = checkUser();
 
   loadPaletteDropdown();
 
@@ -504,7 +506,7 @@ $(document).ready(function () {
           var colorIndex;
           var colorOpacity;
           var colorName = palObj[(palArray.indexOf(color.toHexString().toUpperCase()))].name;
-          $("#color-name").html(colorName);
+          $("#color-name").html("Color: " + colorName);
 
 
           fabCanvas.remove(fabCanvas.getItemByName("color"));
@@ -848,8 +850,12 @@ $(document).ready(function () {
   });
      
   $(document).on("click", "#btn-download", function (e) {
+    fabCanvas.deactivateAll().renderAll();
 
-    checkUser();
+    var sessionData;
+
+    sessionData = checkUser();
+
     if (appLoggedIn) {
       var fileName = "Showroom_" + moment().format("YYYY-MM-DD-h:mm:ss") + ".png";
       // $("#room-canvas").get(0).toBlob(function(blob){
@@ -860,8 +866,11 @@ $(document).ready(function () {
   });
 
   $('#btn-save').on('click', function () {
+    fabCanvas.deactivateAll().renderAll();
 
-    checkUser();
+    var sessionData;
+
+    sessionData = checkUser();
     if (appLoggedIn) {
 
       //prompt user for showroom name if new, or if they want to save as new name
@@ -966,8 +975,6 @@ $(document).ready(function () {
         method: "DELETE"
       }).done(function (data) {
         console.log(data);
-        //refresh my showrooms
-        getShowrooms(user_id);
       });
     });
 
@@ -1040,7 +1047,6 @@ $(document).ready(function () {
       user_id: 0
     };
 
-
     if ((currentShowroom.showroom_name) && ((parmShowroomName == "") || (parmShowroomName == currentShowroom.showroom_name))) {
       //we are updating a current showroom
       parmShowroomId = currentShowroom.id;
@@ -1079,8 +1085,6 @@ $(document).ready(function () {
       updateShowroom(ajaxURL, parmObj, reqType);
     }
 
-    //refresh my showrooms
-    getShowrooms(sessionData.user_id);
   });
 
 
@@ -1171,9 +1175,15 @@ $(document).ready(function () {
   // User register/login
   // User showrooms
   $("#btn-my-showrooms").on("click", function () {
-    $("#my-showrooms-modal").modal("toggle");
-  });
+    var sessionData;
 
+    sessionData = checkUser();
+
+    if (appLoggedIn) {
+      getShowrooms(sessionData.user_id);
+      $("#my-showrooms-modal").modal("toggle");
+    } else $("#login-modal").modal("toggle");
+  });
 
   $("#sign-in").on("click", function () {
     $("#login-modal").modal("toggle");
@@ -1218,7 +1228,6 @@ $(document).ready(function () {
       if (data.logged_in == true) {
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
-        getShowrooms(data.user_id);
 
         // var profilePicUrl = data.photoURL;
 
@@ -1304,8 +1313,6 @@ $(document).ready(function () {
         $("#sign-in").addClass("hidden");
         $("#login-modal").modal("toggle");
 
-        getShowrooms(data.user_id)
-
       } else {
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
@@ -1344,7 +1351,7 @@ $(document).ready(function () {
   $("#home").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location = currentURL + "/app"
+    window.location = currentURL + "/"
 
   });
 
@@ -1355,14 +1362,14 @@ $(document).ready(function () {
   $("#about").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location = currentURL + "/app/about"
+    window.location = currentURL + "/about"
 
   });
 
   $("#contact").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location = currentURL + "/app/contact"
+    window.location = currentURL + "/contact"
 
   });
 
