@@ -4,4 +4,4 @@ debug.log
 docs
 .vscode
 yarn.lock
-userShowrooms
+/app/userShowrooms/*
