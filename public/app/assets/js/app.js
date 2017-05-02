@@ -177,27 +177,6 @@ $(document).ready(function () {
             addOtherObjects(data);
         }
       });
-      // for (var i = 0; i < data.length; i++) {
-      //   switch (data[i].layer_type) {
-      //     case "texture":
-      //       addTexture(data[i])
-      //       break;
-      //     case "color":
-      //       addColor(data[i])
-      //       break;
-      //     case "room":
-      //       addBaseImg(data[i]);
-      //       break;
-      //     case "decor":
-      //       addBaseImg(data[i]);
-      //       break;
-      //     case "floor":
-      //       addBaseImg(data[i]);
-      //       break;
-      //     default: //art, furniture
-      //       addOtherObjects(data[i]);
-      //   }
-      // }
     });
   };
 
@@ -670,10 +649,10 @@ $(document).ready(function () {
     var flipped;
 
     if (h) height = h / $canvasHeightRatio;
-    else height = $(this).data("height");
+    else height =  $(this).data("height"); //this.naturalHeight;
 
     if (w) width = w / $canvasWidthRatio;
-    else width = $(this).data("width");
+    else width =  $(this).data("width"); //this.naturalWidth;
 
     if (t) top = t / $canvasHeightRatio;
     else top = $(this).data("y");
@@ -835,17 +814,23 @@ $(document).ready(function () {
   $('#btn-flip').on('click', function () {
     var activeObject = fabCanvas.getActiveObject()
     if (activeObject) activeObject.flipX = !(activeObject.flipX);
-    //Deselect object
-    // fabCanvas.discardActiveObject();
-
-    //***to process a group of selected objects */
-    // var activeGroup = fabCanvas.getActiveGroup();
-    // var objectsInGroup = activeGroup.getObjects();
-    // objectsInGroup.forEach(function(object) {
-    //   fabCanvas.flipX(object);
-    // });
 
     fabCanvas.renderAll();
+
+  });
+     
+  $('#btn-del').on('click', function () {
+    var activeObject = fabCanvas.getActiveObject()
+    if (activeObject) {
+      
+      delLayer = activeObject;
+        $("#deleteModal").modal({
+          backdrop: "static",
+          keyboard: true
+        });
+      fabCanvas.renderAll();
+    }
+
 
   });
      
