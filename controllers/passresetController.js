@@ -96,10 +96,10 @@ function sendEmail(email, hash, name) {
 
   // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: 'miavetrina',
       auth: {
-          user: 'branieljose',
-          pass: 'veloster23'
+          user: 'braniel',
+          pass: 'Veloster23'
       }
 });
 
