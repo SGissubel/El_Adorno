@@ -37,16 +37,16 @@ var showroomsController = require("./controllers/showroomsController.js");
 var signupController    = require("./controllers/signupController.js");
 var passresetController = require("./controllers/passresetController.js");
 
-app.get('/app/about', function(req, res){
-  res.sendFile(path.join(__dirname, "./public/app/about.html"));
+app.get('/about', function(req, res){
+  res.sendFile(path.join(__dirname, "./public/about.html"));
 })
 
-app.get('/app/contact', function(req, res){
-  res.sendFile(path.join(__dirname, "./public/app/contact.html"));
+app.get('/contact', function(req, res){
+  res.sendFile(path.join(__dirname, "./public/contact.html"));
 })
 
-app.get('/app', function(req, res){
-  res.sendFile(path.join(__dirname, "./public/app/index.html"));
+app.get('', function(req, res){
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 })
 
 app.use("/objects", objectsController);
