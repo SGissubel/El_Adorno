@@ -231,7 +231,7 @@ $(document).ready(function () {
   }
 
   function addOtherObjects(data) {
-    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left, data.flipped]);
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left, data.flipped, data.angle]);
 
   }
 
@@ -641,12 +641,13 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l, f) {
+  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l, f, a) {
     var height;
     var width;
     var top;
     var left;
     var flipped;
+    var angle;
 
     if (h) height = h / $canvasHeightRatio;
     else height =  $(this).data("height"); //this.naturalHeight;
@@ -666,6 +667,9 @@ $(document).ready(function () {
     } 
     else flipped = false;
 
+    if (a) angle = a;
+    else angle = 0;
+    
     var layerName = $(this).data("name") + "_" + $(this).data("copy");
 
     var _this = this;
@@ -686,6 +690,7 @@ $(document).ready(function () {
       centeredScaling: false,
       lockUniScaling: true,
       left: left,
+      angle: angle,
       top: top,
       width: width,
       height: height
@@ -973,6 +978,7 @@ $(document).ready(function () {
       width: 0,
       position_top: 0,
       position_left: 0,
+      angle: 0,
       color: "",
       opacity: 0,
       layer_type: "",
@@ -991,6 +997,7 @@ $(document).ready(function () {
       parmLayer.layer_index = i;
       parmLayer.height = (l[i].scaleY) ? (l[i].height * l[i].scaleY) : l[i].height;
       parmLayer.width = (l[i].scaleX) ? (l[i].width * l[i].scaleX) : l[i].width;
+      parmLayer.angle = l[i].angle;
       parmLayer.opacity = (l[i].opacity * 100);
       parmLayer.layer_type = l[i].name;
       parmLayer.position_top = l[i].top;
