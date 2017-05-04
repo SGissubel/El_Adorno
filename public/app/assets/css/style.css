@@ -133,6 +133,11 @@
 .logo-font {
   font-family: "Roboto", "San Serif";
   font-weight: 900;
+  color: #666;
+}
+
+.logo-font:hover {
+color: white;
 }
 
 .user {
@@ -644,43 +649,6 @@ body {
   display: inline-flex;
 }
 
-@media screen and (min-width: 768px) {
-
-.byname-sm {
-  position: relative;
-  top: -57px;
-  left: 0px;
-  font-size: 20px;
-}
-
-.byname {
-  font-size: 20px;
-  position: relative;
-  top: 5px;
-}
-
-#btn-palette {
-  width: 200px;
-  height: 34px;
-  font-size: 10px;
-  padding: 6px 6px;
-  text-align: left;
-}
-
-.paint-color {
-    font-size: 10px;
-}
-
-.account-container {
-  min-width: 200px;
-  margin-left: 50px;
-}
-
-  .nav-links, #user-name {
-    font-size: 15px;
-  }
-}
-
 .img-circle {
   border-radius: 50%;
 }
@@ -744,10 +712,29 @@ body {
 .other-nav-links a {
   color: #666666;
 }
-@media screen and (min-width: 1275px) and (max-width: 1350px) {
 
-.col-custom-1350 {
-  width: 50%;
+@media screen and (min-width: 768px) and (max-width: 1270px) {
+
+.mod-flex {
+  margin-right: 20px;
+}
+
+.mod-md-2 {
+  margin-left: 25px;
+}
+
+.byname-sm {
+  position: relative;
+  top: -57px;
+  left: 0px;
+  font-size: 20px;
+}
+
+.byname {
+  font-size: 20px;
+  position: relative;
+  top: 5px;
+  left: 0px;
 }
 
 #btn-palette {
@@ -758,9 +745,139 @@ body {
   text-align: left;
 }
 
-.paint-color {
-    font-size: 10px;
+.paint-container {
+  margin-left: 0px;
 }
+
+.paint-color {
+  font-size: 10px;
+}
+
+.paint-brand {
+  margin-left: 10px;
+}
+
+.account-container {
+  min-width: 200px;
+  margin-left: 0px;
+}
+
+#user-container #user-name {
+    padding-left: 5px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1271px) and (max-width: 1350px) {
+
+.col-custom-1350 {
+  width: 50%;
+}
+
+#btn-palette {
+  width: 190px;
+  height: 34px;
+  font-size: 10px;
+  padding: 6px 6px;
+  text-align: left;
+}
+
+.byname-sm {
+  position: relative;
+  top: -57px;
+  left: 0px;
+  font-size: 20px;
+}
+
+.byname {
+  font-size: 20px;
+  position: relative;
+  top: 5px;
+  left: 50px;
+}
+
+.paint-container {
+  margin-left: 0px;
+}
+
+.paint-color {
+  font-size: 10px;
+}
+
+.paint-brand {
+  margin-left: 10px;
+}
+
+.account-container {
+  min-width: 200px;
+  margin-left: 30px;
+}
+
+#user-container #user-name {
+    padding-left: 20px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
+  }
+
+}
+
+@media screen and (min-width: 1351px) and (max-width: 1549px) {
+
+.mod-flex {
+  margin-right: 20px;
+}
+
+.mod-md-2 {
+  margin-left: 25px;
+}
+
+.byname-sm {
+  position: relative;
+  top: -57px;
+  left: 0px;
+  font-size: 26px;
+}
+
+.byname {
+  font-size: 26px;
+  position: relative;
+  top: 0px;
+  left: 20px;
+}
+
+#btn-palette {
+  width: 220px;
+  height: 34px;
+  font-size: 10px;
+  padding: 6px 6px;
+  text-align: left;
+}
+
+.paint-container {
+  margin-left: 0px;
+}
+
+.paint-color {
+  font-size: 10px;
+}
+
+.paint-brand {
+  margin-left: 10px;
+}
+
+.account-container {
+  min-width: 200px;
+}
+
+  .nav-links, #user-name {
+    font-size: 15px;
+  }
+
 
 }
 
@@ -778,11 +895,17 @@ body {
   top: -57px;
   left: 0px;
   font-size: 30px;
-}
+} 
 
 .byname {
   font-size: 30px;
+  position: relative;
   top: 0px;
+  left: 20px;
+}
+
+.paint-brand {
+  margin-left: 10px;
 }
 
 .account-container {
@@ -810,12 +933,9 @@ body {
 }
 
 @media screen and (min-width: 1800px) {
-/*.byname-lg {
-  position: relative;
-  top: -70x;
-  left: 0px;
-  font-size: 30px;
-}*/
+.mod-md-2 {
+    margin-left: 25px;
+}
 
 .byname-sm {
   position: relative;

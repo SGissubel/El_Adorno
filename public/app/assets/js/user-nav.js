@@ -1,32 +1,9 @@
-$(document).ready(function () {
+  var currentURL = window.location.origin;
 
   $('.login-form').validator();
   $('.registration-form').validator();
 
   var appLoggedIn = false;
-
-  function getShowrooms(userId) {
-
-    //retrieve saved Showrooms, if any
-    $.ajax({
-      url: "/showrooms/user/" + userId,
-      method: "GET"
-    }).done(function (data) {
-      $("#my-showrooms").empty();
-      if (data.length > 0) {
-        $(".showrooms-container").removeClass("hidden");
-        var $h3 = $("<h3>").text("My Showrooms");
-        $("#my-showrooms").append($h3).append("<hr>");
-      } else $(".showrooms-container").addClass("hidden");
-
-      for (var i = 0; i < data.length; i++) {
-        var $divShowroom = $("<div>").addClass("my-showroom").attr("data-user-id", data[i].user_id)
-          .attr("data-id", data[i].id).text(data[i].showroom_name);
-
-        $("#my-showrooms").append($divShowroom);
-      }
-    });
-  };
 
   function checkUser() {
 
@@ -42,7 +19,6 @@ $(document).ready(function () {
         //cookie expired
         appLoggedIn = false;
         sessionStorage.removeItem("userSession");
-        $("#btn-download").removeAttr("download").removeAttr("href");
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
 
@@ -53,12 +29,9 @@ $(document).ready(function () {
       } else {
         //user session is in sessionStorage and has not expired
         appLoggedIn = true;
-        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
         // Set the user's profile pic and name.
         // this.userPic.css("decorImage", "url(" + profilePicUrl + ")");
         $("#user-name").text("Welcome, " + data.first_name);
-
-        getShowrooms(data.user_id);
 
         // Show user's profile and sign-out button.
         $(".account-container").css('visibility', 'visible');
@@ -67,10 +40,10 @@ $(document).ready(function () {
         // Hide sign-in button.
         $("#sign-in").addClass("hidden");
       }
+      return data;
     } else {
       appLoggedIn = false;
       sessionStorage.removeItem("userSession");
-      $("#btn-download").removeAttr("download").removeAttr("href");
 
       $(".account-container").css('visibility', 'hidden');
       $("#sign-out").addClass("hidden");
@@ -78,14 +51,28 @@ $(document).ready(function () {
       // Hide sign-in button.
       $("#sign-in").removeClass("hidden");
       $(".showrooms-container").addClass("hidden");
-
-
+      return null;
     }
-
 
   };
 
-  checkUser();
+// delete this
+
+  $("#passr").on("click", function(){
+    var email = { email: $("#reg-email").val() };
+    console.log(email)
+    $.ajax({
+    url: "/passreset",
+    data: email,
+    method: "POST"
+    }).done(function(data) {
+
+    });
+  }); 
+
+
+
+  var sessionData = checkUser();
 
   $('#btnRegister').on('click', function () {
 
@@ -93,16 +80,26 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".my-showroom", function () {
-    var showroomId = $(this).data("id");
-    var userId = $(this).data("user-id");
+  $('.btnForgotPassword').on('click', function () {
 
-    displayShowroom(showroomId, userId);
+    $("a[href='#forgot-password']").click();
 
   });
 
-  // User register/login
+  $("#fp-submit").on("click", function(){
+      var email = { email: $("#reg-email").val() };
+      console.log(email)
+      $.ajax({
+      url: "/passreset",
+      data: email,
+      method: "POST"
+      }).done(function(data) {
 
+      });
+    }); 
+
+
+  // User register/login
   $("#sign-in").on("click", function () {
     $("#login-modal").modal("toggle");
   });
@@ -111,7 +108,6 @@ $(document).ready(function () {
 
     appLoggedIn = false;
     sessionStorage.removeItem("userSession");
-    $("#btn-download").removeAttr("download").removeAttr("href");
 
     $(".account-container").css('visibility', 'hidden');
     $("#sign-out").addClass("hidden");
@@ -122,7 +118,6 @@ $(document).ready(function () {
 
   });
 
-  var currentURL = window.location.origin;
 
   $("#login-submit").on("click", function (e) {
     e.preventDefault();
@@ -131,7 +126,7 @@ $(document).ready(function () {
 
     //reset fields
     $('.login-form').each(function () {
-      this.reset();
+      $(this).val("");
     });
 
     var userSession = {
@@ -147,8 +142,6 @@ $(document).ready(function () {
       if (data.logged_in == true) {
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
-        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
-        getShowrooms(data.user_id);
 
         // var profilePicUrl = data.photoURL;
 
@@ -167,7 +160,6 @@ $(document).ready(function () {
       } else {
         appLoggedIn = false;
         sessionStorage.removeItem("userSession");
-        $("#btn-download").removeAttr("download").removeAttr("href");
 
         $(".account-container").css('visibility', 'hidden');
         $("#sign-out").addClass("hidden");
@@ -207,7 +199,7 @@ $(document).ready(function () {
 
     //reset fields
     $('.registration-form').each(function () {
-      this.reset();
+      $(this).val("");
     });
 
     var newUser = {
@@ -224,7 +216,6 @@ $(document).ready(function () {
 
         appLoggedIn = true;
         sessionStorage.setItem("userSession", JSON.stringify(data));
-        $("#btn-download").attr("download", "my-file-name.png").attr("href", "#");
 
         $("#user-name").text("Welcome, " + data.first_name);
 
@@ -235,8 +226,6 @@ $(document).ready(function () {
         // Hide sign-in button.
         $("#sign-in").addClass("hidden");
         $("#login-modal").modal("toggle");
-
-        getShowrooms(data.user_id)
 
       } else {
         $(".account-container").css('visibility', 'hidden');
@@ -273,30 +262,27 @@ $(document).ready(function () {
     });
   })
 
-
-  $("#how-To").on("click", function () {
-    // $("#how-To-Modal").modal("toggle");
-  });
-
   $("#home").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/"
+    window.location = currentURL + "/"
 
+  });
+
+  $("#how-To").on("click", function () {
+    $("#how-To-Modal").modal("toggle");
   });
 
   $("#about").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/about"
+    window.location = currentURL + "/about"
 
   });
 
   $("#contact").on("click", function () {
     var currentURL = window.location.origin;
 
-    window.location= currentURL + "/contact"
+    window.location = currentURL + "/contact"
 
   });
-
-}); // end document ready
