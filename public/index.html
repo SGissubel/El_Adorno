@@ -225,6 +225,7 @@
                     <ul class="nav nav-tabs">
                       <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
                       <li><a href="#registration" data-toggle="tab">Registration</a></li>
+                      <li><a href="#forgot-password" data-toggle="tab">Forgot Password</a></li>
                     </ul>
                   </div>
                 </div>
@@ -260,7 +261,7 @@
                               <div class="col-md-9">
                                 <p class="text-muted"><strong>*</strong> These fields are required.</p>
                                 <button type="submit" class="btn btn-default" id="login-submit">Submit</button>
-                                <a href="javascript:;">Forgot your password?</a>
+                                <a href="#" class="btnForgotPassword">Forgot your password?</a>
                                 <p id="login-error"></p>
                               </div>
                             </div>
@@ -326,6 +327,30 @@
                           </div>
                         </form>
                       </div>
+                      <div class="tab-pane" id="forgot-password">
+                        <br>
+                        <form role="form" class="form-horizontal forgot-password-form" data-toggle="validator">
+                          <div class="form-group">
+                            <label for="fp-email" class="col-md-3 control-label">Email *</label>
+                            <div class="col-md-9">
+                              <input type="email" class="form-control" id="fp-email" name="fp-email" placeholder="example@email.com" required data-error="A valid Email is required.">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <div class="col-md-3">
+                              </div>
+                              <div class="col-md-9">
+                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                                <button type="submit" class="btn btn-default" id="fp-submit">Send Request</button>
+                                <p id="reg-error"></p>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      
                     </div>
                   </div>
                 </div>
