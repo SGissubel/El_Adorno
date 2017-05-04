@@ -231,7 +231,7 @@ $(document).ready(function () {
   }
 
   function addOtherObjects(data) {
-    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left, data.flipped]);
+    $('img[data-obj-id="' + data.object_id + '"]').trigger("click", [data.height, data.width, data.position_top, data.position_left, data.flipped, data.angle]);
 
   }
 
@@ -390,8 +390,8 @@ $(document).ready(function () {
       method: "GET"
     }).done(function (data) {
       for (var i = 0; i < data.length; i++) {
-        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
-          .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-art").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].pixel_height)
+          .attr("data-width", data[i].pixel_width).attr("data-x", 100).attr("data-y", 20).attr("data-name", data[i].obj_name).attr("data-copy", 1)
           .attr("data-type", "art").attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#artwork").append($imgThumbnail);
@@ -406,8 +406,8 @@ $(document).ready(function () {
       method: "GET"
     }).done(function (data) {
       for (var i = 0; i < data.length; i++) {
-        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].height)
-          .attr("data-width", data[i].width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
+        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail img-furn").attr("data-src", data[i].file_path + data[i].file_name).attr("data-drag", true).attr("data-height", data[i].pixel_height)
+          .attr("data-width", data[i].pixel_width).attr("data-x", 100).attr("data-y", 100).attr("data-name", data[i].obj_name).attr("data-copy", 1)
           .attr("data-type", "furn").attr("src", data[i].file_path + "tn_" + data[i].file_name).attr("width", "150px").attr("alt", data[i].obj_name).attr("data-obj-id", data[i].id);
 
         $("#furniture").append($imgThumbnail);
@@ -641,12 +641,13 @@ $(document).ready(function () {
 
   });
 
-  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l, f) {
+  $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l, f, a) {
     var height;
     var width;
     var top;
     var left;
     var flipped;
+    var angle;
 
     if (h) height = h / $canvasHeightRatio;
     else height =  $(this).data("height"); //this.naturalHeight;
@@ -666,6 +667,9 @@ $(document).ready(function () {
     } 
     else flipped = false;
 
+    if (a) angle = a;
+    else angle = 0;
+    
     var layerName = $(this).data("name") + "_" + $(this).data("copy");
 
     var _this = this;
@@ -686,6 +690,7 @@ $(document).ready(function () {
       centeredScaling: false,
       lockUniScaling: true,
       left: left,
+      angle: angle,
       top: top,
       width: width,
       height: height
@@ -973,6 +978,7 @@ $(document).ready(function () {
       width: 0,
       position_top: 0,
       position_left: 0,
+      angle: 0,
       color: "",
       opacity: 0,
       layer_type: "",
@@ -991,6 +997,7 @@ $(document).ready(function () {
       parmLayer.layer_index = i;
       parmLayer.height = (l[i].scaleY) ? (l[i].height * l[i].scaleY) : l[i].height;
       parmLayer.width = (l[i].scaleX) ? (l[i].width * l[i].scaleX) : l[i].width;
+      parmLayer.angle = l[i].angle;
       parmLayer.opacity = (l[i].opacity * 100);
       parmLayer.layer_type = l[i].name;
       parmLayer.position_top = l[i].top;
