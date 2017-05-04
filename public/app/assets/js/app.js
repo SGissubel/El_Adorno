@@ -531,6 +531,24 @@ $(document).ready(function () {
 
   });
 
+  $('.btnForgotPassword').on('click', function () {
+
+    $("a[href='#forgot-password']").click();
+
+  });
+
+  $("#fp-submit").on("click", function(){
+      var email = { email: $("#reg-email").val() };
+      console.log(email)
+      $.ajax({
+      url: "/passreset",
+      data: email,
+      method: "POST"
+      }).done(function(data) {
+
+      });
+    }); 
+
   $(document).on("click", ".my-showroom", function () {
     var showroomId = $(this).data("id");
     var userId = $(this).data("user-id");

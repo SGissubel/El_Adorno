@@ -66,9 +66,9 @@ VALUES ('Sherwin Williams Colors','/app/Media/Colors/','Sherwin_Williams_Colors.
 select count(*) from palettes into @rcds; 
 select @rcds as 'Rows Loaded';
 
-drop table canvas;
-drop table canvas_objects; 
-drop table sizes;
+drop table if exists canvas;
+drop table if exists canvas_objects; 
+drop table if exists sizes;
 
 -- Create & Load Sizes if not exist
 CREATE TABLE IF NOT EXISTS sizes (
@@ -1387,7 +1387,11 @@ select @rcds as 'Rows Loaded';
 -- 	set canvas_id=1, file_path = null, file_name = null, showroom_height = 768, showroom_width = 1152;
 	
 -- -- Added on 05/02
--- ALTER TABLE `impulso_db`.`layers` 
--- ADD COLUMN `angle` DECIMAL(13,10) NULL DEFAULT 0 AFTER `position_left`;  
+ALTER TABLE `impulso_db`.`layers` 
+ADD COLUMN `angle` DECIMAL(13,10) NULL DEFAULT 0 AFTER `position_left`;  
+
+ALTER TABLE `impulso_db`.`users` 
+ADD COLUMN `passResetHash` VARCHAR(255) NULL AFTER `password_hash`;
+
 
 
