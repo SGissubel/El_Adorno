@@ -130,6 +130,11 @@
   color: #666666;
 }
 
+.impulso-footer-font {
+  font-family: "Dancing Script", "Roboto", "San Serif";
+  color: #d9d9d9;
+}
+
 .logo-font {
   font-family: "Roboto", "San Serif";
   font-weight: 900;
@@ -532,9 +537,14 @@ h4 {
 .my-showroom {
   cursor: pointer;
   display: inline-block;
-  margin: 10px;
+  margin: 0px;
 }
 
+.showroom {
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+}
 
 /*.tab-pane {
   overflow: auto;
@@ -738,7 +748,7 @@ body {
 }
 
 #btn-palette {
-  width: 200px;
+  width: 190px;
   height: 34px;
   font-size: 10px;
   padding: 6px 6px;
@@ -771,7 +781,7 @@ body {
   }
 }
 
-@media screen and (min-width: 1271px) and (max-width: 1350px) {
+@media screen and (min-width: 1270px) and (max-width: 1357px) {
 
 .col-custom-1350 {
   width: 50%;
@@ -826,7 +836,7 @@ body {
 
 }
 
-@media screen and (min-width: 1351px) and (max-width: 1549px) {
+@media screen and (min-width: 1357px) and (max-width: 1570px) {
 
 .mod-flex {
   margin-right: 20px;
@@ -881,7 +891,7 @@ body {
 
 }
 
-@media screen and (min-width: 1550px) {
+@media screen and (min-width: 1570px) {
 
 /*.byname-lg {
   position: relative;
@@ -895,6 +905,7 @@ body {
   top: -57px;
   left: 0px;
   font-size: 30px;
+  line-height: 24px
 } 
 
 .byname {
@@ -902,6 +913,13 @@ body {
   position: relative;
   top: 0px;
   left: 20px;
+}
+
+.about-meme, .contact-meme {
+  position: relative;
+  top: 0px;
+  left: 100px;
+  
 }
 
 .paint-brand {
