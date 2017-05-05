@@ -154,7 +154,9 @@ $(document).ready(function () {
           .attr("data-id", data[i].id).attr("data-canvas-id", data[i].canvas_id)
           .attr("data-height", data[i].showroom_height).attr("data-width", data[i].showroom_width);
 
-        $div.append($Delete).append($divShowroom).append($imgThumbnail).append($divText);
+        $divShowroom.append($imgThumbnail).append($divText);
+
+        $div.append($Delete).append($divShowroom);
 
 
           //*******load and display showroom using data[i].file_path and data[i].file_name

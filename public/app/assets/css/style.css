@@ -375,7 +375,7 @@ div#OR {
 }
 
 .del-showroom, .del-showroom-text {
-  display: inline-block;
+  display: block;
 }
 
 #user-container {
