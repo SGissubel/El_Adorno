@@ -794,6 +794,7 @@ body {
     position: relative;
     top: 5px;
     left: 100px;
+    z-index: 100;
   }
   .impulso-hdr {
     font-size: 16px;
@@ -848,6 +849,7 @@ body {
     position: relative;
     top: 5px;
     left: 100px;
+    z-index: 100;
   }
   .impulso-hdr {
     font-size: 16px;
@@ -901,6 +903,7 @@ body {
     position: relative;
     top: 0px;
     left: 140px;
+    z-index: 100;
   }
   .impulso-hdr {
     font-size: 22px;
@@ -932,6 +935,7 @@ body {
     position: relative;
     top: 0px;
     left: 140px;
+    z-index: 100;
   }
   .paint-brand {
     margin-left: 10px;
