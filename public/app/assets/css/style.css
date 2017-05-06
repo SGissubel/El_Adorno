@@ -61,6 +61,12 @@
   width: 190px;
   padding: 5px;
 }*/
+.fp-inst{
+  display: none;
+  text-align: justify;
+  text-justify: inter-word;
+}
+}
 
 .logo-sm {
   margin: -64px 0 0px -160px;

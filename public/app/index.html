@@ -6,12 +6,12 @@
   <title>MIΛ VETRINΛ</title>
   <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="app/assets/css/bootstrap.vertical-tabs.min.css">
-  <link rel="stylesheet" type="text/css" href="app/assets/css/spectrum.css">
-  <link rel="stylesheet" type="text/css" href="app/assets/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.vertical-tabs.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/spectrum.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100|Russo+One|Dancing+Script:700|Open+Sans|Raleway" rel="stylesheet">
-  <!--<link rel="stylesheet" href="app/assets/css/jquery.ui.rotatable.css">-->
+  <!--<link rel="stylesheet" href="assets/css/jquery.ui.rotatable.css">-->
 </head>
 
 <body>
@@ -25,7 +25,7 @@
       </div>
       <div class="row">
         <div class="col-md-7 col-custom-1350 text-right">
-          <span class="byname">Dream... Create... Design... your inspirations.</span>
+          <span class="byname">Dream... Create... Design... your inspirations with impulso</span>
         </div>
         <div class="col-md-5 col-custom-1350">
           <ul class="nav navbar-nav navbar-right">
@@ -51,8 +51,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 text-left">
-          <div class="navbar-brand byname-sm"><span class="logo-font" id="home">MIΛ VETRINΛ</span>
-          <span class="impulso-hdr">by impulso</span></div>
+          <div class="navbar-brand byname-sm" id="home"><span class="logo-font">MIΛ VETRINΛ</span></div>
         </div>
       </div>
     </div>
@@ -60,38 +59,25 @@
   <br>
   <div class="container-flex mod-flex">
     <div class="row margin-bottom-sm">
-      <div class="col-md-9 text-center">
-        <div id="canvas-toolbar">
-          <div class="left-tool tool-dl tool" id="btn-download"><span class="fa fa-download" style="font-size:24px"></span> Download</div>
-          <div class="left-tool tool-sv tool" id="btn-save"><span class="fa fa-database" style="font-size:24px"></span> Save</div>
-          <div class="left-tool tool-clr tool" id="btn-clear"><span class="fa fa-eraser" style="font-size:24px"></span> Clear</div>
-          <div class="left-tool tool-flip tool" id="btn-flip"><span class="fa fa-exchange" style="font-size:24px"></span> Flip</div>
-          <div class="left-tool tool-flip tool" id="btn-del"><span class="fa fa-trash" style="font-size:24px"></span> Delete</div>
-          <div class="right-tool tool-clr tool" id="btn-my-showrooms"><span class="fa fa-photo" style="font-size:24px"></span> My Showrooms</div>
-        </div>
+      <!--<div class="col-md-5">
+        <h1 class="logo-font">MIΛ VETRINΛ</h1>
       </div>
-      <div class="col-md-3 text-left paint-container">
-        <div class="paint-brand">
+      <div class="col-md-5 col-md-offset-2">-->
+      <div class="col-md-12">
+        <div class="paint-container text-right">
           <div class="dropdown palette-dropdown">
             <button class="btn btn-default dropdown-toggle" id="btn-palette" type="button" data-toggle="dropdown">Select Paint Brand...<span class="caret"></span></button>
             <ul class="dropdown-menu palette-well">
             </ul>
           </div>
-        </div>
-        <div class="paint-picker">
-          <div>
-            <input type='text' id="full" />
-          </div>
-        </div>
-        <div class="paint-color clearfix">
-          <span id="color-name"></span>
+          Wall Color:
+          <input type='text' id="full" /> <span id="color-name"></span>
         </div>
       </div>
     </div>
-
     <div class="row">
-      <div class="col-md-9 text-center">
-        <div id="canvas">
+      <div class="col-md-9">
+        <div id="canvas" class="text-center">
           <!--<canvas id="room-canvas" width="900" height="600"></canvas>-->
         </div>
       </div>
@@ -124,6 +110,18 @@
         </ul>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div id="canvas-toolbar">
+          <div class="left-tool tool-dl tool" id="btn-download"><span class="fa fa-download" style="font-size:24px"></span> Download</div>
+          <div class="left-tool tool-sv tool" id="btn-save"><span class="fa fa-database" style="font-size:24px"></span> Save</div>
+          <div class="left-tool tool-clr tool" id="btn-clear"><span class="fa fa-eraser" style="font-size:24px"></span> Clear</div>
+          <div class="left-tool tool-flip tool" id="btn-flip"><span class="fa fa-exchange" style="font-size:24px"></span> Flip</div>
+          <div class="right-tool tool-clr tool" id="btn-my-showrooms"><span class="fa fa-photo" style="font-size:24px"></span> My Showrooms</div>
+        </div> 
+      </div>
+    </div>
+
     <!-- my-showrooms Modal -->
     <div id="my-showrooms-modal" class="modal fade" role="dialog">
       <div class="modal-dialog modal-lg">
@@ -136,7 +134,7 @@
           <div class="modal-body">
             <div id="my-showrooms"></div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default close-delete" data-dismiss="modal">Cancel</button>
             </div>
           </div>
         </div>
@@ -215,7 +213,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               ×</button>
             <h4 class="modal-title" id="login-hdr">
-              MIΛ VETRINΛ - Login/Registration</h4>
+            MIΛ VETRINΛ - Login/Registration</h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -226,7 +224,6 @@
                     <ul class="nav nav-tabs">
                       <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
                       <li><a href="#registration" data-toggle="tab">Registration</a></li>
-                      <li><a href="#forgot-password" data-toggle="tab">Forgot Password</a></li>
                     </ul>
                   </div>
                 </div>
@@ -262,7 +259,7 @@
                               <div class="col-md-9">
                                 <p class="text-muted"><strong>*</strong> These fields are required.</p>
                                 <button type="submit" class="btn btn-default" id="login-submit">Submit</button>
-                                <a href="#" class="btnForgotPassword">Forgot your password?</a>
+                                <a href="javascript:;">Forgot your password?</a>
                                 <p id="login-error"></p>
                               </div>
                             </div>
@@ -310,8 +307,7 @@
                           <div class="form-group">
                             <label for="reg-password-confirm" class="col-md-3 control-label">Confirm *</label>
                             <div class="col-md-9">
-                              <input type="password" class="form-control" id="reg-password-confirm" data-match="#reg-password" data-match-error="Password does not match"
-                                placeholder="Confirm" required>
+                              <input type="password" class="form-control" id="reg-password-confirm" data-match="#reg-password" data-match-error="Password does not match" placeholder="Confirm" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -328,34 +324,6 @@
                           </div>
                         </form>
                       </div>
-                      <div class="tab-pane" id="forgot-password">
-                        <br>
-                        <form role="form" class="form-horizontal forgot-password-form" data-toggle="validator">
-                          <div class="form-group">
-                            <label for="fp-email" class="col-md-3 control-label">Email *</label>
-                            <div class="col-md-9">
-                              <input type="email" class="form-control" id="fp-email" name="fp-email" placeholder="example@email.com" required data-error="A valid Email is required.">
-                              <div class="help-block with-errors"></div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="form-group">
-                              <div class="col-md-3">
-                              </div>
-                              <div class="col-md-9">
-                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
-                                <p class="fp-inst">Check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.
-                                  Return to sign in
-                                </p>
-                                <p id="fp-error"></p>
-                                <button type="submit" class="btn btn-default" id="fp-submit">Send Request</button>
-                                <p id="reg-error"></p>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      
                     </div>
                   </div>
                 </div>
@@ -438,8 +406,7 @@
               <li>Add Artwork</li>
               <li>Add Furniture</li>
               <li>Add Texture</li>
-              <p>NOTE: If you add a Decor space you will automatically replace your Floor space. App will keep your Wall Color,
-                Artwork, Furniture and wall Texture. </p>
+              <p>NOTE: If you add a Decor space you will automatically replace your Floor space. App will keep your Wall Color, Artwork, Furniture and wall Texture. </p>
             </ul>
             <h4>How to use Decors...</h4>
             <ul><strong>Select Decor from the Decors tab, then Customize...</strong>
@@ -447,20 +414,17 @@
               <li>Add Artwork</li>
               <li>Add Furniture</li>
               <li>Add Textures</li>
-              <p>NOTE: If you add a Floor space you will automatically replace your Decor space. App will keep your Wall Color,
-                Artwork, Furniture and wall Texture.</p>
+              <p>NOTE: If you add a Floor space you will automatically replace your Decor space. App will keep your Wall Color, Artwork, Furniture and wall Texture.</p>
             </ul>
             <h4>How to use Artwork...</h4>
             <ul><strong>Select Artwork from the Artwork tab, then use to Accessorize you inspiration...</strong>
               <li>Add to Rooms, Decors and Floor spaces</li>
-              <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double
-                clicking on the Artwork and confirming delete.</li>
+              <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double clicking on the Artwork and confirming delete.</li>
             </ul>
             <h4>How to use Furniture...</h4>
             <ul><strong>Select from Furnitue from the Furniture tab, then use to Accessorize your inspiration...</strong>
               <li>Add to Rooms, Decors and Floor spaces</li>
-              <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double
-                clicking on the Furniture and confirming delete.</li>
+              <li>To Move select and drag, Resize by hovering to a corner and pulling one of the square handles, Remove by double clicking on the Furniture and confirming delete.</li>
             </ul>
             <h4>How to use Textures...</h4>
             <ul><strong>Select Texture from the Textures tab, then use to add texture to your wall.</strong>
@@ -474,35 +438,36 @@
       </div>
     </div>
     <!-- end how-To Modal -->
-  </div>
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-flex-container text-center">
-        <div class="footer-flex-items">
-          <div class="text-muted copyright footer-flex-item">
-            &copy; Copyright 2017 MIΛ VETRINΛ &nbsp; <span class="impulso-footer-font"> by impulso</span> &nbsp; All rights reserved.
-          </div>
-          <div class="footer-connect footer-flex-item">
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-flex-container text-center">
+          <div class="footer-flex-items">
+            <div class="text-muted copyright footer-flex-item">
+              &copy; Copyright 2017 MIΛ VETRINA All rights reserved.
+            </div>
+            <div class="footer-connect footer-flex-item">
+            </div>
           </div>
         </div>
-      </div>
-  </footer>
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-  <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="app/assets/js/fabric.min.js"></script>
-  <script src="app/assets/js/fabric.canvasex.js"></script>
-  <script src="app/assets/js/FileSaver.min.js"></script>
-  <script src="app/assets/js/footer.js"></script>
-  <!--<script src="app/assets/js/header.js"></script>-->
-  <script src="app/assets/js/validator.js"></script>
-  <script src="app/assets/js/user-nav.js"></script>
-  <script src="app/assets/js/app.js"></script>
-  <script src="app/assets/js/spectrum.js"></script>
-  <!--<script src="app/assets/js/delivery.js"></script>
-    <script src="app/assets/js/socket.js"></script>-->
+    </footer>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <!--<script src="http://0.0.0.0:5001/socket.io/socket.io.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!--<script src="assets/js/jquery.ui.rotatable.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="assets/js/jcanvas.min.js"></script>-->
+    <!--<script src="assets/js/jcanvas-handles.min.js"></script>-->
+    <script src="assets/js/fabric.min.js"></script>
+    <script src="assets/js/fabric.canvasex.js"></script>
+    <script src="assets/js/FileSaver.min.js"></script>
+    <script src="assets/js/footer.js"></script>
+    <!--<script src="assets/js/header.js"></script>-->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/spectrum.js"></script>
+    <!--<script src="assets/js/delivery.js"></script>
+    <script src="assets/js/socket.js"></script>-->
 </body>
 
 </html>

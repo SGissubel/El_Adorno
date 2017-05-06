@@ -492,6 +492,38 @@ $(document).ready(function () {
 
   });
 
+  $('#btnRegister').on('click', function () {
+
+    $("a[href='#registration']").click();
+
+  });
+
+  $('.btnForgotPassword').on('click', function () {
+
+    $("a[href='#forgot-password']").click();
+
+  });
+
+
+
+
+  
+    $("#fp-submit").on("click", function(){
+      event.preventDefault();
+      var resetBtn = document.getElementById("fp-submit");
+      var email = { email: $("#fp-email").val() };
+      resetBtn.disabled = "disabled";
+      $(".fp-inst").toggle();
+      $.ajax({
+      url: "/passreset",
+      data: email,
+      method: "POST"
+      }).done(function(data) {
+
+        }
+      });
+    }); 
+  
   $(document).on("click", ".my-showroom", function () {
     var showroomId = $(this).data("id");
     var userId = $(this).data("user-id");
