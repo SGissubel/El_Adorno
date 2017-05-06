@@ -9,20 +9,20 @@ var user = require("../models/user.js");
 
 //checks email, creates and store hash, sends email.
 router.post("/", function(req, res) {
-  var hash = createHash(20);
-  var email = req.body.email;
-  console.log(req.body.email);
+    var email = req.body.email;
 
   user.some("email=" + JSON.stringify(email), function(data) {
-      console.log(data)
-      console.log(data[0].first_name);
-      var name = data[0].first_name;
+
       if (Object.keys(data).length == 0) {
           console.log("email not found");
+          res.send({code: 1})
       } else {
-          console.log("email found");
+          var hash = createHash(20);
+          var name = data[0].first_name;
           sendEmail(email, hash, name);
           storeHash(email, hash);
+          console.log("email found");
+
       }
   });
 });
@@ -47,7 +47,7 @@ router.put('/36bledv3asa5yw96hnlv/:hash/reset', function(req, res){
 
 function resetPass(newPass, passHash, res){
   console.log("resetting password");
-  user.some("passResetHash=" + JSON.stringify(passHash), function(data) {
+  user.some("pass_reset_hash=" + JSON.stringify(passHash), function(data) {
     var id = data[0].id;
     console.log("this is the user's id", data[0].id);
       bcrypt.genSalt(10, function (err, salt) {
@@ -66,20 +66,23 @@ function resetPass(newPass, passHash, res){
 };
 
 function verifyHash(hash, res){
-  console.log("it finds the hash")
-  user.some("passResetHash=" + JSON.stringify(hash), function(data) {
+
+  user.some("pass_reset_hash=" + JSON.stringify(hash), function(data) {
     if (Object.keys(data).length == 0) {
         res.redirect("/app");
-    } else { 
-       res.sendFile(path.join(__dirname, "../public/recoveryForm.html"));
+        console.log(data)
+        console.log("hash not found")
+    } else {
+        console.log("it finds the hash")
+        res.sendFile(path.join(__dirname, "../public/recoveryForm.html"));
     }
 });
 };
 
 function deleteHash(hash) {
-  var condition = "passResetHash = " + JSON.stringify(hash);
+  var condition = "pass_reset_hash = " + JSON.stringify(hash);
 
-    user.update({ passResetHash: "NULL" }, condition, function(data) {
+    user.update({ pass_reset_hash: "NULL" }, condition, function(data) {
         console.log("hash deleted!", data);
     });
 };
@@ -87,7 +90,7 @@ function deleteHash(hash) {
 function storeHash(email, hash) {
   var condition = "email = " + JSON.stringify(email);
 
-    user.update({ passResetHash: JSON.stringify(hash) }, condition, function(data) {
+    user.update({ pass_reset_hash: JSON.stringify(hash) }, condition, function(data) {
         // console.log("hash saved", data);
     });
 };

@@ -536,18 +536,24 @@ $(document).ready(function () {
     $("a[href='#forgot-password']").click();
 
   });
-
+  //passreset
   $("#fp-submit").on("click", function(){
       event.preventDefault();
+      var resetBtn = document.getElementById("fp-submit");
       var email = { email: $("#fp-email").val() };
-      console.log(email);
-      console.log(email)
+      resetBtn.disabled = "disabled";
+      $(".fp-inst").toggle();
       $.ajax({
       url: "/passreset",
       data: email,
       method: "POST"
       }).done(function(data) {
+        // console.log(data);
+          console.log(data.code)
+        if(data.code == 1) {
 
+            $("#fp-error").text(errorMsg);
+        }
       });
     }); 
 
