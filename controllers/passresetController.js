@@ -11,8 +11,10 @@ var user = require("../models/user.js");
 router.post("/", function(req, res) {
   var hash = createHash(20);
   var email = req.body.email;
+  console.log(req.body.email);
 
   user.some("email=" + JSON.stringify(email), function(data) {
+      console.log(data)
       console.log(data[0].first_name);
       var name = data[0].first_name;
       if (Object.keys(data).length == 0) {
@@ -69,7 +71,7 @@ function verifyHash(hash, res){
     if (Object.keys(data).length == 0) {
         res.redirect("/app");
     } else { 
-       res.sendFile(path.join(__dirname, "../public/app/recoveryForm.html"));
+       res.sendFile(path.join(__dirname, "../public/recoveryForm.html"));
     }
 });
 };
@@ -96,10 +98,10 @@ function sendEmail(email, hash, name) {
 
   // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
-      service: 'miavetrina',
+      service: 'gmail',
       auth: {
-          user: 'braniel',
-          pass: 'Veloster23'
+          user: 'miavetrina.recovery',
+          pass: '@miavetrina'
       }
 });
 
@@ -545,8 +547,7 @@ var mailOptions = {
  '                               </table>  '  + 
  '                             </td>  '  + 
  '                           </tr>  '  + 
- '                         </table>  '  + 
- '                         <p>If you did not request a password reset, please ignore this email or <a href="{{support_url}}">contact support</a> if you have questions.</p>  '  + 
+ '                         </table>  '  +
  '                         <p>Thanks,  '  + 
  '                           <br>The Mia Vetrina Team</p>  '  + 
  '                         <!-- Sub copy -->  '  + 
@@ -554,7 +555,7 @@ var mailOptions = {
  '                           <tr>  '  + 
  '                             <td>  '  + 
  '                               <p class="sub">If you’re having trouble with the button above, copy and paste the URL below into your web browser.</p>  '  + 
- '                               <p class="sub">{{action_url}}</p>  '  + 
+ '                               <p class="sub">'+url+'</p>  '  +
  '                             </td>  '  + 
  '                           </tr>  '  + 
  '                         </table>  '  + 

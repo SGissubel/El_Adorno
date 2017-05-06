@@ -538,7 +538,9 @@ $(document).ready(function () {
   });
 
   $("#fp-submit").on("click", function(){
-      var email = { email: $("#reg-email").val() };
+      event.preventDefault();
+      var email = { email: $("#fp-email").val() };
+      console.log(email);
       console.log(email)
       $.ajax({
       url: "/passreset",
