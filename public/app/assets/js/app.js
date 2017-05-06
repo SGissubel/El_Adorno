@@ -93,6 +93,10 @@ $(document).ready(function () {
 
   function clearCanvas() {
 
+    $("#btn-palette").html("Select Paint Brand...<span class=\"caret\"></span>");
+    $("#color-name").empty();
+    
+    setColorPicker();
     fabCanvas.clear();
     floorMode = false;
     decorMode = false;
@@ -103,32 +107,93 @@ $(document).ready(function () {
 
   };
 
-  function refreshShowrooms(userId) {
+  function setColorPicker() {
 
-    //retrieve saved Showrooms, if any
-    $.ajax({
-      url: "/showrooms/user/" + userId,
-      method: "GET"
-    }).done(function (data) {
-      $("#my-showrooms").empty();
+    $("#full").spectrum({
+      color: "white",
+      showInput: true,
+      className: "full-spectrum",
+      showInitial: true,
+      togglePaletteOnly: true,
+      togglePaletteMoreText: "more",
+      togglePaletteLessText: "less",
+      hideAfterPaletteSelect: true,
 
-      for (var i = 0; i < data.length; i++) {
-        var $div = $("<div>").addClass("showroom text-center");
-        var $imgThumbnail = $("<img>").addClass("img-responsive img-thumbnail tn-showroom")
-          .attr("src", './app/userShowrooms' + "/tn_" + data[i].id + ".png?" + Math.random()).attr("width", "150px");
-        var $Delete = $("<div>").html("<span class=\"fa fa-trash\" style=\"font-size:24px\"></span>").attr("data-id", data[i].id).attr("data-user-id", userId).addClass("del-showroom");
-        var $divText =  $("<div>").text(data[i].showroom_name + " ").addClass("del-showroom-text");
-        var $divShowroom = $("<div>").addClass("my-showroom text-center").attr("data-user-id", data[i].user_id)
-          .attr("data-id", data[i].id).attr("data-canvas-id", data[i].canvas_id)
-          .attr("data-height", data[i].showroom_height).attr("data-width", data[i].showroom_width);
+      showPalette: true,
+      showPaletteOnly: false,
+      showSelectionPalette: true,
+      maxSelectionSize: 10,
+      preferredFormat: "rgb",
+      sessionStorageKey: "spectrum.impulso",
+      move: function (color) {
 
-        $div.append($Delete).append($divShowroom).append($imgThumbnail).append($divText);
+      },
+      show: function () {
 
-        $("#my-showrooms").append($div);
-      }
+      },
+      beforeShow: function () {
+
+      },
+      hide: function () {
+
+      },
+      change: function (color) {
+
+        var colorIndex;
+        var colorOpacity;
+
+        fabCanvas.remove(fabCanvas.getItemByName("color"));
+
+        if (textureExists) {
+          var texObj = fabCanvas.getItemByName("texture");
+          texObj.visible = true;
+
+          colorIndex = 1;
+          colorOpacity = .9;
+        } else {
+          colorIndex = 0;
+          colorOpacity = 1;
+        }
+
+      var colorObj = new fabric.Rect({
+        name: "color",
+        fill: color.toHexString(),            
+        opacity: colorOpacity,
+        selectable: false,
+        data: {
+          color: color.toHexString()
+        },
+        left: 0,
+        top: 0,
+        width: fabCanvas.width,
+        height: fabCanvas.height
+      });
+      fabCanvas.add(colorObj);
+      colorObj.moveTo(colorIndex);
+      fabCanvas.renderAll();
+      colorExists = true;
+
+      },
+      palette: [
+        ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
+          "rgb(204, 204, 204)", "rgb(217, 217, 217)", "rgb(255, 255, 255)",
+          "rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+          "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)",
+          "rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+          "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+          "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+          "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+          "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
+          "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+          "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+          "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+          "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
+          "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"
+        ]
+      ]
     });
 
-  }
+  } 
 
   function getShowrooms(userId) {
 
@@ -304,6 +369,7 @@ $(document).ready(function () {
       url: "/palettes",
       method: "GET"
     }).done(function (data) {
+      $(".palette-well").empty();
       for (var i = 0; i < data.length; i++) {
         var $liPalette = $("<li>").addClass("palette").attr("data-id", data[i].id).text(data[i].palette_name);
 
@@ -390,6 +456,8 @@ $(document).ready(function () {
   var sessionData = checkUser();
 
   loadPaletteDropdown();
+
+  setColorPicker();
 
   loadRooms();
 
@@ -1037,91 +1105,6 @@ $(document).ready(function () {
       updateShowroom(ajaxURL, parmObj, reqType);
     }
 
-  });
-
-
-  $("#full").spectrum({
-    color: "white",
-    showInput: true,
-    className: "full-spectrum",
-    showInitial: true,
-    togglePaletteOnly: true,
-    togglePaletteMoreText: "more",
-    togglePaletteLessText: "less",
-    hideAfterPaletteSelect: true,
-
-    showPalette: true,
-    showPaletteOnly: false,
-    showSelectionPalette: true,
-    maxSelectionSize: 10,
-    preferredFormat: "rgb",
-    sessionStorageKey: "spectrum.impulso",
-    move: function (color) {
-
-    },
-    show: function () {
-
-    },
-    beforeShow: function () {
-
-    },
-    hide: function () {
-
-    },
-    change: function (color) {
-
-      var colorIndex;
-      var colorOpacity;
-
-      fabCanvas.remove(fabCanvas.getItemByName("color"));
-
-      if (textureExists) {
-        var texObj = fabCanvas.getItemByName("texture");
-        texObj.visible = true;
-
-        colorIndex = 1;
-        colorOpacity = .9;
-      } else {
-        colorIndex = 0;
-        colorOpacity = 1;
-      }
-
-    var colorObj = new fabric.Rect({
-      name: "color",
-      fill: color.toHexString(),            
-      opacity: colorOpacity,
-      selectable: false,
-      data: {
-        color: color.toHexString()
-      },
-      left: 0,
-      top: 0,
-      width: fabCanvas.width,
-      height: fabCanvas.height
-    });
-    fabCanvas.add(colorObj);
-    colorObj.moveTo(colorIndex);
-    fabCanvas.renderAll();
-    colorExists = true;
-
-    },
-    palette: [
-      ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
-        "rgb(204, 204, 204)", "rgb(217, 217, 217)", "rgb(255, 255, 255)",
-        "rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
-        "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)",
-        "rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
-        "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
-        "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
-        "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
-        "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
-        "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
-        "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
-        "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
-        "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
-        "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"
-      ]
-    ]
   });
 
   // User showrooms
