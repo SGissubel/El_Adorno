@@ -35,3 +35,7 @@ for (var i = 0; i < connections.length; i++) {
     $(".footer-connect").append($a);
 
 };
+
+var $a = $('<a>').attr('href', 'mailto:info@miavetrina.com').text('info@miavetrina.com').addClass("info-email");
+
+$(".footer-connect").append($a);
