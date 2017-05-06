@@ -203,11 +203,6 @@ $(document).ready(function () {
       method: "GET"
     }).done(function (data) {
       $("#my-showrooms").empty();
-      // if (data.length > 0) {
-      //   $(".showrooms-container").removeClass("hidden");
-      //   var $h3 = $("<h3>").text("My Showrooms");
-      //   $("#my-showrooms").append($h3).append("<hr>");
-      // } else $(".showrooms-container").addClass("hidden");
 
       for (var i = 0; i < data.length; i++) {
         var $div = $("<div>").addClass("showroom text-center");
@@ -560,38 +555,6 @@ $(document).ready(function () {
 
   });
 
-  $('#btnRegister').on('click', function () {
-
-    $("a[href='#registration']").click();
-
-  });
-
-  $('.btnForgotPassword').on('click', function () {
-
-    $("a[href='#forgot-password']").click();
-
-  });
-
-
-
-
-  
-    $("#fp-submit").on("click", function(){
-      event.preventDefault();
-      var resetBtn = document.getElementById("fp-submit");
-      var email = { email: $("#fp-email").val() };
-      resetBtn.disabled = "disabled";
-      $(".fp-inst").toggle();
-      $.ajax({
-      url: "/passreset",
-      data: email,
-      method: "POST"
-      }).done(function(data) {
-
-        }
-      });
-    }); 
-  
   $(document).on("click", ".my-showroom", function () {
     var showroomId = $(this).data("id");
     var userId = $(this).data("user-id");

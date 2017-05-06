@@ -74,6 +74,7 @@
 
   var sessionData = checkUser();
 
+
   $('#btnRegister').on('click', function () {
 
     $("a[href='#registration']").click();
@@ -86,19 +87,21 @@
 
   });
 
-  $("#fp-submit").on("click", function(){
-      var email = { email: $("#reg-email").val() };
-      console.log(email)
+    $("#fp-submit").on("click", function(){
+      event.preventDefault();
+      var resetBtn = document.getElementById("fp-submit");
+      var email = { email: $("#fp-email").val() };
+      resetBtn.disabled = "disabled";
+      $(".fp-inst").toggle();
       $.ajax({
       url: "/passreset",
       data: email,
       method: "POST"
       }).done(function(data) {
-
+        console.log("forgot password done");
       });
     }); 
-
-
+  
   // User register/login
   $("#sign-in").on("click", function () {
     $("#login-modal").modal("toggle");
