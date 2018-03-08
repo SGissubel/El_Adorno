@@ -101,6 +101,7 @@
   left: 0px;
   font-size: 45px;
 }
+
 #login-row {
   position: relative;
   top: -20px;
@@ -122,44 +123,54 @@
   float: right;
   margin-top: 120px;
 }
+
 .formTitle {
   margin-left: 20px;
 }
+
 #contactForm {
   width: 40%;
   float: left;
   margin-top: 20px;
   margin-left: -20px;
 }
+
 .byname,
 .impulso-style {
   font-family: "Dancing Script", "Roboto", "San Serif";
   color: #666666;
 }
+
 .impulso-footer-font {
   font-family: "Dancing Script", "Roboto", "San Serif";
   color: #d9d9d9;
 }
+
 .impulso-hdr {
   font-family: "Dancing Script", "Roboto", "San Serif";
   color: #666666;
   font-size: 20px;
 }
+
 .logo-font {
   font-family: "Roboto", "San Serif";
   font-weight: 900;
   color: #666;
 }
+
 .logo-font:hover {
   color: white;
 }
+
 .user {
   cursor: pointer;
   color: #d9d9d9;
 }
+
 #home {
   cursor: pointer;
 }
+
 #home:hover {
   color: white;
 }
@@ -178,57 +189,71 @@
   color: #666666;
   font-size: 15px;
 }
+
 .nav-links:hover {
   color: #222222;
 }
+
 #sign-in:hover,
 #sign-out:hover {
   color: #666666;
 }
+
 .account-container {
   float: right;
   margin-left: 60px;
   min-width: 300px;
 }
+
 h1 {
   margin-top: 0px;
 }
+
 .margin-bottom-xs {
   margin-bottom: 5px;
 }
+
 .margin-bottom-sm {
   margin-bottom: 10px;
 }
+
 .margin-bottom-md {
   margin-bottom: 15px;
 }
+
 .margin-bottom-lg {
   margin-bottom: 30px;
 }
+
 .panel-font {
   font-family: "Roboto", "San Serif";
   font-weight: 900;
   color: #222222;
 }
+
 .panel-font:hover {
   color: #222222;
 }
+
 .tab-pane-mod {
   height: 660px;
   overflow: auto;
   direction: rtl;
 }
+
 .mod-md-1 {
   padding-right: 0px;
   padding-left: 0px;
   margin-left: -50px;
 }
+
 .mod-md-2 {
   margin-left: 40px;
   background-color: white;
   border: 1px black solid;
   padding-left: 0px;
 }
+
 .paint-container {
   margin-bottom: -5px;
 }
@@ -242,6 +267,7 @@ h1 {
   margin-left: 25px;
   font-size: 14px;
 }
+
 .paint-brand {
   float: left;
   margin-right: 5px;
@@ -250,27 +276,38 @@ h1 {
   top: -10px;
   margin-bottom: -4px;*/
 }
+
+.furniture-filter-dropdown {
+    display: none;
+} 
+
 .control-label {
   padding-right: 10px;
   padding-left: 10px;
 }
+
 .palette-dropdown {
   display: inline;
+  height: 50px;
 }
+
 #btn-palette {
   width: 270px;
-  height: 34px;
+  height: 50px;
   text-align: left;
 }
+
 .caret {
   vertical-align: bottom;
   float: right;
   margin-top: 9px;
 }
+
 .palette:hover {
   background-color: #e6e6e6;
   cursor: pointer;
 }
+
 .palette {
   margin-left: 10px;
   margin-right: 10px;
@@ -279,12 +316,15 @@ h1 {
 
   top: -50px;
 }
+
 #login-hdr {
   font-family: "Roboto", "San Serif";
   font-weight: 800;
 }
+
 div#OR {
   height: 30px;
+  /*height: 50px;*/
   width: 30px;
   border: 1px solid #C2C2C2;
   border-radius: 50%;
@@ -299,11 +339,13 @@ div#OR {
   z-index: 1;
   background: #DFDFDF;
 }
+
 #reg-error,
 #login-error {
   color: darkred;
   font-weight: 700;
 }
+
 .navbar {
   border: none;
   border-top: 23px solid transparent;
@@ -314,16 +356,19 @@ div#OR {
   border-radius: 4px;
   /*min-height: 100px;*/
 }
+
 .modal-header,
 .modal-footer {
   border-bottom: 1px solid black;
   background-color: #d9d9d9;
 }
+
 .modal-footer {
   border-top: 1px solid black;
   margin-left: -15px;
   margin-right: -15px;
 }
+
 .modal-body {
   /*  padding-left: 0px;
   padding-right: 0px;*/
@@ -331,26 +376,32 @@ div#OR {
   padding-bottom: 0px;
   background-color: #f2f2f2;
 }
+
 .navbar>.container .navbar-brand,
 .navbar>.container-fluid .navbar-brand {
   margin-left: 20px;
   line-height: 40px;
 }
+
 .navbar-inverse {
   background-image: none;
   background-color: #d9d9d9;
   border-color: #222222;
 }
+
 .navbar-inverse .navbar-nav>li>a {
   color: #d9d9d9;
 }
+
 .tab-padding {
   padding: 5px 15px;
 }
+
 .del-showroom,
 .del-showroom-text {
   display: block;
 }
+
 #user-container {
   display: flex;
   flex-direction: row;
@@ -360,6 +411,7 @@ div#OR {
   justify-content: flex-end;
   padding-right: 5px;
 }
+
 #user-container #user-pic {
   top: -3px;
   position: relative;
@@ -372,38 +424,46 @@ div#OR {
   background-size: 40px;
   border-radius: 20px;
 }
+
 #user-container #user-name {
   line-height: 36px;
   padding-right: 10px;
   padding-left: 20px;
   color: #454545;
 }
+
 .spectrumContainer {
   background: #d9d9d9;
 }
+
 .sp-container {
   width: 240px;
   padding-bottom: 0px;
   margin-bottom: 0px;
   border: solid 1px #222222;
 }
+
 .sp-palette-container {
   padding-bottom: 0px;
   margin-bottom: 0px;
 }
+
 .sp-picker-container {
   width: 200px;
   padding-bottom: 0px;
   margin-bottom: 10px;
 }
+
 .spectrumReplacer {
   background-color: #222222;
 }
+
 .sp-replacer {
   border: solid 2px #333;
   border-radius: 3px;
   margin-top: 1px;
 }
+
 .sp-input-container {
   width: 130px;
 }
@@ -444,53 +504,106 @@ div#OR {
   width: 85px;
   margin-bottom: 85px;
 }
+
 .tabs-right>li {
   margin-left: 0px;
 }
+
 .full-spectrum .sp-palette {
   max-width: 200px;
 }
+
 .panel-default>.panel-heading {
   background-image: none;
   background-color: #d9d9d9;
   color: white;
 }
+
 .panel-body {
   background: #222;
   color: #eee;
 }
+
 .canvas-btns-container {
   margin-top: 35px;
 }
+
+#btn-my-showrooms {
+  display: none;
+}
+
+#btn-my-showrooms-login {
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-right: 1em;
+}
+
+#btn-my-showrooms-login:hover {
+  color: #dadada;
+}
+
+#my-showrooms-modal {
+  display: none;
+  z-index: 1;
+  background: #ffffff;
+  border: 1px solid black;
+  position: relative;
+  width: 266px;
+  left: 16px;
+  top: -24px;
+  padding: 1em;
+}
+
+.motif-head {
+  color: black;
+  border-bottom: 1px solid black; 
+}
+
+.motif-head h4 {
+  padding: 7px;
+}
+
 #my-showrooms {
   padding: 20px;
   display: block;
-  /*margin-right: auto;
-  margin-left: auto;*/
-
-  margin-top: 40px;
   margin-bottom: 40px;
   font-family: "Roboto", "San Serif";
   font-weight: 900;
   font-size: 20px;
 }
+
 #my-showrooms>hr {
   border-top: 3px solid #eee;
 }
-#my-showrooms>h2,
+
+#my-showrooms > h2,
 h3,
 h4 {
   font-weight: 300;
 }
+
 .my-showroom {
   cursor: pointer;
   display: inline-block;
   margin: 0px;
 }
+
 .showroom {
+  position: relative;
   cursor: pointer;
   display: inline-block;
   margin: 10px;
+  color: black;
+}
+
+.showroom .del-showroom {
+  position: absolute;
+  right: -30px;
+  bottom: 42px;
+}
+
+.showroom .del-showroom-text {
+  letter-spacing: 3px;
 }
 
 /*.tab-pane {
@@ -504,36 +617,46 @@ h4 {
   background-image: none;
   border-color: #ccc;
 }
+
 .btn-default:focus,
 .btn-default:hover {
   background-color: white;
   color: #222222;
 }
+
 .btn-default:disabled {
   background-color: #C2C2C2;
   color: #222;
 }
+
 #container {
   text-align: center;
 }
+
 .clearfix {
   clear: both;
 }
+
 *.hidden {
   display: none;
 }
+
 #canvas-toolbar {
   height: 50px;
   position: relative;
-  top: 10px;
+  /*top: 10px;*/
+  top: 0px;
   background-color: rgba(0, 0, 0, 1);
 }
+
 .left-tool {
   float: left;
 }
+
 .right-tool {
   float: right;
 }
+
 .tool {
   height: 50px;
   color: white;
@@ -676,7 +799,7 @@ body {
 
   #btn-palette {
     width: 190px;
-    height: 34px;
+    height: 50px;
     font-size: 10px;
     padding: 6px 6px;
     text-align: left;
@@ -727,7 +850,7 @@ body {
 
   #btn-palette {
     width: 190px;
-    height: 34px;
+    height: 50px;
     font-size: 10px;
     padding: 6px 6px;
     text-align: left;
@@ -810,7 +933,7 @@ body {
 
   #btn-palette {
     width: 220px;
-    height: 34px;
+    height: 50px;
     font-size: 10px;
     padding: 6px 6px;
     text-align: left;
@@ -900,7 +1023,7 @@ body {
 @media screen and (min-width: 1600px) {
   #btn-palette {
     width: 270px;
-    height: 34px;
+    height: 50px;
     font-size: 14px;
     text-align: left;
   }

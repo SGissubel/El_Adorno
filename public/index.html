@@ -3,7 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIΛ VETRINΛ</title>
+  <title>EL ADORNO</title>
   <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
@@ -25,7 +25,7 @@
       </div>
       <div class="row">
         <div class="col-md-7 col-custom-1350 text-right">
-          <span class="byname">Dream... Create... Design... your inspirations.</span>
+          <span class="byname">Dream... Design... Create... your inspirations.</span>
         </div>
         <div class="col-md-5 col-custom-1350">
           <ul class="nav navbar-nav navbar-right">
@@ -51,7 +51,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 text-left">
-          <div class="navbar-brand byname-sm"><span class="logo-font" id="home">MIΛ VETRINΛ</span>
+          <div class="navbar-brand byname-sm"><span class="logo-font" id="home">EL ADORNO</span>
           <span class="impulso-hdr">by impulso</span></div>
         </div>
       </div>
@@ -67,7 +67,32 @@
           <div class="left-tool tool-clr tool" id="btn-clear"><span class="fa fa-eraser" style="font-size:24px"></span> Clear</div>
           <div class="left-tool tool-flip tool" id="btn-flip"><span class="fa fa-exchange" style="font-size:24px"></span> Flip</div>
           <div class="left-tool tool-flip tool" id="btn-del"><span class="fa fa-trash" style="font-size:24px"></span> Delete</div>
-          <div class="right-tool tool-clr tool" id="btn-my-showrooms"><span class="fa fa-photo" style="font-size:24px"></span> My Showrooms</div>
+          <div class="right-tool tool-clr tool" id="btn-my-showrooms-login"></span>Login To See Your Motifs</div>
+          <div class="right-tool tool-clr tool">
+            <span id="btn-my-showrooms">
+              <span class="fa fa-photo" style="font-size:24px"></span> 
+              My Motifs
+            </span>
+            <div>
+              <div id="my-showrooms-modal" class="" role="">
+                <div class="">
+                  <!-- Modal content-->
+                  <div class="">
+                    <div class="motif-head">
+                      <button type="button" class="close close-motif" >&times;</button>
+                      <h4 class="modal-title"><span class="fa fa-photo" style="font-size:24px"></span> My Motifs</h4>
+                    </div>
+                    <div class="">
+                      <div id="my-showrooms"></div>
+                      <div class="">
+                        <button type="button" class="btn btn-default close-delete close-motif">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-3 text-left paint-container">
@@ -86,6 +111,41 @@
         <div class="paint-color clearfix">
           <span id="color-name"></span>
         </div>
+        <div class="paint-brand furniture-filter-dropdown">
+          <div class="dropdown ">
+            <button class="btn btn-default dropdown-toggle" id="btn-palette" type="button" data-toggle="dropdown">Filter Furniture by Type<span class="caret"></span></button>
+            <div class="dropdown-menu">
+              <form>
+                <input type="radio" name="furniture-filter" value="accent" > Accents<br>
+                <input type="radio" name="furniture-filter" value="bar"> Bars<br>
+                <input type="radio" name="furniture-filter" value="bed"> Beds <br>
+                <input type="radio" name="furniture-filter" value="bench" > Benches<br>
+                <input type="radio" name="furniture-filter" value="bookshelve"> Bookshelves<br>
+                <input type="radio" name="furniture-filter" value="buffet"> Buffets <br>
+                <input type="radio" name="furniture-filter" value="cabinet" > Cabinets<br>
+                <input type="radio" name="furniture-filter" value="chair"> Chairs<br>
+                <input type="radio" name="furniture-filter" value="chest"> Chests <br>
+                <input type="radio" name="furniture-filter" value="closet" > Closets<br>
+                <input type="radio" name="furniture-filter" value="console"> Consoles<br>
+                <input type="radio" name="furniture-filter" value="desk"> Desks <br>
+                <input type="radio" name="furniture-filter" value="dining" > Dining<br>
+                <input type="radio" name="furniture-filter" value="dresser"> Dressers<br>
+                <input type="radio" name="furniture-filter" value="futon"> Futons <br> 
+                <input type="radio" name="furniture-filter" value="lamp" > Lamps<br>
+                <input type="radio" name="furniture-filter" value="lounge"> Lounges<br>
+                <input type="radio" name="furniture-filter" value="loveseat"> Loveseats <br>
+                <input type="radio" name="furniture-filter" value="ottoman" > Ottomans<br>
+                <input type="radio" name="furniture-filter" value="plant"> Plants<br>
+                <input type="radio" name="furniture-filter" value="sectional"> Sectionals <br>
+                <input type="radio" name="furniture-filter" value="sofa" > Sofas<br>
+                <input type="radio" name="furniture-filter" value="stand"> Stands<br>
+                <input type="radio" name="furniture-filter" value="stool"> Stools <br>
+                <input type="radio" name="furniture-filter" value="table" > Tables<br>
+                <input type="radio" name="furniture-filter" value="nightstand"> Nightstands<br>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -100,15 +160,15 @@
         <div class="tab-content text-center">
           <div id="rooms" class="tab-pane tab-pane-mod fade in active">
           </div>
+          <div id="decors" class="tab-pane tab-pane-mod fade">
+          </div> 
+          <div id="textures" class="tab-pane tab-pane-mod fade">
+          </div>                   
           <div id="floors" class="tab-pane tab-pane-mod fade">
           </div>
-          <div id="decors" class="tab-pane tab-pane-mod fade">
-          </div>
-          <div id="artwork" class="tab-pane tab-pane-mod fade">
-          </div>
           <div id="furniture" class="tab-pane tab-pane-mod fade">
-          </div>
-          <div id="textures" class="tab-pane tab-pane-mod fade">
+          </div> 
+          <div id="artwork" class="tab-pane tab-pane-mod fade">
           </div>
         </div>
       </div>
@@ -116,22 +176,22 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs tabs-right sideways">
           <li class="active"><a data-toggle="tab" href="#rooms" class="panel-font tab-padding">Rooms</a></li>
+          <li><a data-toggle="tab" href="#decors" class="panel-font tab-padding">Decors</a></li> 
+          <li><a data-toggle="tab" href="#textures" class="panel-font tab-padding">Textures</a></li>                   
           <li><a data-toggle="tab" href="#floors" class="panel-font tab-padding">Floors</a></li>
-          <li><a data-toggle="tab" href="#decors" class="panel-font tab-padding">Decors</a></li>
+          <li><a data-toggle="tab" href="#furniture" class="panel-font tab-padding">Furniture</a></li> 
           <li><a data-toggle="tab" href="#artwork" class="panel-font tab-padding">Artwork</a></li>
-          <li><a data-toggle="tab" href="#furniture" class="panel-font tab-padding">Furniture</a></li>
-          <li><a data-toggle="tab" href="#textures" class="panel-font tab-padding">Textures</a></li>
         </ul>
       </div>
     </div>
     <!-- my-showrooms Modal -->
-    <div id="my-showrooms-modal" class="modal fade" role="dialog">
+<!--     <div id="my-showrooms-modal" class="modal fade" role="dialog">
       <div class="modal-dialog modal-lg">
-        <!-- Modal content-->
+        
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><span class="fa fa-photo" style="font-size:24px"></span> My Showrooms</h4>
+            <h4 class="modal-title"><span class="fa fa-photo" style="font-size:24px"></span> My Motifs</h4>
           </div>
           <div class="modal-body">
             <div id="my-showrooms"></div>
@@ -141,7 +201,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Delete Modal -->
     <div id="deleteModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -168,17 +228,17 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><span class="fa fa-server" style="font-size:24px"></span> Save Showroom</h4>
+            <h4 class="modal-title"><span class="fa fa-server" style="font-size:24px"></span> Save Motif</h4>
           </div>
           <div class="modal-body">
             <div id="save-new">
-              <h4>Save Showroom As:</h4>
+              <h4>Save Motif As:</h4>
             </div>
             <div id="save-existing">
               <h2 id="curr-showroom"></h2>
-              <h4>Hit the Save button to update your current showroom or enter a name below to save as a new showroom.</h4>
+              <h4>Hit the Save button to update your current Motif or enter a name below to save as a new Motif.</h4>
             </div>
-            <input type="text" name="showroom-name" class="form-control" id="showroom-name" placeholder="Showroom Name">
+            <input type="text" name="showroom-name" class="form-control" id="showroom-name" placeholder="Motif Name">
             <br>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" id="save-show" data-dismiss="modal">Save</button>
@@ -215,7 +275,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               ×</button>
             <h4 class="modal-title" id="login-hdr">
-              MIΛ VETRINΛ - Login/Registration</h4>
+              EL ADORNO - Login/Registration</h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -366,10 +426,10 @@
                 <br>
                 <h2 class="lead text-success">Benefits of Registering</h2>
                 <ul class="list-unstyled" style="line-height: 4">
-                  <li><span class="fa fa-check text-success"></span> Design &amp; Save your Showrooms to your Account
+                  <li><span class="fa fa-check text-success"></span> Design &amp; Save your Motifs to your Account
                   </li>
-                  <li><span class="fa fa-check text-success"></span> View &amp; Edit your Showrooms on any computer</li>
-                  <li><span class="fa fa-check text-success"></span> Save your Showrooms as an image file to your computer
+                  <li><span class="fa fa-check text-success"></span> View &amp; Edit your Motifs on any computer</li>
+                  <li><span class="fa fa-check text-success"></span> Save your Motif as an image file to your computer
                   </li>
                   <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture, etc.)
                   </li>
@@ -398,7 +458,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" id="how-To-Modal">How to...create a MIΛ VETRINΛ Inspiration Showroom Design</h4>
+            <h4 class="modal-title" id="how-To-Modal">How to...create an EL ADORNO Inspiration Showroom Design</h4>
           </div>
           <div class="modal-body">
             <h4>What are...</h4>
@@ -406,7 +466,7 @@
               <li>Color is used to personalize Decor or Floor space.</li>
             </ul>
             <ul><strong>Rooms:</strong>
-              <li>Are ready made MIΛ VETRINΛ inspiration Showroom designs.</li>
+              <li>Are ready made EL ADORNO inspiration Showroom designs.</li>
               <li>Customize your inspiration Room by accessorizing with Furniture and/or Artwork.</li>
               <p>NOTE: You cannot add wall color to a ready made Room.</p>
             </ul>
@@ -480,7 +540,7 @@
       <div class="footer-flex-container text-center">
         <div class="footer-flex-items">
           <div class="text-muted copyright footer-flex-item">
-            &copy; Copyright 2017 MIΛ VETRINΛ &nbsp; <span class="impulso-footer-font"> by impulso</span> &nbsp; All rights reserved.
+            &copy; Copyright 2017 EL ADORNO &nbsp; <span class="impulso-footer-font"> by impulso</span> &nbsp; All rights reserved.
           </div>
           <div class="footer-connect footer-flex-item">
           </div>

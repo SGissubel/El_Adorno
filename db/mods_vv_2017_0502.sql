@@ -212,6 +212,7 @@ INSERT INTO furniture_category (category, furniture_type) VALUES ('Sofas', 'sofa
 INSERT INTO furniture_category (category, furniture_type) VALUES ('Stands', 'stand');
 INSERT INTO furniture_category (category, furniture_type) VALUES ('Stools', 'stool');
 INSERT INTO furniture_category (category, furniture_type) VALUES ('Tables', 'table');
+INSERT INTO furniture_category (category, furniture_type) VALUES ('Nightstands', 'nightstand');
 
 select count(*) from furniture_category into @rcds; 
 select @rcds as 'Rows Loaded';
@@ -596,6 +597,10 @@ insert into furniture (brand_id,category_id,furniture_name,real_height,real_widt
 VALUES (3,0,'table_r_30x60_parsons',30,60,120,240,72,0,'/app/Media/Furniture/','table_r_30x60_parsons.png');
 insert into furniture (brand_id,category_id,furniture_name,real_height,real_width,pixel_height,pixel_width,resolution,click_rate,file_path,file_name)
 VALUES (3,0,'table_r_36x48_counter',36,48,144,192,72,0,'/app/Media/Furniture/','table_r_36x48_counter.png');
+insert into furniture (brand_id,category_id,furniture_name,real_height,real_width,pixel_height,pixel_width,resolution,click_rate,file_path,file_name)
+VALUES (3,0,'accent_f_10x12_vase',10,12,40,48,72,0,'/app/Media/Furniture/','accent_f_10x12_vase.png');
+insert into furniture (brand_id,category_id,furniture_name,real_height,real_width,pixel_height,pixel_width,resolution,click_rate,file_path,file_name)
+VALUES (3,0,'plant_f_60x48_fern',60,48,240,192,72,0,'/app/Media/Furniture/','plant_f_60x48_fern.png');
 
 
 -- Create & Reload Object_Types
@@ -1374,6 +1379,14 @@ VALUES ('table_r_36x48_counter',4,null,36,48,144,192,72,0,0,null,'/app/Media/Fur
 select count(*) from objects where obj_type_id=4 into @rcds; 
 select @rcds as 'Rows Loaded';
 
+INSERT INTO objects (obj_name, obj_type_id, furniture_id, real_height, real_width, pixel_height, pixel_width, resolution, static, useradd, user_id, file_path, file_name) 
+VALUES ('Glassy Manhattan',1,null,40,60,160,240,72,false,false,null,'/app/Media/Artwork/','Glassy_Manhattan.jpg');
+INSERT INTO objects (obj_name, obj_type_id, furniture_id, real_height, real_width, pixel_height, pixel_width, resolution, static, useradd, user_id, file_path, file_name) 
+VALUES ('stairwell01',2,null,192,288,768,1152,72,true,false,null,'/app/Media/Decors/','wr03.png');
+insert into objects (obj_name,obj_type_id,furniture_id,real_height,real_width,pixel_height,pixel_width,resolution,static,useradd,user_id,file_path,file_name)
+VALUES ('accent_f_10x12_vase',4,null,10,12,40,48,72,0,0,null,'/app/Media/Furniture/','accent_f_10x12_vase.png');
+insert into objects (obj_name,obj_type_id,furniture_id,real_height,real_width,pixel_height,pixel_width,resolution,static,useradd,user_id,file_path,file_name)
+VALUES ('plant_f_60x48_fern',4,null,60,48,240,192,72,0,0,null,'/app/Media/Furniture/','plant_f_60x48_fern.png');
 
 -- -- Alter Table & Update Showrooms
 -- alter table showrooms

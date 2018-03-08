@@ -21,7 +21,7 @@ var connections = [
     },
     instagram = {
         link: "#",
-        imgSrc: "app/assets/images/Intsagram.png"
+        imgSrc: "app/assets/images/Instagram.png"
     }
 ];
 
@@ -36,6 +36,6 @@ for (var i = 0; i < connections.length; i++) {
 
 };
 
-var $a = $('<a>').attr('href', 'mailto:info@miavetrina.com').text('info@miavetrina.com').addClass("info-email");
+var $a = $('<a>').attr('href', 'mailto:eladorno@gmail.com').text('eladorno@gmail.com').addClass("info-email");
 
 $(".footer-connect").append($a);

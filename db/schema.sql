@@ -103,10 +103,12 @@ CREATE TABLE IF NOT EXISTS layers (
   width INT(11) NOT NULL,
   position_top INT(11) NOT NULL,
   position_left INT(11) NOT NULL,
+  angle DECIMAL(13,10) NULL DEFAULT 0, 
   color VARCHAR(255), 
   opacity DECIMAL,  
   layer_type VARCHAR(255),
   object_id INT(11),
+  flipped TINYINT(1) NOT NULL DEFAULT 0,
   showroom_id INT(11) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT showroom_id

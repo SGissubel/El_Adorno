@@ -21,9 +21,9 @@ $(window).scroll(function () {
 $('.navbar').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
   function (e) {
     if ($('.navbar-brand').hasClass("byname-lg")) {
-      $('.byname').html('Dream... Create... Design... your inspirations with impulso<br><br><span class="logo-font">MIΛ VETRINΛ</span>');
+      $('.byname').html('Dream... Design... Create... your inspirations with impulso<br><br><span class="logo-font">EL ADORNO</span>');
     } else {
-      $('.byname').html('<span class="logo-font">MIΛ VETRINΛ</span> Dream... Create... Design... your inspirations with impulso');
+      $('.byname').html('<span class="logo-font">EL ADORNO</span> Dream... Design... Create... your inspirations with impulso');
     }
     $('.navbar-brand').removeClass("fade-out");
     $('.navbar-brand').addClass("fade-in");
