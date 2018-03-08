@@ -528,9 +528,12 @@ $(document).ready(function () {
       method: "GET"
     }).done(function (data) {
       //repeating code?
+      if ($('.img-furn')) {
+        $('.img-furn').remove();
+      }
       for (var i = 0; i < data.length; i++) {
         if (filteredFurniture) {
-          if(data[i].obj_name === filteredFurniture) {
+          if(data[i].obj_name.indexOf(filteredFurniture) !== -1) {
             var $imgThumbnail = $("<img>")
             .addClass("img-responsive img-thumbnail img-furn")
             .attr("data-src", data[i].file_path + data[i].file_name)
@@ -574,9 +577,13 @@ $(document).ready(function () {
     });
   }
 
-  $('input[name=furniture-filter]').change(function(){
-    debugger;
+  $('input[name=furniture-filter]').change(() => {
     filteredFurniture = event.target.value;
+    loadFurniture();
+  });
+
+  $('.clear-fitler').on('click', () => {
+    filteredFurniture = '';
     loadFurniture();
   });
 

@@ -258,11 +258,6 @@ h1 {
   margin-bottom: -5px;
 }
 
-/*.paint-picker {
-  position: relative;
-  top: -10px;
-  margin-bottom: -4px;
-  }*/
 .paint-color {
   margin-left: 25px;
   font-size: 14px;
@@ -272,14 +267,24 @@ h1 {
   float: left;
   margin-right: 5px;
   margin-left: 22px;
-  /*position: relative;
-  top: -10px;
-  margin-bottom: -4px;*/
 }
 
 .furniture-filter-dropdown {
     display: none;
-} 
+}
+
+.filter-form {
+  padding: 1em;
+  letter-spacing: 2px;
+}
+
+.clear-filter_div {
+  text-align: center;
+}
+
+.clear-filter:hover {
+  text-decoration: none;
+}
 
 .control-label {
   padding-right: 10px;
@@ -312,8 +317,6 @@ h1 {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 5px;
-  /*margin-left: 10px;*/
-
   top: -50px;
 }
 
@@ -324,7 +327,6 @@ h1 {
 
 div#OR {
   height: 30px;
-  /*height: 50px;*/
   width: 30px;
   border: 1px solid #C2C2C2;
   border-radius: 50%;
@@ -354,7 +356,6 @@ div#OR {
   border-right: 1px solid transparent;
   margin-bottom: 0px;
   border-radius: 4px;
-  /*min-height: 100px;*/
 }
 
 .modal-header,
@@ -370,9 +371,6 @@ div#OR {
 }
 
 .modal-body {
-  /*  padding-left: 0px;
-  padding-right: 0px;*/
-
   padding-bottom: 0px;
   background-color: #f2f2f2;
 }
@@ -415,8 +413,6 @@ div#OR {
 #user-container #user-pic {
   top: -3px;
   position: relative;
-  /*display: inline-block;*/
-
   background-image: url("../images/profile_placeholder.png");
   background-repeat: no-repeat;
   width: 40px;
