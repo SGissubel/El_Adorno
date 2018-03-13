@@ -520,7 +520,7 @@ $(document).ready(function () {
     });
   }
 
-  let filteredFurniture = '';
+  let filteredFurniture = [];
 
   function loadFurniture() {
     $.ajax({
@@ -531,59 +531,79 @@ $(document).ready(function () {
       if ($('.img-furn')) {
         $('.img-furn').remove();
       }
-      for (var i = 0; i < data.length; i++) {
-        if (filteredFurniture) {
-          if(data[i].obj_name.indexOf(filteredFurniture) !== -1) {
-            var $imgThumbnail = $("<img>")
-            .addClass("img-responsive img-thumbnail img-furn")
-            .attr("data-src", data[i].file_path + data[i].file_name)
-            .attr("data-drag", true)
-            .attr("data-height", data[i].pixel_height)
-            .attr("data-width", data[i].pixel_width)
-            .attr("data-x", 100)
-            .attr("data-y", 100)
-            .attr("data-name", data[i].obj_name)
-            .attr("data-copy", 1)
-            .attr("data-type", "furn")
-            .attr("src", data[i].file_path + "tn_" + data[i].file_name)
-            .attr("width", "150px")
-            .attr("alt", data[i].obj_name)
-            .attr("data-obj-id", data[i].id);
+      data.map((furn) => {
+        if (filteredFurniture.length) {
+          filteredFurniture.map((filterFurn) => {
+            if(furn.obj_name.indexOf(filterFurn) !== -1) {
+              var $imgThumbnail = $("<img>")
+              .addClass("img-responsive img-thumbnail img-furn")
+              .attr("data-src", furn.file_path + furn.file_name)
+              .attr("data-drag", true)
+              .attr("data-height", furn.pixel_height)
+              .attr("data-width", furn.pixel_width)
+              .attr("data-x", 100)
+              .attr("data-y", 100)
+              .attr("data-name", furn.obj_name)
+              .attr("data-copy", 1)
+              .attr("data-type", "furn")
+              .attr("src", furn.file_path + "tn_" + furn.file_name)
+              .attr("width", "150px")
+              .attr("alt", furn.obj_name)
+              .attr("data-obj-id", furn.id);
 
-          $("#furniture").append($imgThumbnail);
+            $("#furniture").append($imgThumbnail);
 
-          }
+            }
+          })
+          
         } else {
           var $imgThumbnail = $("<img>")
             .addClass("img-responsive img-thumbnail img-furn")
-            .attr("data-src", data[i].file_path + data[i].file_name)
+            .attr("data-src", furn.file_path + furn.file_name)
             .attr("data-drag", true)
-            .attr("data-height", data[i].pixel_height)
-            .attr("data-width", data[i].pixel_width)
+            .attr("data-height", furn.pixel_height)
+            .attr("data-width", furn.pixel_width)
             .attr("data-x", 100)
             .attr("data-y", 100)
-            .attr("data-name", data[i].obj_name)
+            .attr("data-name", furn.obj_name)
             .attr("data-copy", 1)
             .attr("data-type", "furn")
-            .attr("src", data[i].file_path + "tn_" + data[i].file_name)
+            .attr("src", furn.file_path + "tn_" + furn.file_name)
             .attr("width", "150px")
-            .attr("alt", data[i].obj_name)
-            .attr("data-obj-id", data[i].id);
+            .attr("alt", furn.obj_name)
+            .attr("data-obj-id", furn.id);
 
           $("#furniture").append($imgThumbnail);
     
         }    
-      }
+      })
     });
   }
 
   $('input[name=furniture-filter]').change(() => {
-    filteredFurniture = event.target.value;
+    const furnCheck = [...document.getElementsByName('furniture-filter')];
+    var caretDown = document.getElementsByClassName('furnFilCaret');
+
+    furnCheck.filter((furn) => {
+      if (furn.checked) {
+        filteredFurniture.push(furn.value);
+      }
+    });
+    if (!filteredFurniture.length) {
+      filteredFurniture = [];
+    }
     loadFurniture();
   });
 
   $('.clear-fitler').on('click', () => {
-    filteredFurniture = '';
+    filteredFurniture = [];
+    const furnCheck = [...document.getElementsByName('furniture-filter')];
+    
+    furnCheck.filter((furn) => {
+      if (furn.checked) {
+        return furn.checked = false;
+      }
+    });
     loadFurniture();
   });
 

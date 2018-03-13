@@ -11,56 +11,48 @@ var object = require('../models/object.js');
 router.get("/", function(req, res) {
 	object.all(function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/object/:id", function(req, res) {
 	object.some("id=" + [req.params.id], function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/artwork", function(req, res) {
 	object.some("obj_type_id=1", function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/decors", function(req, res) {
 	object.some("obj_type_id=2", function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/floors", function(req, res) {
 	object.some("obj_type_id=3", function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/furniture", function(req, res) {
 	object.some("obj_type_id=4", function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/rooms", function(req, res) {
 	object.some("obj_type_id=5", function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 
 router.get("/textures", function(req, res) {
 	object.some("obj_type_id=6", function(data){
 		res.send(data);
-		//res.send('../public/index', {objects: data});
 	});	
 });
 

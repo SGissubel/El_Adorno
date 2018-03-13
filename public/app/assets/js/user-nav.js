@@ -284,29 +284,29 @@ $("#how-To").on("click", function () {
 });
 
 $("#about").on("click", function () {
-  var currentURL = window.location.origin;
+  const currentURL = window.location.origin;
 
   window.location = currentURL + "/about"
 
 });
 
 $("#contact").on("click", function () {
-  var currentURL = window.location.origin;
-
+  const currentURL = window.location.origin;
   window.location = currentURL + "/contact"
-
 });
 
 function showMotifButton() {
   $("#btn-my-showrooms").css('display', 'block');
   $("#btn-my-showrooms-login").css('display', 'none');
 }
+
 function hideMotifButton() {
   $("#btn-my-showrooms").css('display', 'none');
   $("#btn-my-showrooms-login").css('display', 'block');
 }
+
 $('.panel-font').on('click', () => {
   if (event.currentTarget.hash === '#furniture') 
     $('.furniture-filter-dropdown').css('display', 'block');
   else $('.furniture-filter-dropdown').css('display', 'none');
-})
+});

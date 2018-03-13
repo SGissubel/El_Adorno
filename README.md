@@ -12,11 +12,15 @@
 **Web Application** 
 
 
-** WallApp**
+**WallApp**
+
 - http://www.ohmyprints.com/index/455/de/WallApp
 
 ##Purpose of the App:
-A user is able to design a room, with selected or created furniture and artwork.
+
+Allow a user to be able to design a room in their home, office, etc, 
+
+with selected or inserted furniture and artwork -- from site-DB or personal files.
 
 From login, to setting up their own cache of saved room ideas and designs.
 

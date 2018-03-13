@@ -539,6 +539,8 @@ div#OR {
 }
 
 #my-showrooms-modal {
+  height: 500px;
+  overflow: scroll;
   display: none;
   z-index: 1;
   background: #ffffff;
