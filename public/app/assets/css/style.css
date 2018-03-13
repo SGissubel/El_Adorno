@@ -358,6 +358,12 @@ div#OR {
   border-radius: 4px;
 }
 
+#shadow-alert {
+  margin: 0 auto;
+  width: 568px;
+  text-align: center;
+}
+
 .modal-header,
 .modal-footer {
   border-bottom: 1px solid black;
@@ -536,6 +542,17 @@ div#OR {
 
 #btn-my-showrooms-login:hover {
   color: #dadada;
+}
+
+#btn-shadow {
+  position: relative;
+}
+
+.shadow-change_form {
+  color: black;
+  font-weight: 500;
+  letter-spacing: 2px;
+  padding: 1em;
 }
 
 #my-showrooms-modal {

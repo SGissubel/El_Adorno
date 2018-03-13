@@ -53,6 +53,7 @@ $(document).ready(function () {
     return object;
   };
 
+
   function setCanvas() {
     if ($(window).width() > 1900 && $(window).width() <= 2500) {
       $canvasWidth = 1152;
@@ -72,7 +73,10 @@ $(document).ready(function () {
       }
     }
 
-    var newCanvas = $("<canvas>").attr("id", "room-canvas").attr("width", $canvasWidth).attr("height", $canvasHeight);
+    var newCanvas = $("<canvas>")
+      .attr("id", "room-canvas")
+      .attr("width", $canvasWidth)
+      .attr("height", $canvasHeight);
 
     // Do some initializing stuff
     fabric.Object.prototype.set({
@@ -87,11 +91,11 @@ $(document).ready(function () {
     fabCanvas = new fabric.CanvasEx("room-canvas");
     fabCanvas.preserveObjectStacking = true;
 
-    // $("#my-showrooms").css('width', $canvasWidth);
     $(".tab-pane-mod").css('height', $canvasHeight);
     $("#canvas-toolbar").css('width', $canvasWidth);
 
   };
+
 
   function clearCanvas() {
 
@@ -108,6 +112,7 @@ $(document).ready(function () {
     artworkCount = 0;
 
   };
+
 
   function setColorPicker() {
 
@@ -195,7 +200,8 @@ $(document).ready(function () {
       ]
     });
 
-  } 
+  };
+
 
   function getShowrooms(userId) {
 
@@ -243,6 +249,7 @@ $(document).ready(function () {
     });
   };
 
+
   function displayShowroom(showroomId, userId) {
 
     $.ajax({
@@ -288,10 +295,12 @@ $(document).ready(function () {
     });
   };
 
+
   function addTexture(data) {
 
     $('img[data-obj-id="' + data.object_id + '"]').trigger("click");
   }
+
 
   function addColor(data) {
 
@@ -332,6 +341,7 @@ $(document).ready(function () {
 
   }
 
+
   function addBaseImg(data) {
 
     $('img[data-obj-id="' + data.object_id + '"]')
@@ -341,6 +351,7 @@ $(document).ready(function () {
 
   }
 
+
   function addOtherObjects(data) {
     $('img[data-obj-id="' + data.object_id + '"]')
       .trigger("click",
@@ -348,6 +359,7 @@ $(document).ready(function () {
       );
 
   }
+
 
   function loadRooms() {
     $.ajax({
@@ -520,6 +532,7 @@ $(document).ready(function () {
     });
   }
 
+
   let filteredFurniture = [];
 
   function loadFurniture() {
@@ -580,9 +593,9 @@ $(document).ready(function () {
     });
   }
 
+  // Filter Furniture by type
   $('input[name=furniture-filter]').change(() => {
     const furnCheck = [...document.getElementsByName('furniture-filter')];
-    var caretDown = document.getElementsByClassName('furnFilCaret');
 
     furnCheck.filter((furn) => {
       if (furn.checked) {
@@ -595,6 +608,7 @@ $(document).ready(function () {
     loadFurniture();
   });
 
+  // Clear Furniture Filter
   $('.clear-fitler').on('click', () => {
     filteredFurniture = [];
     const furnCheck = [...document.getElementsByName('furniture-filter')];
@@ -606,6 +620,7 @@ $(document).ready(function () {
     });
     loadFurniture();
   });
+
 
   //*********************app starts executing here***********************
 
@@ -718,6 +733,7 @@ $(document).ready(function () {
 
   });
 
+
   $(document).on("click", ".my-showroom", function () {
     var showroomId = $(this).data("id");
     var userId = $(this).data("user-id");
@@ -726,6 +742,7 @@ $(document).ready(function () {
 
   });
 
+
   $(document).on("click", ".del-showroom", function () {
       var showroomId = $(this).data("id");
       var userId = $(this).data("user-id");
@@ -733,6 +750,7 @@ $(document).ready(function () {
       ajaxDelLayersAndShowroom(showroomId, userId);
 
   });
+
 
   $(document).on("click", ".img-base", function (e, h, w, t, l, f) {
   // $(document).on("click", ".img-base", function () {
@@ -840,6 +858,7 @@ $(document).ready(function () {
 
   });
 
+
   $(document).on("click", ".img-art, .img-furn", function (e, h, w, t, l, f, a) {
     var height;
     var width;
@@ -937,6 +956,7 @@ $(document).ready(function () {
 
   });
 
+
   $(document).on("click", ".img-patt", function () {
 
     var objVisible;
@@ -988,6 +1008,7 @@ $(document).ready(function () {
     });
 
   });
+
 
   $(document).on("click", ".no-texture", function () {
     textureExists = false;
@@ -1047,8 +1068,19 @@ $(document).ready(function () {
       fabCanvas.renderAll();
     }
 
-
   });
+
+  
+  // $('#btn-shadow').on('click', function () {
+  //   var activeObject = fabCanvas.getActiveObject();
+    
+  //   if (!activeObject) {
+  //     $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+  //       $(".alert").slideUp(500);
+  //     });
+  //   }
+
+  // });
      
   $(document).on("click", "#btn-download", function (e) {
     fabCanvas.deactivateAll().renderAll();
@@ -1058,12 +1090,13 @@ $(document).ready(function () {
     sessionData = checkUser();
 
     if (appLoggedIn) {
-      var fileName = "Motif_" + moment().format("YYYY-MM-DD-h:mm:ss") + ".png";
-      // $("#room-canvas").get(0).toBlob(function(blob){
+      const fileName = "Motif_" + moment().format("YYYY-MM-DD-h:mm:ss") + ".png";
+
       $canvas.get(0).toBlob(function(blob){
         saveAs(blob, fileName);
       });
     } else $("#login-modal").modal("toggle");
+
   });
 
   $('#btn-save').on('click', function () {
@@ -1307,7 +1340,85 @@ $(document).ready(function () {
 
   $('.close-motif').on('click', function () {
     $('#my-showrooms-modal').css('display', 'none');
-    filteredFurniture = '';
+    filteredFurniture = [];
+  });
+
+  $('#btn-shadow').on('click', () => {
+    const activeObject = fabCanvas.getActiveObject();
+    const dropDownVisibleAndNoSelect = !activeObject && !($('.shadow-change_div').is(':hidden'));
+    const noSelectedItems = !activeObject;
+    
+    if (dropDownVisibleAndNoSelect) {
+      $('.shadow-change_div').css('display', 'none');
+    } else if (noSelectedItems) {
+      $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+      });
+    } else {
+      if ($('.shadow-change_div').is(':hidden')) {
+        $('.shadow-change_div').css('display', 'block');  
+      } else {
+        $('.shadow-change_div').css('display', 'none');
+      }
+    }
+
+  });
+
+  //   $('#btn-shadow').on('click', function () {
+  //   var activeObject = fabCanvas.getActiveObject();
+    
+  //   if (!activeObject) {
+  //     $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+  //       $(".alert").slideUp(500);
+  //     });
+  //   }
+
+  // });
+
+  // $('#btn-shadow').on('click', function () {
+  //   var activeObject = fabCanvas.getActiveObject();
+    
+  //   $(".alert").slideUp(3500);
+  //   if (activeObject) {
+  //     debugger;
+  //     // curLayer = activeObject;
+  //       // $("#deleteModal").modal({
+  //       //   backdrop: "static",
+  //       //   keyboard: true
+  //       // });
+  //     fabCanvas.renderAll();
+  //   } else {
+  //     $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+  //       $(".alert").slideUp(500);
+  //     });
+  //   }
+
+  // });
+
+  $('input[name=shadow-change]').change(() => {
+    const activeObject = fabCanvas.getActiveObject();
+    // const shadowChange = [...document.getElementsByName('shadow-change')];
+    const shadowChange = event.target.value;
+    switch(shadowChange) {
+      case 'right':
+        activeObject.shadow.offsetX = 3;
+        activeObject.shadow.offsetY = 3;
+      break;
+      case 'left':
+        activeObject.shadow.offsetX = -3;
+        activeObject.shadow.offsetY = 3;
+      break;
+      case 'behind':
+        activeObject.shadow.offsetX = 0;
+        activeObject.shadow.offsetY = -3;
+      break;
+      case 'none':
+        activeObject.shadow.offsetX = 0;
+        activeObject.shadow.offsetY = 0;
+      break;
+    }
+    fabCanvas.renderAll();
+
   });
 
 }); // end document ready
