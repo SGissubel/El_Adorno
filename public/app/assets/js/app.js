@@ -1364,41 +1364,11 @@ $(document).ready(function () {
 
   });
 
-  //   $('#btn-shadow').on('click', function () {
-  //   var activeObject = fabCanvas.getActiveObject();
-    
-  //   if (!activeObject) {
-  //     $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-  //       $(".alert").slideUp(500);
-  //     });
-  //   }
-
-  // });
-
-  // $('#btn-shadow').on('click', function () {
-  //   var activeObject = fabCanvas.getActiveObject();
-    
-  //   $(".alert").slideUp(3500);
-  //   if (activeObject) {
-  //     debugger;
-  //     // curLayer = activeObject;
-  //       // $("#deleteModal").modal({
-  //       //   backdrop: "static",
-  //       //   keyboard: true
-  //       // });
-  //     fabCanvas.renderAll();
-  //   } else {
-  //     $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-  //       $(".alert").slideUp(500);
-  //     });
-  //   }
-
-  // });
 
   $('input[name=shadow-change]').change(() => {
     const activeObject = fabCanvas.getActiveObject();
-    // const shadowChange = [...document.getElementsByName('shadow-change')];
     const shadowChange = event.target.value;
+    
     switch(shadowChange) {
       case 'right':
         activeObject.shadow.offsetX = 3;
