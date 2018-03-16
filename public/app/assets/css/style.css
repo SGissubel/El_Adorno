@@ -536,7 +536,7 @@ div#OR {
 
 #btn-my-showrooms-login {
   cursor: pointer;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin-right: 1em;
 }
 
@@ -553,6 +553,17 @@ div#OR {
   font-weight: 500;
   letter-spacing: 2px;
   padding: 1em;
+}
+
+.item-room_add {
+  cursor: pointer;
+  margin-top: 9px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.item-room_add:hover {
+  color: lightgray;
 }
 
 #my-showrooms-modal {

@@ -135,6 +135,9 @@
           </div>
 
         </div>
+        <div class="item-room_add">
+          ADD YOUR OWN ITEMS OR ROOM
+        </div>
       </div>
 
       <div class="col-md-3 text-left paint-container">
@@ -326,7 +329,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               ×</button>
             <h4 class="modal-title" id="login-hdr">
-              EL ADORNO - Login/Registration</h4>
+              Login / Register</h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -336,7 +339,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs">
                       <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
-                      <li><a href="#registration" data-toggle="tab">Registration</a></li>
+                      <li><a href="#registration" data-toggle="tab">Register</a></li>
                       <li><a href="#forgot-password" data-toggle="tab">Forgot Password</a></li>
                     </ul>
                   </div>
@@ -498,6 +501,191 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Modal Login Large  -->
+    <!-- Start Modal Add Items Large  -->
+    <div class="modal fade" id="add-items-modal" role="dialog" aria-labelledby="LargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              ×</button>
+            <h4 class="modal-title" id="login-hdr">
+              Add new item or room
+            </h4>
+          </div>
+          <!-- <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6" style="padding-right: 30px;">
+                <div class="row">
+                  <div class="col-md-12">
+                    
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                      <li><a href="#registration" data-toggle="tab">Register</a></li>
+                      <li><a href="#forgot-password" data-toggle="tab">Forgot Password</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="login">
+                        <br>
+                        <form role="form" class="form-horizontal login-form" data-toggle="validator">
+                          <div class="row">
+                            <div class="form-group">
+                              <label for="login-user-name" class="col-md-3 control-label">User Name *</label>
+                              <div class="col-md-9">
+                                <input type="text" class="form-control" name="login-user-name" id="login-user-name" placeholder="UserName" required data-error="User Name is required.">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <label for="login-password" class="col-md-3 control-label">Password *</label>
+                              <div class="col-md-9">
+                                <input type="password" class="form-control" name="login-password" id="login-password" placeholder="Password" required data-error="Password is required.">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <div class="col-md-3">
+                              </div>
+                              <div class="col-md-9">
+                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                                <button type="submit" class="btn btn-default" id="login-submit">Submit</button>
+                                <a href="#" class="btnForgotPassword">Forgot your password?</a>
+                                <p id="login-error"></p>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="tab-pane" id="registration">
+                        <br>
+                        <form role="form" class="form-horizontal registration-form" data-toggle="validator">
+                          <div class="form-group">
+                            <label for="reg-user-name" class="col-md-3 control-label">User Name *</label>
+                            <div class="col-md-9">
+                              <input type="text" class="form-control" name="reg-user-name" id="reg-user-name" placeholder="UserName" required data-error="User Name is required.">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="reg-first-name" class="col-md-3 control-label">First Name *</label>
+                            <div class="col-md-9">
+                              <input type="text" class="form-control" id="reg-first-name" name="reg-first-name" placeholder="First Name" required data-error="First Name is required.">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="reg-last-name" class="col-md-3 control-label">Last Name *</label>
+                            <div class="col-md-9">
+                              <input type="text" class="form-control" id="reg-last-name" name="reg-last-name" placeholder="Last Name" required data-error="Last Name is required.">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="reg-email" class="col-md-3 control-label">Email *</label>
+                            <div class="col-md-9">
+                              <input type="email" class="form-control" id="reg-email" name="reg-email" placeholder="example@email.com" required data-error="A valid Email is required.">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="reg-password" class="col-md-3 control-label">Password *</label>
+                            <div class="col-md-9">
+                              <input type="password" data-minlength="6" class="form-control" id="reg-password" placeholder="Password" required>
+                              <div class="help-block">Minimum of 6 characters</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="reg-password-confirm" class="col-md-3 control-label">Confirm *</label>
+                            <div class="col-md-9">
+                              <input type="password" class="form-control" id="reg-password-confirm" data-match="#reg-password" data-match-error="Password does not match"
+                                placeholder="Confirm" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <div class="col-md-3">
+                              </div>
+                              <div class="col-md-9">
+                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                                <button type="submit" class="btn btn-default" id="reg-save">Save and Continue</button>
+                                <p id="reg-error"></p>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="tab-pane" id="forgot-password">
+                        <br>
+                        <form role="form" class="form-horizontal forgot-password-form" data-toggle="validator">
+                          <div class="form-group">
+                            <label for="fp-email" class="col-md-3 control-label">Email *</label>
+                            <div class="col-md-9">
+                              <input type="email" class="form-control" id="fp-email" name="fp-email" placeholder="example@email.com" required data-error="A valid Email is required.">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group">
+                              <div class="col-md-3">
+                              </div>
+                              <div class="col-md-9">
+                                <p class="text-muted"><strong>*</strong> These fields are required.</p>
+                                <p class="fp-inst">Check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.
+                                  Return to sign in
+                                </p>
+                                <p id="fp-error"></p>
+                                <button type="submit" class="btn btn-default" id="fp-submit">Send Request</button>
+                                <p id="reg-error"></p>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6" style="border-left: 1px dotted #C2C2C2; margin-left: 0px;">
+                <br>
+                <br>
+                <h2 class="lead text-success">Benefits of Registering</h2>
+                <ul class="list-unstyled" style="line-height: 4">
+                  <li><span class="fa fa-check text-success"></span> Design &amp; Save your Motifs to your Account
+                  </li>
+                  <li><span class="fa fa-check text-success"></span> View &amp; Edit your Motifs on any computer</li>
+                  <li><span class="fa fa-check text-success"></span> Save your Motif as an image file to your computer
+                  </li>
+                  <li><span class="fa fa-check text-success"></span> Add your own design elements (Rooms, Art, Furniture, etc.)
+                  </li>
+                </ul>
+                <br>
+                <p>
+                  <button class="btn btn-default btn-block" id="btnRegister">Yes please, register now!</button>
+                </p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div id="OR" class="hidden-xs">
+                  OR</div>
+              </div>
+            </div>
+          </div> -->
         </div>
       </div>
     </div>

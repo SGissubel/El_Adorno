@@ -237,6 +237,7 @@ $(document).ready(function () {
         // $divShowroom;
 
         $div.append($divShowroom)
+        $divShowroom
           .append($divText)
           .append($imgThumbnail)
           .append($Delete);
@@ -268,8 +269,10 @@ $(document).ready(function () {
       currentShowroom.file_name = data[0].file_name;
       currentShowroom.user_id = data[0].user_id;
 
-      $canvasWidthRatio = currentShowroom.showroom_width / $canvasWidth;
-      $canvasHeightRatio = currentShowroom.showroom_height / $canvasHeight;
+      $canvasWidthRatio = 1;
+      // $canvasWidthRatio = currentShowroom.showroom_width / $canvasWidth;
+      // $canvasHeightRatio = currentShowroom.showroom_height / $canvasHeight;
+      $canvasHeightRatio = 1;
       
       data.forEach(function(data) {
          switch (data.layer_type) {
@@ -587,7 +590,7 @@ $(document).ready(function () {
             .attr("data-obj-id", furn.id);
 
           $("#furniture").append($imgThumbnail);
-    
+
         }    
       })
     });
@@ -737,6 +740,8 @@ $(document).ready(function () {
   $(document).on("click", ".my-showroom", function () {
     var showroomId = $(this).data("id");
     var userId = $(this).data("user-id");
+    $('#my-showrooms-modal').css('display', 'none');
+    debugger;
 
     displayShowroom(showroomId, userId);
 
@@ -888,11 +893,11 @@ $(document).ready(function () {
     if (a) angle = a;
     else angle = 0;
     
-    var layerName = $(this).data("name") + "_" + $(this).data("copy");
+    const layerName = $(this).data("name") + "_" + $(this).data("copy");
 
-    var _this = this;
+    const _this = this;
 
-    var imgURL = $(_this).data("src");
+    const imgURL = $(_this).data("src");
 
     fabric.Image.fromURL(imgURL, function(img) {
       var imgObj = img;
@@ -913,7 +918,6 @@ $(document).ready(function () {
       width: width,
       height: height
     });
-    // Lightened shadows - still need to implement left or right 
     imgObj.setShadow({
         blur: 3,
         color: 'rgba(0,0,0,0.3)',
@@ -934,8 +938,12 @@ $(document).ready(function () {
     });
 
     var objIndex;
+    debugger;
+    // ADD IN ABILITY TO CHANGE Z-INDEX for certain furniture types (add button)
 
-    if ($(_this).data("type") === "art") {
+    if ($(_this).data('name'))
+
+    if ($(_this).data("type") === "art" || $(_this).data('name').includes('mirror')) {
       artworkCount++;
       if (roomMode) objIndex = artworkCount;
       else {
@@ -1257,7 +1265,6 @@ $(document).ready(function () {
       }
       parmLayer.flipped = l[i].flipX
       parmLayer.showroom_id = showroomId;
-      console.log(parmLayer);
       ajaxSaveLayer(parmLayer);
     }
 
@@ -1368,7 +1375,7 @@ $(document).ready(function () {
   $('input[name=shadow-change]').change(() => {
     const activeObject = fabCanvas.getActiveObject();
     const shadowChange = event.target.value;
-    
+
     switch(shadowChange) {
       case 'right':
         activeObject.shadow.offsetX = 3;
